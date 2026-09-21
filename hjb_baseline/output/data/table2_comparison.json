@@ -1,0 +1,32 @@
+{
+  "baseline": {
+    "PnL_mean": 13.00210456274,
+    "PnL_std": 35.77611933263689,
+    "mean_abs_qT": 59.285,
+    "VaR_5pct": 44.352560295000046,
+    "ES_5pct": 62.66451891100001
+  },
+  "optimal": {
+    "PnL_mean": 12.346595231759999,
+    "PnL_std": 10.364489493062022,
+    "mean_abs_qT": 15.129,
+    "VaR_5pct": 4.400011200000003,
+    "ES_5pct": 9.315483564670657
+  },
+  "paper": {
+    "baseline": {
+      "PnL_mean": 12.47,
+      "PnL_std": 28.11,
+      "mean_abs_qT": 49.37,
+      "VaR_5pct": 32.41,
+      "ES_5pct": 40.5
+    },
+    "optimal": {
+      "PnL_mean": 12.39,
+      "PnL_std": 10.34,
+      "mean_abs_qT": 15.23,
+      "VaR_5pct": 4.2,
+      "ES_5pct": 9.68
+    }
+  }
+}

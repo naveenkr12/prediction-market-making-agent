@@ -1,0 +1,11 @@
+strategy,metric,reproduced,paper_published
+baseline,PnL_mean,13.00210456274,12.47
+baseline,PnL_std,35.77611933263689,28.11
+baseline,mean_abs_qT,59.285,49.37
+baseline,VaR_5pct,44.352560295000046,32.41
+baseline,ES_5pct,62.66451891100001,40.5
+optimal,PnL_mean,12.346595231759999,12.39
+optimal,PnL_std,10.364489493062022,10.34
+optimal,mean_abs_qT,15.129,15.23
+optimal,VaR_5pct,4.400011200000003,4.2
+optimal,ES_5pct,9.315483564670657,9.68

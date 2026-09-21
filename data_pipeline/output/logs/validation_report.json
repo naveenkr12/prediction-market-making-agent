@@ -1,0 +1,23 @@
+{
+  "issues": [
+    "21 contracts have no trades file: ['KXEPL1HSCORE-26SEP20FULMUN-FUL3MUN1', 'KXTOPBUSINESS-26-MN', 'KXEPL1HSCORE-26SEP20FULMUN-FUL3MUN2', 'KXTOPBUSINESS-26-FL', 'KXTOPBUSINESS-26-VA', 'KXTOPBUSINESS-26-NC', 'KXEPL1HSCORE-26SEP20LEECRY-LEE3CRY2', 'KXEPL1HSCORE-26SEP20LEECRY-LEE1CRY1', 'KXEPL1HSCORE-26SEP20LEECRY-LEE3CRY0', 'KXTOPBUSINESS-26-MI']"
+  ],
+  "summary": {
+    "n_contracts_selected": 60,
+    "by_category": {
+      "Sports": 30,
+      "Economics": 30
+    },
+    "by_result": {
+      "no": 47,
+      "yes": 13
+    },
+    "contracts_with_trades_file": 39,
+    "contracts_with_candles_file": 60,
+    "median_trade_rows": 7,
+    "median_candle_rows": 111,
+    "contracts_with_zero_trades": 0,
+    "price_checks": "1628",
+    "price_out_of_bounds": 0
+  }
+}

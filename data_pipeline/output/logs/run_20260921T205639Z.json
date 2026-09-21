@@ -1,0 +1,610 @@
+{
+  "started_at": "20260921T205639Z",
+  "elapsed_s": 232.83591318130493,
+  "target_total": 60,
+  "n_selected": 60,
+  "trades_ok": 60,
+  "candles_ok": 60,
+  "records": [
+    {
+      "ticker": "KXEPL1HSCORE-26SEP20FULMUN-FUL3MUN1",
+      "series_ticker": "KXEPL1HSCORE",
+      "category": "Sports",
+      "trades_rows": 0,
+      "candle_rows": 110,
+      "trades_ok": true,
+      "candles_ok": true,
+      "error": null
+    },
+    {
+      "ticker": "KXEPL1HSCORE-26SEP20FULMUN-FUL0MUN0",
+      "series_ticker": "KXEPL1HSCORE",
+      "category": "Sports",
+      "trades_rows": 74,
+      "candle_rows": 450,
+      "trades_ok": true,
+      "candles_ok": true,
+      "error": null
+    },
+    {
+      "ticker": "KXEPL1HSCORE-26SEP20FULMUN-FUL0MUN2",
+      "series_ticker": "KXEPL1HSCORE",
+      "category": "Sports",
+      "trades_rows": 12,
+      "candle_rows": 413,
+      "trades_ok": true,
+      "candles_ok": true,
+      "error": null
+    },
+    {
+      "ticker": "KXEPL1HSCORE-26SEP20FULMUN-FUL1MUN2",
+      "series_ticker": "KXEPL1HSCORE",
+      "category": "Sports",
+      "trades_rows": 8,
+      "candle_rows": 240,
+      "trades_ok": true,
+      "candles_ok": true,
+      "error": null
+    },
+    {
+      "ticker": "KXTOPBUSINESS-26-MN",
+      "series_ticker": "KXTOPBUSINESS",
+      "category": "Economics",
+      "trades_rows": 0,
+      "candle_rows": 60,
+      "trades_ok": true,
+      "candles_ok": true,
+      "error": null
+    },
+    {
+      "ticker": "KXUSFLYCAN-26AUG14-T1000",
+      "series_ticker": "KXUSFLYCAN",
+      "category": "Economics",
+      "trades_rows": 7,
+      "candle_rows": 39,
+      "trades_ok": true,
+      "candles_ok": true,
+      "error": null
+    },
+    {
+      "ticker": "KXUSFLYCAN-26AUG07-T3700",
+      "series_ticker": "KXUSFLYCAN",
+      "category": "Economics",
+      "trades_rows": 2,
+      "candle_rows": 48,
+      "trades_ok": true,
+      "candles_ok": true,
+      "error": null
+    },
+    {
+      "ticker": "KXUSFLYCAN-26AUG07-T3900",
+      "series_ticker": "KXUSFLYCAN",
+      "category": "Economics",
+      "trades_rows": 2,
+      "candle_rows": 48,
+      "trades_ok": true,
+      "candles_ok": true,
+      "error": null
+    },
+    {
+      "ticker": "KXEPL1HSCORE-26SEP20FULMUN-FUL1MUN1",
+      "series_ticker": "KXEPL1HSCORE",
+      "category": "Sports",
+      "trades_rows": 6,
+      "candle_rows": 373,
+      "trades_ok": true,
+      "candles_ok": true,
+      "error": null
+    },
+    {
+      "ticker": "KXEPL1HSCORE-26SEP20FULMUN-FUL2MUN3",
+      "series_ticker": "KXEPL1HSCORE",
+      "category": "Sports",
+      "trades_rows": 2,
+      "candle_rows": 90,
+      "trades_ok": true,
+      "candles_ok": true,
+      "error": null
+    },
+    {
+      "ticker": "KXUSFLYCAN-26AUG07-T8000",
+      "series_ticker": "KXUSFLYCAN",
+      "category": "Economics",
+      "trades_rows": 15,
+      "candle_rows": 2306,
+      "trades_ok": true,
+      "candles_ok": true,
+      "error": null
+    },
+    {
+      "ticker": "KXEPL1HSCORE-26SEP20FULMUN-FUL1MUN0",
+      "series_ticker": "KXEPL1HSCORE",
+      "category": "Sports",
+      "trades_rows": 21,
+      "candle_rows": 156,
+      "trades_ok": true,
+      "candles_ok": true,
+      "error": null
+    },
+    {
+      "ticker": "KXUSFLYCAN-26AUG14-T8000",
+      "series_ticker": "KXUSFLYCAN",
+      "category": "Economics",
+      "trades_rows": 17,
+      "candle_rows": 295,
+      "trades_ok": true,
+      "candles_ok": true,
+      "error": null
+    },
+    {
+      "ticker": "KXUSFLYCAN-26AUG07-T3600",
+      "series_ticker": "KXUSFLYCAN",
+      "category": "Economics",
+      "trades_rows": 4,
+      "candle_rows": 19,
+      "trades_ok": true,
+      "candles_ok": true,
+      "error": null
+    },
+    {
+      "ticker": "KXUSFLYCAN-26AUG14-T10000",
+      "series_ticker": "KXUSFLYCAN",
+      "category": "Economics",
+      "trades_rows": 8,
+      "candle_rows": 71,
+      "trades_ok": true,
+      "candles_ok": true,
+      "error": null
+    },
+    {
+      "ticker": "KXEPL1HSCORE-26SEP20LEECRY-LEE2CRY0",
+      "series_ticker": "KXEPL1HSCORE",
+      "category": "Sports",
+      "trades_rows": 3,
+      "candle_rows": 536,
+      "trades_ok": true,
+      "candles_ok": true,
+      "error": null
+    },
+    {
+      "ticker": "KXUSFLYCAN-26AUG07-T3800",
+      "series_ticker": "KXUSFLYCAN",
+      "category": "Economics",
+      "trades_rows": 2,
+      "candle_rows": 48,
+      "trades_ok": true,
+      "candles_ok": true,
+      "error": null
+    },
+    {
+      "ticker": "KXEPL1HSCORE-26SEP20FULMUN-FUL3MUN2",
+      "series_ticker": "KXEPL1HSCORE",
+      "category": "Sports",
+      "trades_rows": 0,
+      "candle_rows": 82,
+      "trades_ok": true,
+      "candles_ok": true,
+      "error": null
+    },
+    {
+      "ticker": "KXTOPBUSINESS-26-FL",
+      "series_ticker": "KXTOPBUSINESS",
+      "category": "Economics",
+      "trades_rows": 0,
+      "candle_rows": 54,
+      "trades_ok": true,
+      "candles_ok": true,
+      "error": null
+    },
+    {
+      "ticker": "KXTOPBUSINESS-26-VA",
+      "series_ticker": "KXTOPBUSINESS",
+      "category": "Economics",
+      "trades_rows": 0,
+      "candle_rows": 68,
+      "trades_ok": true,
+      "candles_ok": true,
+      "error": null
+    },
+    {
+      "ticker": "KXUSFLYCAN-26AUG07-T9000",
+      "series_ticker": "KXUSFLYCAN",
+      "category": "Economics",
+      "trades_rows": 9,
+      "candle_rows": 2745,
+      "trades_ok": true,
+      "candles_ok": true,
+      "error": null
+    },
+    {
+      "ticker": "KXEPL1HSCORE-26SEP20LEECRY-LEE1CRY0",
+      "series_ticker": "KXEPL1HSCORE",
+      "category": "Sports",
+      "trades_rows": 3,
+      "candle_rows": 198,
+      "trades_ok": true,
+      "candles_ok": true,
+      "error": null
+    },
+    {
+      "ticker": "KXTOPBUSINESS-26-NC",
+      "series_ticker": "KXTOPBUSINESS",
+      "category": "Economics",
+      "trades_rows": 0,
+      "candle_rows": 58,
+      "trades_ok": true,
+      "candles_ok": true,
+      "error": null
+    },
+    {
+      "ticker": "KXUSFLYCAN-26AUG07-T7000",
+      "series_ticker": "KXUSFLYCAN",
+      "category": "Economics",
+      "trades_rows": 5,
+      "candle_rows": 4378,
+      "trades_ok": true,
+      "candles_ok": true,
+      "error": null
+    },
+    {
+      "ticker": "KXUSFLYCAN-26AUG14-T4000",
+      "series_ticker": "KXUSFLYCAN",
+      "category": "Economics",
+      "trades_rows": 7,
+      "candle_rows": 181,
+      "trades_ok": true,
+      "candles_ok": true,
+      "error": null
+    },
+    {
+      "ticker": "KXEPL1HSCORE-26SEP20LEECRY-LEE3CRY2",
+      "series_ticker": "KXEPL1HSCORE",
+      "category": "Sports",
+      "trades_rows": 0,
+      "candle_rows": 70,
+      "trades_ok": true,
+      "candles_ok": true,
+      "error": null
+    },
+    {
+      "ticker": "KXUSFLYCAN-26AUG14-T2000",
+      "series_ticker": "KXUSFLYCAN",
+      "category": "Economics",
+      "trades_rows": 5,
+      "candle_rows": 71,
+      "trades_ok": true,
+      "candles_ok": true,
+      "error": null
+    },
+    {
+      "ticker": "KXEPL1HSCORE-26SEP20MCISUN-MCI3SUN2",
+      "series_ticker": "KXEPL1HSCORE",
+      "category": "Sports",
+      "trades_rows": 31,
+      "candle_rows": 108,
+      "trades_ok": true,
+      "candles_ok": true,
+      "error": null
+    },
+    {
+      "ticker": "KXEPL1HSCORE-26SEP20LEECRY-LEE1CRY1",
+      "series_ticker": "KXEPL1HSCORE",
+      "category": "Sports",
+      "trades_rows": 0,
+      "candle_rows": 300,
+      "trades_ok": true,
+      "candles_ok": true,
+      "error": null
+    },
+    {
+      "ticker": "KXEPL1HSCORE-26SEP20LEECRY-LEE3CRY0",
+      "series_ticker": "KXEPL1HSCORE",
+      "category": "Sports",
+      "trades_rows": 0,
+      "candle_rows": 116,
+      "trades_ok": true,
+      "candles_ok": true,
+      "error": null
+    },
+    {
+      "ticker": "KXEPL1HSCORE-26SEP20MCISUN-MCI1SUN2",
+      "series_ticker": "KXEPL1HSCORE",
+      "category": "Sports",
+      "trades_rows": 2,
+      "candle_rows": 137,
+      "trades_ok": true,
+      "candles_ok": true,
+      "error": null
+    },
+    {
+      "ticker": "KXEPL1HSCORE-26SEP20FULMUN-FUL0MUN1",
+      "series_ticker": "KXEPL1HSCORE",
+      "category": "Sports",
+      "trades_rows": 15,
+      "candle_rows": 422,
+      "trades_ok": true,
+      "candles_ok": true,
+      "error": null
+    },
+    {
+      "ticker": "KXEPL1HSCORE-26SEP20FULMUN-FUL2MUN1",
+      "series_ticker": "KXEPL1HSCORE",
+      "category": "Sports",
+      "trades_rows": 4,
+      "candle_rows": 126,
+      "trades_ok": true,
+      "candles_ok": true,
+      "error": null
+    },
+    {
+      "ticker": "KXEPL1HSCORE-26SEP20MCISUN-MCI2SUN2",
+      "series_ticker": "KXEPL1HSCORE",
+      "category": "Sports",
+      "trades_rows": 11,
+      "candle_rows": 134,
+      "trades_ok": true,
+      "candles_ok": true,
+      "error": null
+    },
+    {
+      "ticker": "KXTOPBUSINESS-26-MI",
+      "series_ticker": "KXTOPBUSINESS",
+      "category": "Economics",
+      "trades_rows": 0,
+      "candle_rows": 53,
+      "trades_ok": true,
+      "candles_ok": true,
+      "error": null
+    },
+    {
+      "ticker": "KXEPL1HSCORE-26SEP20FULMUN-FUL2MUN0",
+      "series_ticker": "KXEPL1HSCORE",
+      "category": "Sports",
+      "trades_rows": 0,
+      "candle_rows": 102,
+      "trades_ok": true,
+      "candles_ok": true,
+      "error": null
+    },
+    {
+      "ticker": "KXTOPBUSINESS-26-OH",
+      "series_ticker": "KXTOPBUSINESS",
+      "category": "Economics",
+      "trades_rows": 1,
+      "candle_rows": 313,
+      "trades_ok": true,
+      "candles_ok": true,
+      "error": null
+    },
+    {
+      "ticker": "KXEPL1HSCORE-26SEP20FULMUN-FUL2MUN2",
+      "series_ticker": "KXEPL1HSCORE",
+      "category": "Sports",
+      "trades_rows": 6,
+      "candle_rows": 112,
+      "trades_ok": true,
+      "candles_ok": true,
+      "error": null
+    },
+    {
+      "ticker": "KXUSFLYCAN-26AUG14-T3000",
+      "series_ticker": "KXUSFLYCAN",
+      "category": "Economics",
+      "trades_rows": 3,
+      "candle_rows": 59,
+      "trades_ok": true,
+      "candles_ok": true,
+      "error": null
+    },
+    {
+      "ticker": "KXUSFLYCAN-26AUG07-T5000",
+      "series_ticker": "KXUSFLYCAN",
+      "category": "Economics",
+      "trades_rows": 237,
+      "candle_rows": 4492,
+      "trades_ok": true,
+      "candles_ok": true,
+      "error": null
+    },
+    {
+      "ticker": "KXTOPBUSINESS-26-TN",
+      "series_ticker": "KXTOPBUSINESS",
+      "category": "Economics",
+      "trades_rows": 0,
+      "candle_rows": 60,
+      "trades_ok": true,
+      "candles_ok": true,
+      "error": null
+    },
+    {
+      "ticker": "KXEPL1HSCORE-26SEP20FULMUN-FUL0MUN3",
+      "series_ticker": "KXEPL1HSCORE",
+      "category": "Sports",
+      "trades_rows": 0,
+      "candle_rows": 99,
+      "trades_ok": true,
+      "candles_ok": true,
+      "error": null
+    },
+    {
+      "ticker": "KXUSFLYCAN-26AUG07-T6000",
+      "series_ticker": "KXUSFLYCAN",
+      "category": "Economics",
+      "trades_rows": 58,
+      "candle_rows": 2392,
+      "trades_ok": true,
+      "candles_ok": true,
+      "error": null
+    },
+    {
+      "ticker": "KXTOPBUSINESS-26-IN",
+      "series_ticker": "KXTOPBUSINESS",
+      "category": "Economics",
+      "trades_rows": 0,
+      "candle_rows": 57,
+      "trades_ok": true,
+      "candles_ok": true,
+      "error": null
+    },
+    {
+      "ticker": "KXEPL1HSCORE-26SEP20LEECRY-LEE1CRY2",
+      "series_ticker": "KXEPL1HSCORE",
+      "category": "Sports",
+      "trades_rows": 0,
+      "candle_rows": 94,
+      "trades_ok": true,
+      "candles_ok": true,
+      "error": null
+    },
+    {
+      "ticker": "KXEPL1HSCORE-26SEP20FULMUN-FUL3MUN0",
+      "series_ticker": "KXEPL1HSCORE",
+      "category": "Sports",
+      "trades_rows": 0,
+      "candle_rows": 105,
+      "trades_ok": true,
+      "candles_ok": true,
+      "error": null
+    },
+    {
+      "ticker": "KXEPL1HSCORE-26SEP20FULMUN-FUL1MUN3",
+      "series_ticker": "KXEPL1HSCORE",
+      "category": "Sports",
+      "trades_rows": 8,
+      "candle_rows": 98,
+      "trades_ok": true,
+      "candles_ok": true,
+      "error": null
+    },
+    {
+      "ticker": "KXEPL1HSCORE-26SEP20LEECRY-LEE2CRY1",
+      "series_ticker": "KXEPL1HSCORE",
+      "category": "Sports",
+      "trades_rows": 0,
+      "candle_rows": 113,
+      "trades_ok": true,
+      "candles_ok": true,
+      "error": null
+    },
+    {
+      "ticker": "KXEPL1HSCORE-26SEP20LEECRY-LEE1CRY3",
+      "series_ticker": "KXEPL1HSCORE",
+      "category": "Sports",
+      "trades_rows": 0,
+      "candle_rows": 77,
+      "trades_ok": true,
+      "candles_ok": true,
+      "error": null
+    },
+    {
+      "ticker": "KXUSFLYCAN-26AUG14-T6000",
+      "series_ticker": "KXUSFLYCAN",
+      "category": "Economics",
+      "trades_rows": 17,
+      "candle_rows": 813,
+      "trades_ok": true,
+      "candles_ok": true,
+      "error": null
+    },
+    {
+      "ticker": "KXTOPBUSINESS-26-GA",
+      "series_ticker": "KXTOPBUSINESS",
+      "category": "Economics",
+      "trades_rows": 0,
+      "candle_rows": 59,
+      "trades_ok": true,
+      "candles_ok": true,
+      "error": null
+    },
+    {
+      "ticker": "KXEPL1HSCORE-26SEP20MCISUN-MCI3SUN1",
+      "series_ticker": "KXEPL1HSCORE",
+      "category": "Sports",
+      "trades_rows": 7,
+      "candle_rows": 133,
+      "trades_ok": true,
+      "candles_ok": true,
+      "error": null
+    },
+    {
+      "ticker": "KXEPL1HSCORE-26SEP20LEECRY-LEE2CRY2",
+      "series_ticker": "KXEPL1HSCORE",
+      "category": "Sports",
+      "trades_rows": 4,
+      "candle_rows": 107,
+      "trades_ok": true,
+      "candles_ok": true,
+      "error": null
+    },
+    {
+      "ticker": "KXUSFLYCAN-26AUG14-T5000",
+      "series_ticker": "KXUSFLYCAN",
+      "category": "Economics",
+      "trades_rows": 43,
+      "candle_rows": 725,
+      "trades_ok": true,
+      "candles_ok": true,
+      "error": null
+    },
+    {
+      "ticker": "KXTOPBUSINESS-26-TX",
+      "series_ticker": "KXTOPBUSINESS",
+      "category": "Economics",
+      "trades_rows": 0,
+      "candle_rows": 60,
+      "trades_ok": true,
+      "candles_ok": true,
+      "error": null
+    },
+    {
+      "ticker": "KXUSFLYCAN-26AUG07-T4000",
+      "series_ticker": "KXUSFLYCAN",
+      "category": "Economics",
+      "trades_rows": 131,
+      "candle_rows": 3419,
+      "trades_ok": true,
+      "candles_ok": true,
+      "error": null
+    },
+    {
+      "ticker": "KXEPL1HSCORE-26SEP20LEECRY-LEE3CRY1",
+      "series_ticker": "KXEPL1HSCORE",
+      "category": "Sports",
+      "trades_rows": 0,
+      "candle_rows": 92,
+      "trades_ok": true,
+      "candles_ok": true,
+      "error": null
+    },
+    {
+      "ticker": "KXUSFLYCAN-26AUG14-T9000",
+      "series_ticker": "KXUSFLYCAN",
+      "category": "Economics",
+      "trades_rows": 3,
+      "candle_rows": 250,
+      "trades_ok": true,
+      "candles_ok": true,
+      "error": null
+    },
+    {
+      "ticker": "KXUSFLYCAN-26AUG14-T7000",
+      "series_ticker": "KXUSFLYCAN",
+      "category": "Economics",
+      "trades_rows": 9,
+      "candle_rows": 427,
+      "trades_ok": true,
+      "candles_ok": true,
+      "error": null
+    },
+    {
+      "ticker": "KXEPL1HSCORE-26SEP20MCISUN-MCI2SUN1",
+      "series_ticker": "KXEPL1HSCORE",
+      "category": "Sports",
+      "trades_rows": 12,
+      "candle_rows": 152,
+      "trades_ok": true,
+      "candles_ok": true,
+      "error": null
+    }
+  ]
+}
