@@ -1,0 +1,15 @@
+{
+  "ticker": "KXMLSGAME-26SEP05CLBCOL-TIE",
+  "tape_complete": true,
+  "error": null,
+  "collected_at": "2026-10-09T21:20:29.425645+00:00",
+  "archive_cutoffs": {
+    "market_positions_last_updated_ts": "2026-08-10T00:00:00Z",
+    "market_settled_ts": "2026-08-10T00:00:00Z",
+    "orders_updated_ts": "2026-09-25T00:00:00Z",
+    "trades_created_ts": "2026-08-10T00:00:00Z"
+  },
+  "query_start_ts": 1787360220,
+  "query_end_ts": 1788660203,
+  "trade_rows": 1054
+}

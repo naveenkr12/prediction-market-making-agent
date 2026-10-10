@@ -1,0 +1,1440 @@
+[
+  {
+    "category": "Economics",
+    "series_ticker": "KXCPI",
+    "source": "live",
+    "error": null,
+    "markets_in_window": 25
+  },
+  {
+    "category": "Economics",
+    "series_ticker": "KXCPI",
+    "source": "historical",
+    "error": null,
+    "markets_in_window": 9
+  },
+  {
+    "category": "Economics",
+    "series_ticker": "KXCPIYOY",
+    "source": "live",
+    "error": null,
+    "markets_in_window": 47
+  },
+  {
+    "category": "Economics",
+    "series_ticker": "KXCPIYOY",
+    "source": "historical",
+    "error": null,
+    "markets_in_window": 21
+  },
+  {
+    "category": "Economics",
+    "series_ticker": "KXCPICORE",
+    "source": "live",
+    "error": null,
+    "markets_in_window": 22
+  },
+  {
+    "category": "Economics",
+    "series_ticker": "KXCPICORE",
+    "source": "historical",
+    "error": null,
+    "markets_in_window": 11
+  },
+  {
+    "category": "Economics",
+    "series_ticker": "KXCPICOREYOY",
+    "source": "live",
+    "error": null,
+    "markets_in_window": 30
+  },
+  {
+    "category": "Economics",
+    "series_ticker": "KXCPICOREYOY",
+    "source": "historical",
+    "error": null,
+    "markets_in_window": 15
+  },
+  {
+    "category": "Economics",
+    "series_ticker": "KXU3",
+    "source": "live",
+    "error": null,
+    "markets_in_window": 42
+  },
+  {
+    "category": "Economics",
+    "series_ticker": "KXU3",
+    "source": "historical",
+    "error": null,
+    "markets_in_window": 14
+  },
+  {
+    "category": "Economics",
+    "series_ticker": "KXPAYROLLS",
+    "source": "live",
+    "error": null,
+    "markets_in_window": 45
+  },
+  {
+    "category": "Economics",
+    "series_ticker": "KXPAYROLLS",
+    "source": "historical",
+    "error": null,
+    "markets_in_window": 13
+  },
+  {
+    "category": "Economics",
+    "series_ticker": "KXFEDDECISION",
+    "source": "live",
+    "error": null,
+    "markets_in_window": 5
+  },
+  {
+    "category": "Economics",
+    "series_ticker": "KXFEDDECISION",
+    "source": "historical",
+    "error": null,
+    "markets_in_window": 5
+  },
+  {
+    "category": "Economics",
+    "series_ticker": "KXPCECORE",
+    "source": "live",
+    "error": null,
+    "markets_in_window": 13
+  },
+  {
+    "category": "Economics",
+    "series_ticker": "KXPCECORE",
+    "source": "historical",
+    "error": null,
+    "markets_in_window": 5
+  },
+  {
+    "category": "Economics",
+    "series_ticker": "KXPCEHEAD",
+    "source": "live",
+    "error": null,
+    "markets_in_window": 8
+  },
+  {
+    "category": "Economics",
+    "series_ticker": "KXPCEHEAD",
+    "source": "historical",
+    "error": null,
+    "markets_in_window": 0
+  },
+  {
+    "category": "Economics",
+    "series_ticker": "KXGDP",
+    "source": "live",
+    "error": null,
+    "markets_in_window": 0
+  },
+  {
+    "category": "Economics",
+    "series_ticker": "KXGDP",
+    "source": "historical",
+    "error": null,
+    "markets_in_window": 9
+  },
+  {
+    "category": "Economics",
+    "series_ticker": "GDP",
+    "source": "live",
+    "error": null,
+    "markets_in_window": 0
+  },
+  {
+    "category": "Economics",
+    "series_ticker": "GDP",
+    "source": "historical",
+    "error": null,
+    "markets_in_window": 0
+  },
+  {
+    "category": "Economics",
+    "series_ticker": "KXRETAIL",
+    "source": "live",
+    "error": null,
+    "markets_in_window": 0
+  },
+  {
+    "category": "Economics",
+    "series_ticker": "KXRETAIL",
+    "source": "historical",
+    "error": null,
+    "markets_in_window": 0
+  },
+  {
+    "category": "Economics",
+    "series_ticker": "KXUSRETAIL",
+    "source": "live",
+    "error": null,
+    "markets_in_window": 18
+  },
+  {
+    "category": "Economics",
+    "series_ticker": "KXUSRETAIL",
+    "source": "historical",
+    "error": null,
+    "markets_in_window": 8
+  },
+  {
+    "category": "Economics",
+    "series_ticker": "KXJOBLESS",
+    "source": "live",
+    "error": null,
+    "markets_in_window": 0
+  },
+  {
+    "category": "Economics",
+    "series_ticker": "KXJOBLESS",
+    "source": "historical",
+    "error": null,
+    "markets_in_window": 0
+  },
+  {
+    "category": "Economics",
+    "series_ticker": "KXJOBLESSCLAIMS",
+    "source": "live",
+    "error": null,
+    "markets_in_window": 108
+  },
+  {
+    "category": "Economics",
+    "series_ticker": "KXJOBLESSCLAIMS",
+    "source": "historical",
+    "error": null,
+    "markets_in_window": 37
+  },
+  {
+    "category": "Economics",
+    "series_ticker": "KXADP",
+    "source": "live",
+    "error": null,
+    "markets_in_window": 21
+  },
+  {
+    "category": "Economics",
+    "series_ticker": "KXADP",
+    "source": "historical",
+    "error": null,
+    "markets_in_window": 7
+  },
+  {
+    "category": "Economics",
+    "series_ticker": "KXISMPMI",
+    "source": "live",
+    "error": null,
+    "markets_in_window": 24
+  },
+  {
+    "category": "Economics",
+    "series_ticker": "KXISMPMI",
+    "source": "historical",
+    "error": null,
+    "markets_in_window": 8
+  },
+  {
+    "category": "Economics",
+    "series_ticker": "KXISMSERVICES",
+    "source": "live",
+    "error": null,
+    "markets_in_window": 0
+  },
+  {
+    "category": "Economics",
+    "series_ticker": "KXISMSERVICES",
+    "source": "historical",
+    "error": null,
+    "markets_in_window": 0
+  },
+  {
+    "category": "Economics",
+    "series_ticker": "KXAAAGASW",
+    "source": "live",
+    "error": null,
+    "markets_in_window": 307
+  },
+  {
+    "category": "Economics",
+    "series_ticker": "KXAAAGASW",
+    "source": "historical",
+    "error": null,
+    "markets_in_window": 109
+  },
+  {
+    "category": "Economics",
+    "series_ticker": "KXAAAGASM",
+    "source": "live",
+    "error": null,
+    "markets_in_window": 80
+  },
+  {
+    "category": "Economics",
+    "series_ticker": "KXAAAGASM",
+    "source": "historical",
+    "error": null,
+    "markets_in_window": 36
+  },
+  {
+    "category": "Economics",
+    "series_ticker": "KXUSFLYCAN",
+    "source": "live",
+    "error": null,
+    "markets_in_window": 24
+  },
+  {
+    "category": "Economics",
+    "series_ticker": "KXUSFLYCAN",
+    "source": "historical",
+    "error": null,
+    "markets_in_window": 55
+  },
+  {
+    "category": "Economics",
+    "series_ticker": "BIGBANKLAYOFF",
+    "source": "live",
+    "error": null,
+    "markets_in_window": 0
+  },
+  {
+    "category": "Economics",
+    "series_ticker": "BIGBANKLAYOFF",
+    "source": "historical",
+    "error": null,
+    "markets_in_window": 0
+  },
+  {
+    "category": "Economics",
+    "series_ticker": "PAYROLLS",
+    "source": "live",
+    "error": null,
+    "markets_in_window": 0
+  },
+  {
+    "category": "Economics",
+    "series_ticker": "PAYROLLS",
+    "source": "historical",
+    "error": null,
+    "markets_in_window": 0
+  },
+  {
+    "category": "Economics",
+    "series_ticker": "KXAAAGASDMD",
+    "source": "live",
+    "error": null,
+    "markets_in_window": 431
+  },
+  {
+    "category": "Economics",
+    "series_ticker": "KXAAAGASDMD",
+    "source": "historical",
+    "error": null,
+    "markets_in_window": 0
+  },
+  {
+    "category": "Sports",
+    "series_ticker": "KXMLBGAME",
+    "source": "live",
+    "error": null,
+    "markets_in_window": 1550
+  },
+  {
+    "category": "Sports",
+    "series_ticker": "KXMLBGAME",
+    "source": "historical",
+    "error": null,
+    "markets_in_window": 708
+  },
+  {
+    "category": "Sports",
+    "series_ticker": "KXNFLGAME",
+    "source": "live",
+    "error": null,
+    "markets_in_window": 228
+  },
+  {
+    "category": "Sports",
+    "series_ticker": "KXNFLGAME",
+    "source": "historical",
+    "error": null,
+    "markets_in_window": 2
+  },
+  {
+    "category": "Sports",
+    "series_ticker": "KXEPLGAME",
+    "source": "live",
+    "error": null,
+    "markets_in_window": 150
+  },
+  {
+    "category": "Sports",
+    "series_ticker": "KXEPLGAME",
+    "source": "historical",
+    "error": null,
+    "markets_in_window": 0
+  },
+  {
+    "category": "Sports",
+    "series_ticker": "KXNCAAFGAME",
+    "source": "live",
+    "error": null,
+    "markets_in_window": 1434
+  },
+  {
+    "category": "Sports",
+    "series_ticker": "KXNCAAFGAME",
+    "source": "historical",
+    "error": null,
+    "markets_in_window": 0
+  },
+  {
+    "category": "Sports",
+    "series_ticker": "KXWNBAGAME",
+    "source": "live",
+    "error": null,
+    "markets_in_window": 250
+  },
+  {
+    "category": "Sports",
+    "series_ticker": "KXWNBAGAME",
+    "source": "historical",
+    "error": null,
+    "markets_in_window": 148
+  },
+  {
+    "category": "Sports",
+    "series_ticker": "KXMLSGAME",
+    "source": "live",
+    "error": null,
+    "markets_in_window": 417
+  },
+  {
+    "category": "Sports",
+    "series_ticker": "KXMLSGAME",
+    "source": "historical",
+    "error": null,
+    "markets_in_window": 156
+  },
+  {
+    "category": "Sports",
+    "series_ticker": "KXUCLGAME",
+    "source": "live",
+    "error": null,
+    "markets_in_window": 156
+  },
+  {
+    "category": "Sports",
+    "series_ticker": "KXUCLGAME",
+    "source": "historical",
+    "error": null,
+    "markets_in_window": 156
+  },
+  {
+    "category": "Sports",
+    "series_ticker": "KXATP",
+    "source": "live",
+    "error": null,
+    "markets_in_window": 319
+  },
+  {
+    "category": "Sports",
+    "series_ticker": "KXATP",
+    "source": "historical",
+    "error": null,
+    "markets_in_window": 163
+  },
+  {
+    "category": "Sports",
+    "series_ticker": "KXWTA",
+    "source": "live",
+    "error": null,
+    "markets_in_window": 217
+  },
+  {
+    "category": "Sports",
+    "series_ticker": "KXWTA",
+    "source": "historical",
+    "error": null,
+    "markets_in_window": 117
+  },
+  {
+    "category": "Sports",
+    "series_ticker": "KXMLBHRR",
+    "source": "live",
+    "error": "Pagination limit (20) reached for /markets; data incomplete"
+  },
+  {
+    "category": "Sports",
+    "series_ticker": "KXMLBHRR",
+    "source": "historical",
+    "error": "Pagination limit (20) reached for /historical/markets; data incomplete"
+  },
+  {
+    "category": "Sports",
+    "series_ticker": "KXNELKRTS",
+    "source": "live",
+    "error": null,
+    "markets_in_window": 0
+  },
+  {
+    "category": "Sports",
+    "series_ticker": "KXNELKRTS",
+    "source": "historical",
+    "error": null,
+    "markets_in_window": 0
+  },
+  {
+    "category": "Sports",
+    "series_ticker": "KXSAUDIPLTOTAL",
+    "source": "live",
+    "error": null,
+    "markets_in_window": 473
+  },
+  {
+    "category": "Sports",
+    "series_ticker": "KXSAUDIPLTOTAL",
+    "source": "historical",
+    "error": null,
+    "markets_in_window": 0
+  },
+  {
+    "category": "Sports",
+    "series_ticker": "KXMLS2HSPREAD",
+    "source": "live",
+    "error": null,
+    "markets_in_window": 186
+  },
+  {
+    "category": "Sports",
+    "series_ticker": "KXMLS2HSPREAD",
+    "source": "historical",
+    "error": null,
+    "markets_in_window": 0
+  },
+  {
+    "category": "Sports",
+    "series_ticker": "KXNEXTCONTRACTSKUBAL",
+    "source": "live",
+    "error": null,
+    "markets_in_window": 0
+  },
+  {
+    "category": "Sports",
+    "series_ticker": "KXNEXTCONTRACTSKUBAL",
+    "source": "historical",
+    "error": null,
+    "markets_in_window": 0
+  },
+  {
+    "category": "Sports",
+    "series_ticker": "KXNCAAFCUSAQUAL",
+    "source": "live",
+    "error": null,
+    "markets_in_window": 0
+  },
+  {
+    "category": "Sports",
+    "series_ticker": "KXNCAAFCUSAQUAL",
+    "source": "historical",
+    "error": null,
+    "markets_in_window": 0
+  },
+  {
+    "category": "Sports",
+    "series_ticker": "KXBRASILEIROTOPX",
+    "source": "live",
+    "error": null,
+    "markets_in_window": 0
+  },
+  {
+    "category": "Sports",
+    "series_ticker": "KXBRASILEIROTOPX",
+    "source": "historical",
+    "error": null,
+    "markets_in_window": 0
+  },
+  {
+    "category": "Sports",
+    "series_ticker": "KXITASUPERCUP1HTOTAL",
+    "source": "live",
+    "error": null,
+    "markets_in_window": 0
+  },
+  {
+    "category": "Sports",
+    "series_ticker": "KXITASUPERCUP1HTOTAL",
+    "source": "historical",
+    "error": null,
+    "markets_in_window": 0
+  },
+  {
+    "category": "Sports",
+    "series_ticker": "KXMLS2HBTTS",
+    "source": "live",
+    "error": null,
+    "markets_in_window": 93
+  },
+  {
+    "category": "Sports",
+    "series_ticker": "KXMLS2HBTTS",
+    "source": "historical",
+    "error": null,
+    "markets_in_window": 0
+  },
+  {
+    "category": "Sports",
+    "series_ticker": "KXUEL16VIKFTC",
+    "source": "live",
+    "error": null,
+    "markets_in_window": 0
+  },
+  {
+    "category": "Sports",
+    "series_ticker": "KXUEL16VIKFTC",
+    "source": "historical",
+    "error": null,
+    "markets_in_window": 0
+  },
+  {
+    "category": "Sports",
+    "series_ticker": "KXNFL1HWINNER",
+    "source": "live",
+    "error": null,
+    "markets_in_window": 0
+  },
+  {
+    "category": "Sports",
+    "series_ticker": "KXNFL1HWINNER",
+    "source": "historical",
+    "error": null,
+    "markets_in_window": 0
+  },
+  {
+    "category": "Sports",
+    "series_ticker": "KXNASCARRACEOLD",
+    "source": "live",
+    "error": null,
+    "markets_in_window": 0
+  },
+  {
+    "category": "Sports",
+    "series_ticker": "KXNASCARRACEOLD",
+    "source": "historical",
+    "error": null,
+    "markets_in_window": 0
+  },
+  {
+    "category": "Sports",
+    "series_ticker": "KXSERIECSPREAD",
+    "source": "live",
+    "error": null,
+    "markets_in_window": 1022
+  },
+  {
+    "category": "Sports",
+    "series_ticker": "KXSERIECSPREAD",
+    "source": "historical",
+    "error": null,
+    "markets_in_window": 0
+  },
+  {
+    "category": "Sports",
+    "series_ticker": "KXLIGAMX1H",
+    "source": "live",
+    "error": null,
+    "markets_in_window": 189
+  },
+  {
+    "category": "Sports",
+    "series_ticker": "KXLIGAMX1H",
+    "source": "historical",
+    "error": null,
+    "markets_in_window": 81
+  },
+  {
+    "category": "Sports",
+    "series_ticker": "KXNCAAMBNEXTCOACH",
+    "source": "live",
+    "error": null,
+    "markets_in_window": 0
+  },
+  {
+    "category": "Sports",
+    "series_ticker": "KXNCAAMBNEXTCOACH",
+    "source": "historical",
+    "error": null,
+    "markets_in_window": 0
+  },
+  {
+    "category": "Economics",
+    "series_ticker": "KXCPI",
+    "source": "live",
+    "error": null,
+    "markets_in_window": 25,
+    "phase": "expanded_discovery"
+  },
+  {
+    "category": "Economics",
+    "series_ticker": "KXCPI",
+    "source": "historical",
+    "error": null,
+    "markets_in_window": 9,
+    "phase": "expanded_discovery"
+  },
+  {
+    "category": "Economics",
+    "series_ticker": "KXCPIYOY",
+    "source": "live",
+    "error": null,
+    "markets_in_window": 47,
+    "phase": "expanded_discovery"
+  },
+  {
+    "category": "Economics",
+    "series_ticker": "KXCPIYOY",
+    "source": "historical",
+    "error": null,
+    "markets_in_window": 21,
+    "phase": "expanded_discovery"
+  },
+  {
+    "category": "Economics",
+    "series_ticker": "KXCPICORE",
+    "source": "live",
+    "error": null,
+    "markets_in_window": 22,
+    "phase": "expanded_discovery"
+  },
+  {
+    "category": "Economics",
+    "series_ticker": "KXCPICORE",
+    "source": "historical",
+    "error": null,
+    "markets_in_window": 11,
+    "phase": "expanded_discovery"
+  },
+  {
+    "category": "Economics",
+    "series_ticker": "KXCPICOREYOY",
+    "source": "live",
+    "error": null,
+    "markets_in_window": 30,
+    "phase": "expanded_discovery"
+  },
+  {
+    "category": "Economics",
+    "series_ticker": "KXCPICOREYOY",
+    "source": "historical",
+    "error": null,
+    "markets_in_window": 15,
+    "phase": "expanded_discovery"
+  },
+  {
+    "category": "Economics",
+    "series_ticker": "KXU3",
+    "source": "live",
+    "error": null,
+    "markets_in_window": 42,
+    "phase": "expanded_discovery"
+  },
+  {
+    "category": "Economics",
+    "series_ticker": "KXU3",
+    "source": "historical",
+    "error": null,
+    "markets_in_window": 14,
+    "phase": "expanded_discovery"
+  },
+  {
+    "category": "Economics",
+    "series_ticker": "KXPAYROLLS",
+    "source": "live",
+    "error": null,
+    "markets_in_window": 45,
+    "phase": "expanded_discovery"
+  },
+  {
+    "category": "Economics",
+    "series_ticker": "KXPAYROLLS",
+    "source": "historical",
+    "error": null,
+    "markets_in_window": 13,
+    "phase": "expanded_discovery"
+  },
+  {
+    "category": "Economics",
+    "series_ticker": "KXFEDDECISION",
+    "source": "live",
+    "error": null,
+    "markets_in_window": 5,
+    "phase": "expanded_discovery"
+  },
+  {
+    "category": "Economics",
+    "series_ticker": "KXFEDDECISION",
+    "source": "historical",
+    "error": null,
+    "markets_in_window": 5,
+    "phase": "expanded_discovery"
+  },
+  {
+    "category": "Economics",
+    "series_ticker": "KXPCECORE",
+    "source": "live",
+    "error": null,
+    "markets_in_window": 13,
+    "phase": "expanded_discovery"
+  },
+  {
+    "category": "Economics",
+    "series_ticker": "KXPCECORE",
+    "source": "historical",
+    "error": null,
+    "markets_in_window": 5,
+    "phase": "expanded_discovery"
+  },
+  {
+    "category": "Economics",
+    "series_ticker": "KXPCEHEAD",
+    "source": "live",
+    "error": null,
+    "markets_in_window": 8,
+    "phase": "expanded_discovery"
+  },
+  {
+    "category": "Economics",
+    "series_ticker": "KXPCEHEAD",
+    "source": "historical",
+    "error": null,
+    "markets_in_window": 0,
+    "phase": "expanded_discovery"
+  },
+  {
+    "category": "Economics",
+    "series_ticker": "KXGDP",
+    "source": "live",
+    "error": null,
+    "markets_in_window": 0,
+    "phase": "expanded_discovery"
+  },
+  {
+    "category": "Economics",
+    "series_ticker": "KXGDP",
+    "source": "historical",
+    "error": null,
+    "markets_in_window": 9,
+    "phase": "expanded_discovery"
+  },
+  {
+    "category": "Economics",
+    "series_ticker": "GDP",
+    "source": "live",
+    "error": null,
+    "markets_in_window": 0,
+    "phase": "expanded_discovery"
+  },
+  {
+    "category": "Economics",
+    "series_ticker": "GDP",
+    "source": "historical",
+    "error": null,
+    "markets_in_window": 0,
+    "phase": "expanded_discovery"
+  },
+  {
+    "category": "Economics",
+    "series_ticker": "KXRETAIL",
+    "source": "live",
+    "error": null,
+    "markets_in_window": 0,
+    "phase": "expanded_discovery"
+  },
+  {
+    "category": "Economics",
+    "series_ticker": "KXRETAIL",
+    "source": "historical",
+    "error": null,
+    "markets_in_window": 0,
+    "phase": "expanded_discovery"
+  },
+  {
+    "category": "Economics",
+    "series_ticker": "KXUSRETAIL",
+    "source": "live",
+    "error": null,
+    "markets_in_window": 18,
+    "phase": "expanded_discovery"
+  },
+  {
+    "category": "Economics",
+    "series_ticker": "KXUSRETAIL",
+    "source": "historical",
+    "error": null,
+    "markets_in_window": 8,
+    "phase": "expanded_discovery"
+  },
+  {
+    "category": "Economics",
+    "series_ticker": "KXJOBLESS",
+    "source": "live",
+    "error": null,
+    "markets_in_window": 0,
+    "phase": "expanded_discovery"
+  },
+  {
+    "category": "Economics",
+    "series_ticker": "KXJOBLESS",
+    "source": "historical",
+    "error": null,
+    "markets_in_window": 0,
+    "phase": "expanded_discovery"
+  },
+  {
+    "category": "Economics",
+    "series_ticker": "KXJOBLESSCLAIMS",
+    "source": "live",
+    "error": null,
+    "markets_in_window": 108,
+    "phase": "expanded_discovery"
+  },
+  {
+    "category": "Economics",
+    "series_ticker": "KXJOBLESSCLAIMS",
+    "source": "historical",
+    "error": null,
+    "markets_in_window": 37,
+    "phase": "expanded_discovery"
+  },
+  {
+    "category": "Economics",
+    "series_ticker": "KXADP",
+    "source": "live",
+    "error": null,
+    "markets_in_window": 21,
+    "phase": "expanded_discovery"
+  },
+  {
+    "category": "Economics",
+    "series_ticker": "KXADP",
+    "source": "historical",
+    "error": null,
+    "markets_in_window": 7,
+    "phase": "expanded_discovery"
+  },
+  {
+    "category": "Economics",
+    "series_ticker": "KXISMPMI",
+    "source": "live",
+    "error": null,
+    "markets_in_window": 24,
+    "phase": "expanded_discovery"
+  },
+  {
+    "category": "Economics",
+    "series_ticker": "KXISMPMI",
+    "source": "historical",
+    "error": null,
+    "markets_in_window": 8,
+    "phase": "expanded_discovery"
+  },
+  {
+    "category": "Economics",
+    "series_ticker": "KXISMSERVICES",
+    "source": "live",
+    "error": null,
+    "markets_in_window": 0,
+    "phase": "expanded_discovery"
+  },
+  {
+    "category": "Economics",
+    "series_ticker": "KXISMSERVICES",
+    "source": "historical",
+    "error": null,
+    "markets_in_window": 0,
+    "phase": "expanded_discovery"
+  },
+  {
+    "category": "Economics",
+    "series_ticker": "KXAAAGASW",
+    "source": "live",
+    "error": null,
+    "markets_in_window": 307,
+    "phase": "expanded_discovery"
+  },
+  {
+    "category": "Economics",
+    "series_ticker": "KXAAAGASW",
+    "source": "historical",
+    "error": null,
+    "markets_in_window": 109,
+    "phase": "expanded_discovery"
+  },
+  {
+    "category": "Economics",
+    "series_ticker": "KXAAAGASM",
+    "source": "live",
+    "error": null,
+    "markets_in_window": 80,
+    "phase": "expanded_discovery"
+  },
+  {
+    "category": "Economics",
+    "series_ticker": "KXAAAGASM",
+    "source": "historical",
+    "error": null,
+    "markets_in_window": 36,
+    "phase": "expanded_discovery"
+  },
+  {
+    "category": "Economics",
+    "series_ticker": "KXUSFLYCAN",
+    "source": "live",
+    "error": null,
+    "markets_in_window": 24,
+    "phase": "expanded_discovery"
+  },
+  {
+    "category": "Economics",
+    "series_ticker": "KXUSFLYCAN",
+    "source": "historical",
+    "error": null,
+    "markets_in_window": 55,
+    "phase": "expanded_discovery"
+  },
+  {
+    "category": "Economics",
+    "series_ticker": "KXGAS",
+    "source": "live",
+    "error": null,
+    "markets_in_window": 0,
+    "phase": "expanded_discovery"
+  },
+  {
+    "category": "Economics",
+    "series_ticker": "KXGAS",
+    "source": "historical",
+    "error": null,
+    "markets_in_window": 0,
+    "phase": "expanded_discovery"
+  },
+  {
+    "category": "Economics",
+    "series_ticker": "KXEIACRUDEW",
+    "source": "live",
+    "error": null,
+    "markets_in_window": 78,
+    "phase": "expanded_discovery"
+  },
+  {
+    "category": "Economics",
+    "series_ticker": "KXEIACRUDEW",
+    "source": "historical",
+    "error": null,
+    "markets_in_window": 0,
+    "phase": "expanded_discovery"
+  },
+  {
+    "category": "Economics",
+    "series_ticker": "KXCACPIYOY",
+    "source": "live",
+    "error": null,
+    "markets_in_window": 0,
+    "phase": "expanded_discovery"
+  },
+  {
+    "category": "Economics",
+    "series_ticker": "KXCACPIYOY",
+    "source": "historical",
+    "error": null,
+    "markets_in_window": 0,
+    "phase": "expanded_discovery"
+  },
+  {
+    "category": "Economics",
+    "series_ticker": "KXUKCPIYOY",
+    "source": "live",
+    "error": null,
+    "markets_in_window": 0,
+    "phase": "expanded_discovery"
+  },
+  {
+    "category": "Economics",
+    "series_ticker": "KXUKCPIYOY",
+    "source": "historical",
+    "error": null,
+    "markets_in_window": 0,
+    "phase": "expanded_discovery"
+  },
+  {
+    "category": "Economics",
+    "series_ticker": "KXJPCPIYOY",
+    "source": "live",
+    "error": null,
+    "markets_in_window": 0,
+    "phase": "expanded_discovery"
+  },
+  {
+    "category": "Economics",
+    "series_ticker": "KXJPCPIYOY",
+    "source": "historical",
+    "error": null,
+    "markets_in_window": 0,
+    "phase": "expanded_discovery"
+  },
+  {
+    "category": "Economics",
+    "series_ticker": "KXDECPIPREL",
+    "source": "live",
+    "error": null,
+    "markets_in_window": 0,
+    "phase": "expanded_discovery"
+  },
+  {
+    "category": "Economics",
+    "series_ticker": "KXDECPIPREL",
+    "source": "historical",
+    "error": null,
+    "markets_in_window": 0,
+    "phase": "expanded_discovery"
+  },
+  {
+    "category": "Economics",
+    "series_ticker": "KXCPIEU",
+    "source": "live",
+    "error": null,
+    "markets_in_window": 0,
+    "phase": "expanded_discovery"
+  },
+  {
+    "category": "Economics",
+    "series_ticker": "KXCPIEU",
+    "source": "historical",
+    "error": null,
+    "markets_in_window": 0,
+    "phase": "expanded_discovery"
+  },
+  {
+    "category": "Economics",
+    "series_ticker": "KXCHCPIYOY",
+    "source": "live",
+    "error": null,
+    "markets_in_window": 0,
+    "phase": "expanded_discovery"
+  },
+  {
+    "category": "Economics",
+    "series_ticker": "KXCHCPIYOY",
+    "source": "historical",
+    "error": null,
+    "markets_in_window": 0,
+    "phase": "expanded_discovery"
+  },
+  {
+    "category": "Economics",
+    "series_ticker": "KXMOMFGEMP",
+    "source": "live",
+    "error": null,
+    "markets_in_window": 0,
+    "phase": "expanded_discovery"
+  },
+  {
+    "category": "Economics",
+    "series_ticker": "KXMOMFGEMP",
+    "source": "historical",
+    "error": null,
+    "markets_in_window": 0,
+    "phase": "expanded_discovery"
+  },
+  {
+    "category": "Economics",
+    "series_ticker": "KXARMOMINF",
+    "source": "live",
+    "error": null,
+    "markets_in_window": 18,
+    "phase": "expanded_discovery"
+  },
+  {
+    "category": "Economics",
+    "series_ticker": "KXARMOMINF",
+    "source": "historical",
+    "error": null,
+    "markets_in_window": 9,
+    "phase": "expanded_discovery"
+  },
+  {
+    "category": "Economics",
+    "series_ticker": "KXGLACIERVISITS",
+    "source": "live",
+    "error": null,
+    "markets_in_window": 0,
+    "phase": "expanded_discovery"
+  },
+  {
+    "category": "Economics",
+    "series_ticker": "KXGLACIERVISITS",
+    "source": "historical",
+    "error": null,
+    "markets_in_window": 0,
+    "phase": "expanded_discovery"
+  },
+  {
+    "category": "Economics",
+    "series_ticker": "KXCBDSA",
+    "source": "live",
+    "error": null,
+    "markets_in_window": 5,
+    "phase": "expanded_discovery"
+  },
+  {
+    "category": "Economics",
+    "series_ticker": "KXCBDSA",
+    "source": "historical",
+    "error": null,
+    "markets_in_window": 5,
+    "phase": "expanded_discovery"
+  },
+  {
+    "category": "Economics",
+    "series_ticker": "KXVENEZCRUDE",
+    "source": "live",
+    "error": null,
+    "markets_in_window": 0,
+    "phase": "expanded_discovery"
+  },
+  {
+    "category": "Economics",
+    "series_ticker": "KXVENEZCRUDE",
+    "source": "historical",
+    "error": null,
+    "markets_in_window": 0,
+    "phase": "expanded_discovery"
+  },
+  {
+    "category": "Economics",
+    "series_ticker": "KXAAAGASDKY",
+    "source": "live",
+    "error": null,
+    "markets_in_window": 17,
+    "phase": "expanded_discovery"
+  },
+  {
+    "category": "Economics",
+    "series_ticker": "KXAAAGASDKY",
+    "source": "historical",
+    "error": null,
+    "markets_in_window": 0,
+    "phase": "expanded_discovery"
+  },
+  {
+    "category": "Economics",
+    "series_ticker": "KXH200CHINA",
+    "source": "live",
+    "error": null,
+    "markets_in_window": 1,
+    "phase": "expanded_discovery"
+  },
+  {
+    "category": "Economics",
+    "series_ticker": "KXH200CHINA",
+    "source": "historical",
+    "error": null,
+    "markets_in_window": 1,
+    "phase": "expanded_discovery"
+  },
+  {
+    "category": "Economics",
+    "series_ticker": "KXCBDTURKEY",
+    "source": "live",
+    "error": null,
+    "markets_in_window": 5,
+    "phase": "expanded_discovery"
+  },
+  {
+    "category": "Economics",
+    "series_ticker": "KXCBDTURKEY",
+    "source": "historical",
+    "error": null,
+    "markets_in_window": 0,
+    "phase": "expanded_discovery"
+  },
+  {
+    "category": "Economics",
+    "series_ticker": "EPOP",
+    "source": "live",
+    "error": null,
+    "markets_in_window": 0,
+    "phase": "expanded_discovery"
+  },
+  {
+    "category": "Economics",
+    "series_ticker": "EPOP",
+    "source": "historical",
+    "error": null,
+    "markets_in_window": 0,
+    "phase": "expanded_discovery"
+  },
+  {
+    "category": "Economics",
+    "series_ticker": "KXUSHOMEINVENT",
+    "source": "live",
+    "error": null,
+    "markets_in_window": 7,
+    "phase": "expanded_discovery"
+  },
+  {
+    "category": "Economics",
+    "series_ticker": "KXUSHOMEINVENT",
+    "source": "historical",
+    "error": null,
+    "markets_in_window": 0,
+    "phase": "expanded_discovery"
+  },
+  {
+    "category": "Economics",
+    "series_ticker": "FEDRATEMIN",
+    "source": "live",
+    "error": null,
+    "markets_in_window": 0,
+    "phase": "expanded_discovery"
+  },
+  {
+    "category": "Economics",
+    "series_ticker": "FEDRATEMIN",
+    "source": "historical",
+    "error": null,
+    "markets_in_window": 0,
+    "phase": "expanded_discovery"
+  },
+  {
+    "category": "Economics",
+    "series_ticker": "KXNHSALES",
+    "source": "live",
+    "error": null,
+    "markets_in_window": 16,
+    "phase": "expanded_discovery"
+  },
+  {
+    "category": "Economics",
+    "series_ticker": "KXNHSALES",
+    "source": "historical",
+    "error": null,
+    "markets_in_window": 8,
+    "phase": "expanded_discovery"
+  },
+  {
+    "category": "Economics",
+    "series_ticker": "KX25U3SEP",
+    "source": "live",
+    "error": null,
+    "markets_in_window": 0,
+    "phase": "expanded_discovery"
+  },
+  {
+    "category": "Economics",
+    "series_ticker": "KX25U3SEP",
+    "source": "historical",
+    "error": null,
+    "markets_in_window": 0,
+    "phase": "expanded_discovery"
+  },
+  {
+    "category": "Economics",
+    "series_ticker": "GDPUSMIN",
+    "source": "live",
+    "error": null,
+    "markets_in_window": 0,
+    "phase": "expanded_discovery"
+  },
+  {
+    "category": "Economics",
+    "series_ticker": "GDPUSMIN",
+    "source": "historical",
+    "error": null,
+    "markets_in_window": 0,
+    "phase": "expanded_discovery"
+  },
+  {
+    "category": "Economics",
+    "series_ticker": "BIGTECHLAYOFF",
+    "source": "live",
+    "error": null,
+    "markets_in_window": 0,
+    "phase": "expanded_discovery"
+  },
+  {
+    "category": "Economics",
+    "series_ticker": "BIGTECHLAYOFF",
+    "source": "historical",
+    "error": null,
+    "markets_in_window": 0,
+    "phase": "expanded_discovery"
+  },
+  {
+    "category": "Economics",
+    "series_ticker": "KXCBDECISIONBRAZIL",
+    "source": "live",
+    "error": null,
+    "markets_in_window": 14,
+    "phase": "expanded_discovery"
+  },
+  {
+    "category": "Economics",
+    "series_ticker": "KXCBDECISIONBRAZIL",
+    "source": "historical",
+    "error": null,
+    "markets_in_window": 7,
+    "phase": "expanded_discovery"
+  },
+  {
+    "category": "Economics",
+    "series_ticker": "KXNEXTATLFED",
+    "source": "live",
+    "error": null,
+    "markets_in_window": 0,
+    "phase": "expanded_discovery"
+  },
+  {
+    "category": "Economics",
+    "series_ticker": "KXNEXTATLFED",
+    "source": "historical",
+    "error": null,
+    "markets_in_window": 0,
+    "phase": "expanded_discovery"
+  },
+  {
+    "category": "Economics",
+    "series_ticker": "KXTRUFBFST",
+    "source": "live",
+    "error": null,
+    "markets_in_window": 0,
+    "phase": "expanded_discovery"
+  },
+  {
+    "category": "Economics",
+    "series_ticker": "KXTRUFBFST",
+    "source": "historical",
+    "error": null,
+    "markets_in_window": 0,
+    "phase": "expanded_discovery"
+  },
+  {
+    "category": "Economics",
+    "series_ticker": "KXGDPYEAR",
+    "source": "live",
+    "error": null,
+    "markets_in_window": 0,
+    "phase": "expanded_discovery"
+  },
+  {
+    "category": "Economics",
+    "series_ticker": "KXGDPYEAR",
+    "source": "historical",
+    "error": null,
+    "markets_in_window": 0,
+    "phase": "expanded_discovery"
+  }
+]

@@ -1,0 +1,12 @@
+{
+  "passed": true,
+  "episodes": 25200,
+  "risk_cells_verified": 72,
+  "paired_policy_comparisons_verified": 54,
+  "representative_ledgers_verified": 72,
+  "every_episode_audited_during_run": true,
+  "no_quote_control_zero_pnl": true,
+  "shared_driver_across_impact_scenarios": true,
+  "shared_price_and_settlement_across_policies_and_fill_scenarios": true,
+  "heldout_raw_files_loaded": 0
+}

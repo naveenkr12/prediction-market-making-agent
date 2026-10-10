@@ -1,0 +1,63 @@
+{
+  "passed": true,
+  "training_contracts": 36,
+  "training_trades": 44506,
+  "training_quote_files": 36,
+  "heldout_raw_files_loaded": 0,
+  "phase_trade_reconciliation": 44506,
+  "noise_fit_rows": 852,
+  "successful_noise_fits": 352,
+  "base_group_summary": [
+    {
+      "information_class": "broad_based",
+      "impact_scenario": "base",
+      "training_contracts": 20,
+      "volatility_supported_contracts": 12,
+      "trade_rate_per_minute_median": 0.014678899828283467,
+      "trade_rate_per_minute_mean": 0.05357712317420958,
+      "trade_rate_per_minute_pooled_exposure": 0.005817709360631027,
+      "median_contract_trade_size": 10.0,
+      "mean_trade_size_equal_event": 171.84744402632197,
+      "mean_trade_size_pooled": 198.0153443234837,
+      "sigma_low": 0.004410927480826479,
+      "sigma_base": 0.007567384929875239,
+      "sigma_high": 0.010965194082773948,
+      "p50_sigma_5min_linear_pp": 3.2767737947437405,
+      "strong_fixed_impact_residual_flow_correlations": 5
+    },
+    {
+      "information_class": "sports",
+      "impact_scenario": "base",
+      "training_contracts": 15,
+      "volatility_supported_contracts": 12,
+      "trade_rate_per_minute_median": 0.1189924588864938,
+      "trade_rate_per_minute_mean": 0.16508194921298674,
+      "trade_rate_per_minute_pooled_exposure": 0.13426874329154964,
+      "median_contract_trade_size": 19.0,
+      "mean_trade_size_equal_event": 93.08953696371567,
+      "mean_trade_size_pooled": 115.4886841639843,
+      "sigma_low": 0.007705838911915579,
+      "sigma_base": 0.0114843339092311,
+      "sigma_high": 0.01656140831136587,
+      "p50_sigma_5min_linear_pp": 4.972862455468592,
+      "strong_fixed_impact_residual_flow_correlations": 6
+    },
+    {
+      "information_class": "pooled",
+      "impact_scenario": "base",
+      "training_contracts": 36,
+      "volatility_supported_contracts": 24,
+      "trade_rate_per_minute_median": 0.03692654648395515,
+      "trade_rate_per_minute_mean": 0.09858850546601228,
+      "trade_rate_per_minute_pooled_exposure": 0.01441823821284081,
+      "median_contract_trade_size": 13.99,
+      "mean_trade_size_equal_event": 137.16816486061597,
+      "mean_trade_size_pooled": 145.25769941131537,
+      "sigma_low": 0.006425601438959392,
+      "sigma_base": 0.010465570480589107,
+      "sigma_high": 0.014219331553503883,
+      "p50_sigma_5min_linear_pp": 4.531724950643342,
+      "strong_fixed_impact_residual_flow_correlations": 11
+    }
+  ]
+}

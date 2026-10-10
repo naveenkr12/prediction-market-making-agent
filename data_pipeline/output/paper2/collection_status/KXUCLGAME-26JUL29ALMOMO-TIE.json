@@ -1,0 +1,15 @@
+{
+  "ticker": "KXUCLGAME-26JUL29ALMOMO-TIE",
+  "tape_complete": true,
+  "error": null,
+  "collected_at": "2026-10-09T21:19:28.571152+00:00",
+  "archive_cutoffs": {
+    "market_positions_last_updated_ts": "2026-08-10T00:00:00Z",
+    "market_settled_ts": "2026-08-10T00:00:00Z",
+    "orders_updated_ts": "2026-09-25T00:00:00Z",
+    "trades_created_ts": "2026-08-10T00:00:00Z"
+  },
+  "query_start_ts": 1785122520,
+  "query_end_ts": 1785347781,
+  "trade_rows": 555
+}

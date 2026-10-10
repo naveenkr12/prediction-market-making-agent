@@ -171,19 +171,22 @@ print(res['baseline']); print(res['optimal'])
 
 ## Where this fits in the capstone
 
-This is the **published-optimum benchmark**, not the RL agent. Next steps per
-the project roadmap:
+The saved production solution now also runs as a **frozen reference policy**
+in the separate training-calibrated impact environment. The adapter preserves
+the original Monte Carlo quote extraction, handles normalized time and partial
+inventory explicitly, and leaves this reproduction's Python files, parameters
+and saved outputs unchanged. See
+[`../simulator/HJB_BENCHMARK.md`](../simulator/HJB_BENCHMARK.md) for the verified
+25,200-episode paired profit/risk evaluation. Optimality in the original model
+does not extend to the impact/queue/fee model.
 
-1. Use this same environment (price process + intensities + inventory
-   mechanics) as the simulator the RL agent trains and is evaluated in, so
-   the comparison is apples-to-apples.
-2. Calibrate `params.py`'s intensity/activity parameters to the Kalshi data
-   collected in `../kalshi_pipeline/` (fit k(t), A(t,p) etc. to observed
-   trade arrival patterns) as a *robustness* variant — a second benchmark run
-   under data-calibrated rather than paper-default parameters — while
-   keeping this default-parameter reproduction as the primary, checkable
-   baseline.
-3. Train the RL agent against this benchmark's PnL/VaR/ES numbers directly.
+The published-optimum reproduction remains a separate, checkable benchmark.
+The new environment uses train-only market activity/noise/impact calibration
+from `../data_pipeline/` and retains explicit queue/fill scenarios. Remaining
+steps are validating execution with richer data, choosing risk settings using
+training data, and training/evaluating RL against the frozen HJB reference on
+the same declared environment and paired paths. The original Table 2 numbers
+are not direct profitability targets for the modified environment.
 
 ## Known limitations
 

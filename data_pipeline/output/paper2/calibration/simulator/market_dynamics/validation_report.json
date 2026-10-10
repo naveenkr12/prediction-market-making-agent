@@ -1,0 +1,19 @@
+{
+  "passed": true,
+  "training_contracts": 36,
+  "training_trades": 44506,
+  "phase_exposure_and_count_checks": 360,
+  "independent_noise_fit_checks": 352,
+  "max_orthogonal_residual_flow_correlation": 5.701524281651589e-16,
+  "raw_file_hash_checks": 73,
+  "source_hash_checks": 4,
+  "checks": [
+    "Full listing exposure and phase rates",
+    "Empty five-minute bins included in count moments",
+    "Paired fractional size/sign/phase bank matches source tapes",
+    "Observed quote intervals and signed flow",
+    "Independent OLS residual volatility in seconds",
+    "Centered normalized innovation samples",
+    "Raw/source/impact/split/mark-bank hashes"
+  ]
+}

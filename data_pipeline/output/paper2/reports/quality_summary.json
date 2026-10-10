@@ -1,0 +1,49 @@
+{
+  "contracts_audited": 80,
+  "total_raw_trades": 74057,
+  "paper_interval_threshold_met": 60,
+  "calibration_eligible": 60,
+  "selected_contracts": 60,
+  "selected_events": 60,
+  "selected_event_clusters": 60,
+  "selected_series": 25,
+  "selected_raw_trades": 68866,
+  "selected_but_ineligible": 0,
+  "by_category": {
+    "Economics": 40,
+    "Sports": 40
+  },
+  "eligible_by_category": {
+    "Economics": 30,
+    "Sports": 30
+  },
+  "eligible_by_information_class": {
+    "sports": 30,
+    "broad_based": 29,
+    "single_name": 1
+  },
+  "target_total": 60,
+  "target_reached": true,
+  "min_usable_5min_intervals": 50,
+  "note": "Eligibility is data readiness, not proof of independent events or reliable lambda estimation. Sports is separate; needs_review markets must not be treated as broad-based.",
+  "candidate_pool": 6081,
+  "attempted_candidates": 80,
+  "selected_by_category": {
+    "Economics": 30,
+    "Sports": 30
+  },
+  "category_quotas": {
+    "Economics": 30,
+    "Sports": 30
+  },
+  "quota_shortfall": {
+    "Economics": 0,
+    "Sports": 0
+  },
+  "api_requests": 67,
+  "discovery_errors": 2,
+  "selected_candle_rows": 62610,
+  "selected_with_candles": 60,
+  "balanced_target_reached": true,
+  "balance_policy": "equal_quotas"
+}

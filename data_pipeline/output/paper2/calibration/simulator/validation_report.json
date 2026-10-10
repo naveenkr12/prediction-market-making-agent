@@ -1,0 +1,19 @@
+{
+  "passed": true,
+  "training_contracts": 36,
+  "training_intervals": 9424,
+  "training_trades": 44506,
+  "heldout_raw_tapes_loaded": 0,
+  "attempted_training_fits": 180,
+  "successful_training_fits": 139,
+  "replayed_contract_variant_scenarios": 1100,
+  "max_lambda_mapping_error": 5.963111948670274e-19,
+  "checks": [
+    "Training raw tapes match verified hashes",
+    "Saved training estimates reproduce from intervals",
+    "Post-trade reference replay matches analytical endpoint factors",
+    "Base group median reproduces projected full training median",
+    "Base median also matches when log odds are recomputed from float probabilities",
+    "No validation/test raw tapes loaded or used to choose parameters"
+  ]
+}

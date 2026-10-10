@@ -1,0 +1,21 @@
+{
+  "contracts_audited": 60,
+  "total_raw_trades": 814,
+  "paper_interval_threshold_met": 2,
+  "calibration_eligible": 0,
+  "selected_contracts": 0,
+  "selected_events": 0,
+  "selected_event_clusters": 0,
+  "selected_series": 0,
+  "selected_raw_trades": 0,
+  "by_category": {
+    "Sports": 30,
+    "Economics": 30
+  },
+  "eligible_by_category": {},
+  "eligible_by_information_class": {},
+  "target_total": null,
+  "target_reached": false,
+  "min_usable_5min_intervals": 50,
+  "note": "Eligibility is data readiness, not proof of independent events or reliable lambda estimation. Sports is separate; needs_review markets must not be treated as broad-based."
+}

@@ -1,0 +1,17 @@
+{
+  "passed": true,
+  "contracts": 60,
+  "active_intervals": 14318,
+  "normalized_trades": 68866,
+  "source_hashes_verified": 4,
+  "input_hashes_verified": 122,
+  "fit_rows_checked": 480,
+  "fitted_slopes_and_standard_errors_verified": 342,
+  "checks": [
+    "Saved inputs/source SHA-256 unchanged",
+    "Unique UTC buckets and related-event splits",
+    "Counts, quantities, signed flow and opening/closing prices reconcile to tapes",
+    "Within-bucket cents and exact log-odds price changes",
+    "Independent closed-form OLS slopes/intercepts and HC1/calendar HAC standard errors"
+  ]
+}

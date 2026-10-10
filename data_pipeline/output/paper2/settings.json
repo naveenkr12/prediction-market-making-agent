@@ -1,0 +1,19 @@
+{
+  "start_ts": 1783814399,
+  "end_ts": 1791590399,
+  "lookback_days": 90,
+  "target_total": 60,
+  "min_intervals": 50,
+  "min_reported_volume": 10000.0,
+  "max_per_event": 1,
+  "max_per_series": 10,
+  "max_series_per_category": 24,
+  "max_trade_pages": 120,
+  "seed": 42,
+  "candle_lookback_days": 3,
+  "sampling": "preferred series then seeded discovery; series round robin; volume closest to 50000",
+  "categories": [
+    "Economics",
+    "Sports"
+  ]
+}

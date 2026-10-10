@@ -1,0 +1,15 @@
+{
+  "ticker": "KXPAYROLLS-26JUL-T-25000",
+  "tape_complete": true,
+  "error": null,
+  "collected_at": "2026-10-09T21:19:19.471675+00:00",
+  "archive_cutoffs": {
+    "market_positions_last_updated_ts": "2026-08-10T00:00:00Z",
+    "market_settled_ts": "2026-08-10T00:00:00Z",
+    "orders_updated_ts": "2026-09-25T00:00:00Z",
+    "trades_created_ts": "2026-08-10T00:00:00Z"
+  },
+  "query_start_ts": 1760364000,
+  "query_end_ts": 1786105741,
+  "trade_rows": 107
+}

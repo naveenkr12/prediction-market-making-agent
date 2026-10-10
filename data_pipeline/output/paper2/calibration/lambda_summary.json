@@ -1,0 +1,65 @@
+{
+  "generated_at_utc": "2026-10-09T21:54:59.776302+00:00",
+  "contracts": 60,
+  "raw_trades": 68866,
+  "normalized_trades": 68866,
+  "active_intervals": 14318,
+  "valid_logodds_intervals": 14318,
+  "single_trade_intervals": 7405,
+  "ambiguous_endpoint_intervals": 1955,
+  "split_contract_counts": {
+    "train": 36,
+    "validation": 12,
+    "test": 12
+  },
+  "trade_start_utc": "2025-11-22T19:04:58.927657+00:00",
+  "trade_end_utc": "2026-10-05T03:50:29.719948+00:00",
+  "source_sha256": {
+    "calibration/build_intervals.py": "d250d11950c0f92796919f16267dbe35593fcd85bc18e2e51ba88b51f69dd747",
+    "data_pipeline/calibration_quality.py": "0acba60a73c1794f39b6bde243cd623238816e5f4836024c8ddd3f3a3c79d719",
+    "data_pipeline/utils.py": "e4a8368e62fbdbf069bfd4ff9211fff1defbb73643756e63578df08d91a3d2ed",
+    "calibration/estimate_lambda.py": "08cb95973f018aa682bde77849ead158b2efbfadcc2a57e58cc9c1450ea3f298"
+  },
+  "bucket_definition": "UTC [start,start+5min); active buckets only; signed flow in contracts",
+  "price_change": "logit(last YES trade price)-logit(first YES trade price) within same bucket",
+  "ties": "deterministic trade-ID ordering, with ambiguous endpoints flagged",
+  "early_life_filter": "first 80% of elapsed time from first trade to the 99%-cumulative-volume timestamp",
+  "split_note": "Chronological completed-event split; histories can overlap in calendar time. Train-only summaries are provided for later calibration; all-sample fits are exploratory.",
+  "min_intervals_per_fit": 50,
+  "hac_lags_5min": 6,
+  "bootstrap_draws": 2000,
+  "bootstrap_seed": 42,
+  "runtime_versions": {
+    "python": "3.12.2",
+    "numpy": "1.26.4",
+    "pandas": "3.0.1",
+    "scipy": "1.15.2",
+    "statsmodels": "0.14.2",
+    "matplotlib": "3.10.1",
+    "pyarrow": "23.0.1"
+  },
+  "primary_fit_status": {
+    "ok": 60
+  },
+  "full_logodds_positive_slopes": 51,
+  "full_logodds_positive_hac_p05": 19,
+  "full_logodds_positive_hac_fdr05": 17,
+  "high_leverage_primary_fits": 54,
+  "primary_fits_large_leave_one_out_change": 35,
+  "primary_fits_hac_ci_including_zero": 40,
+  "sensitivity_fit_counts": {
+    "full": 60,
+    "interior_endpoints_30_70": 22,
+    "early_80pct_life": 35,
+    "unambiguous_endpoints": 54
+  },
+  "limitations": [
+    "Contemporaneous transaction-price/flow association does not identify private-information frequency.",
+    "Only one single-name market: no single-name versus broad-based replication or group inference.",
+    "Convenience sample; selected by activity/volume, not exchange-wide random sampling.",
+    "Single-trade buckets have zero within-bucket price changes and are retained as in the specified estimator.",
+    "Exact timestamp ties can obscure endpoint ordering; an unambiguous-endpoint sensitivity is reported.",
+    "All-event estimates are exploratory; later simulator calibration must use train-only summaries.",
+    "Event bootstrap CIs do not propagate within-market estimation uncertainty or remove cross-event dependence."
+  ]
+}

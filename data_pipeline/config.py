@@ -40,6 +40,25 @@ TARGET_CONTRACTS_MAX = 100
 # Kalshi series "category" values to sample from (economics + sports, per proposal).
 KALSHI_CATEGORIES = ["Economics", "Sports"]
 
+# Paper 2 collection is a separate, reproducible sample; the original output is kept.
+CALIBRATION_OUTPUT_DIR = Path(__file__).resolve().parent / "output" / "paper2"
+MIN_ACTIVE_5MIN_INTERVALS = 50  # Bartlett & O'Hara Section 4.1
+MIN_REPORTED_CONTRACT_VOLUME = 10_000.0  # discovery prefilter, not an estimation criterion
+MAX_CONTRACTS_PER_EVENT = 1
+MAX_CONTRACTS_PER_SERIES = 10
+# Start with known recurring events, then deterministically sample other series.
+# These preferences define a convenience sample, not the exchange-wide population.
+CALIBRATION_PREFERRED_SERIES = {
+    "Economics": ["KXCPI", "KXCPIYOY", "KXCPICORE", "KXCPICOREYOY", "KXU3",
+                  "KXPAYROLLS", "KXFEDDECISION", "KXPCECORE", "KXPCEHEAD",
+                  "KXGDP", "GDP", "KXRETAIL", "KXUSRETAIL", "KXJOBLESS", "KXJOBLESSCLAIMS", "KXADP",
+                  "KXISMPMI", "KXISMSERVICES", "KXAAAGASW", "KXAAAGASM", "KXUSFLYCAN",
+                  "KXGAS", "KXEIACRUDEW", "KXCACPIYOY", "KXUKCPIYOY", "KXJPCPIYOY",
+                  "KXDECPIPREL", "KXCPIEU", "KXCHCPIYOY"],
+    "Sports": ["KXMLBGAME", "KXNFLGAME", "KXEPLGAME", "KXNCAAFGAME",
+               "KXWNBAGAME", "KXMLSGAME", "KXUCLGAME", "KXATP", "KXWTA"],
+}
+
 # Candlestick granularity in minutes: 1 (minute bars, per proposal's "minute bid/ask candles").
 CANDLESTICK_PERIOD_INTERVAL = 1
 

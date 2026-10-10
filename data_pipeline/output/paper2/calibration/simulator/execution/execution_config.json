@@ -1,0 +1,381 @@
+{
+  "schema_version": 1,
+  "training_tickers": [
+    "KXAAAGASM-26AUG31-4.08",
+    "KXAAAGASM-26JUL31-3.90",
+    "KXAAAGASW-26AUG03-4.110",
+    "KXAAAGASW-26AUG10-4.010",
+    "KXAAAGASW-26AUG24-4.080",
+    "KXAAAGASW-26JUL13-3.960",
+    "KXAAAGASW-26JUL20-4.060",
+    "KXAAAGASW-26JUL27-4.080",
+    "KXARMOMINF-26AUG13-T1.8",
+    "KXATP-26CINCIN-NAK",
+    "KXATP-26MONTRE-FON",
+    "KXCBDECISIONBRAZIL-26AUG05-C25",
+    "KXCPI-26AUG-T0.5",
+    "KXCPICORE-26JUN-T0.2",
+    "KXCPIYOY-26JUL-T4.2",
+    "KXEPLGAME-26AUG22EVECRY-TIE",
+    "KXEPLGAME-26AUG22NFOLEE-TIE",
+    "KXEPLGAME-26AUG23BRIAVL-TIE",
+    "KXFEDDECISION-26JUL-C26",
+    "KXGDP-26JUL30-T1.0",
+    "KXH200CHINA-27-BEF",
+    "KXJOBLESSCLAIMS-26JUL23-200000",
+    "KXLIGAMX1H-26AUG17PACPUE-PAC",
+    "KXLIGAMX1H-26JUL21CRAPUE-CRA",
+    "KXMLSGAME-26AUG22CLTDCU-TIE",
+    "KXMLSGAME-26AUG29NYRBPHI-TIE",
+    "KXMLSGAME-26SEP05CLBCOL-TIE",
+    "KXNFLGAME-26AUG22ATLIND-IND",
+    "KXNFLGAME-26AUG28MINDEN-DEN",
+    "KXNFLGAME-26AUG28NYGNYJ-NYJ",
+    "KXPAYROLLS-26JUL-T-25000",
+    "KXPCECORE-26JUL-T0.2",
+    "KXPCECORE-26JUN-T0.2",
+    "KXU3-26AUG-T4.1",
+    "KXUCLGAME-26JUL29ALMOMO-TIE",
+    "KXWTA-26TORONT-RYB"
+  ],
+  "min_quotes": 50,
+  "spread_units": "log_odds_ask_minus_bid",
+  "templates": {
+    "KXCPI-26AUG-T0.5": {
+      "bank_key": "spread_000",
+      "rows": 92,
+      "start_utc": "2026-09-08T12:26:00+00:00",
+      "end_utc": "2026-09-10T19:27:00+00:00",
+      "median_spread_probability": 0.03
+    },
+    "KXNFLGAME-26AUG28MINDEN-DEN": {
+      "bank_key": "spread_002",
+      "rows": 1924,
+      "start_utc": "2026-08-26T04:08:00+00:00",
+      "end_utc": "2026-08-29T03:27:00+00:00",
+      "median_spread_probability": 0.010000000000000009
+    },
+    "KXCPICORE-26JUN-T0.2": {
+      "bank_key": "spread_003",
+      "rows": 875,
+      "start_utc": "2026-07-11T12:41:00+00:00",
+      "end_utc": "2026-07-14T12:15:00+00:00",
+      "median_spread_probability": 0.010000000000000009
+    },
+    "KXEPLGAME-26AUG22EVECRY-TIE": {
+      "bank_key": "spread_004",
+      "rows": 987,
+      "start_utc": "2026-08-19T16:16:00+00:00",
+      "end_utc": "2026-08-22T15:48:00+00:00",
+      "median_spread_probability": 0.010000000000000009
+    },
+    "KXU3-26AUG-T4.1": {
+      "bank_key": "spread_005",
+      "rows": 1014,
+      "start_utc": "2026-09-01T12:53:00+00:00",
+      "end_utc": "2026-09-04T12:29:00+00:00",
+      "median_spread_probability": 0.02999999999999997
+    },
+    "KXPAYROLLS-26JUL-T-25000": {
+      "bank_key": "spread_006",
+      "rows": 407,
+      "start_utc": "2026-08-04T14:07:00+00:00",
+      "end_utc": "2026-08-07T12:29:00+00:00",
+      "median_spread_probability": 0.010000000000000009
+    },
+    "KXMLSGAME-26AUG29NYRBPHI-TIE": {
+      "bank_key": "spread_007",
+      "rows": 918,
+      "start_utc": "2026-08-27T02:15:00+00:00",
+      "end_utc": "2026-08-30T01:27:00+00:00",
+      "median_spread_probability": 0.009999999999999981
+    },
+    "KXUCLGAME-26JUL29ALMOMO-TIE": {
+      "bank_key": "spread_009",
+      "rows": 940,
+      "start_utc": "2026-07-27T03:24:00+00:00",
+      "end_utc": "2026-07-29T16:53:00+00:00",
+      "median_spread_probability": 0.010000000000000009
+    },
+    "KXPCECORE-26JUN-T0.2": {
+      "bank_key": "spread_010",
+      "rows": 262,
+      "start_utc": "2026-07-27T12:40:00+00:00",
+      "end_utc": "2026-07-30T12:18:00+00:00",
+      "median_spread_probability": 0.010000000000000002
+    },
+    "KXATP-26MONTRE-FON": {
+      "bank_key": "spread_011",
+      "rows": 678,
+      "start_utc": "2026-08-07T02:15:00+00:00",
+      "end_utc": "2026-08-10T00:01:00+00:00",
+      "median_spread_probability": 0.010000000000000009
+    },
+    "KXGDP-26JUL30-T1.0": {
+      "bank_key": "spread_012",
+      "rows": 1706,
+      "start_utc": "2026-07-27T12:29:00+00:00",
+      "end_utc": "2026-07-30T12:29:00+00:00",
+      "median_spread_probability": 0.010000000000000009
+    },
+    "KXWTA-26TORONT-RYB": {
+      "bank_key": "spread_013",
+      "rows": 1672,
+      "start_utc": "2026-08-10T23:54:00+00:00",
+      "end_utc": "2026-08-13T23:25:00+00:00",
+      "median_spread_probability": 0.040000000000000036
+    },
+    "KXLIGAMX1H-26JUL21CRAPUE-CRA": {
+      "bank_key": "spread_015",
+      "rows": 380,
+      "start_utc": "2026-07-19T07:57:00+00:00",
+      "end_utc": "2026-07-22T01:50:00+00:00",
+      "median_spread_probability": 0.010000000000000009
+    },
+    "KXNFLGAME-26AUG22ATLIND-IND": {
+      "bank_key": "spread_016",
+      "rows": 1911,
+      "start_utc": "2026-08-19T20:01:00+00:00",
+      "end_utc": "2026-08-22T19:02:00+00:00",
+      "median_spread_probability": 0.010000000000000009
+    },
+    "KXEPLGAME-26AUG23BRIAVL-TIE": {
+      "bank_key": "spread_017",
+      "rows": 1072,
+      "start_utc": "2026-08-20T15:33:00+00:00",
+      "end_utc": "2026-08-23T13:32:00+00:00",
+      "median_spread_probability": 0.010000000000000009
+    },
+    "KXMLSGAME-26SEP05CLBCOL-TIE": {
+      "bank_key": "spread_018",
+      "rows": 1767,
+      "start_utc": "2026-09-03T02:05:00+00:00",
+      "end_utc": "2026-09-06T01:27:00+00:00",
+      "median_spread_probability": 0.010000000000000009
+    },
+    "KXPCECORE-26JUL-T0.2": {
+      "bank_key": "spread_019",
+      "rows": 1031,
+      "start_utc": "2026-08-23T14:11:00+00:00",
+      "end_utc": "2026-08-26T10:19:00+00:00",
+      "median_spread_probability": 0.09
+    },
+    "KXATP-26CINCIN-NAK": {
+      "bank_key": "spread_020",
+      "rows": 1211,
+      "start_utc": "2026-08-20T01:21:00+00:00",
+      "end_utc": "2026-08-23T00:57:00+00:00",
+      "median_spread_probability": 0.01999999999999999
+    },
+    "KXJOBLESSCLAIMS-26JUL23-200000": {
+      "bank_key": "spread_021",
+      "rows": 633,
+      "start_utc": "2026-07-20T13:16:00+00:00",
+      "end_utc": "2026-07-23T12:25:00+00:00",
+      "median_spread_probability": 0.029999999999999916
+    },
+    "KXAAAGASM-26AUG31-4.08": {
+      "bank_key": "spread_022",
+      "rows": 1988,
+      "start_utc": "2026-08-28T04:03:00+00:00",
+      "end_utc": "2026-08-31T03:59:00+00:00",
+      "median_spread_probability": 0.039999999999999994
+    },
+    "KXNFLGAME-26AUG28NYGNYJ-NYJ": {
+      "bank_key": "spread_023",
+      "rows": 1444,
+      "start_utc": "2026-08-26T02:38:00+00:00",
+      "end_utc": "2026-08-29T02:09:00+00:00",
+      "median_spread_probability": 0.010000000000000009
+    },
+    "KXMLSGAME-26AUG22CLTDCU-TIE": {
+      "bank_key": "spread_024",
+      "rows": 985,
+      "start_utc": "2026-08-20T02:06:00+00:00",
+      "end_utc": "2026-08-23T01:24:00+00:00",
+      "median_spread_probability": 0.009999999999999981
+    },
+    "KXAAAGASW-26JUL20-4.060": {
+      "bank_key": "spread_025",
+      "rows": 707,
+      "start_utc": "2026-07-17T04:01:00+00:00",
+      "end_utc": "2026-07-19T10:53:00+00:00",
+      "median_spread_probability": 0.010000000000000009
+    },
+    "KXLIGAMX1H-26AUG17PACPUE-PAC": {
+      "bank_key": "spread_026",
+      "rows": 320,
+      "start_utc": "2026-08-16T03:15:00+00:00",
+      "end_utc": "2026-08-18T03:39:00+00:00",
+      "median_spread_probability": 0.010000000000000009
+    },
+    "KXEPLGAME-26AUG22NFOLEE-TIE": {
+      "bank_key": "spread_027",
+      "rows": 1066,
+      "start_utc": "2026-08-19T16:57:00+00:00",
+      "end_utc": "2026-08-22T15:52:00+00:00",
+      "median_spread_probability": 0.010000000000000009
+    },
+    "KXAAAGASW-26AUG10-4.010": {
+      "bank_key": "spread_029",
+      "rows": 2916,
+      "start_utc": "2026-08-07T04:00:00+00:00",
+      "end_utc": "2026-08-10T03:59:00+00:00",
+      "median_spread_probability": 0.04000000000000001
+    },
+    "KXAAAGASW-26JUL13-3.960": {
+      "bank_key": "spread_030",
+      "rows": 982,
+      "start_utc": "2026-07-10T03:59:00+00:00",
+      "end_utc": "2026-07-13T02:00:00+00:00",
+      "median_spread_probability": 0.050000000000000044
+    },
+    "KXAAAGASW-26AUG03-4.110": {
+      "bank_key": "spread_032",
+      "rows": 1728,
+      "start_utc": "2026-07-31T03:59:00+00:00",
+      "end_utc": "2026-08-02T16:05:00+00:00",
+      "median_spread_probability": 0.020000000000000018
+    },
+    "KXARMOMINF-26AUG13-T1.8": {
+      "bank_key": "spread_033",
+      "rows": 445,
+      "start_utc": "2026-08-10T19:06:00+00:00",
+      "end_utc": "2026-08-13T18:59:00+00:00",
+      "median_spread_probability": 0.04999999999999993
+    },
+    "KXCBDECISIONBRAZIL-26AUG05-C25": {
+      "bank_key": "spread_035",
+      "rows": 565,
+      "start_utc": "2026-08-02T22:03:00+00:00",
+      "end_utc": "2026-08-05T20:30:00+00:00",
+      "median_spread_probability": 0.010000000000000009
+    }
+  },
+  "groups": {
+    "broad_based": {
+      "supported_tickers": [
+        "KXAAAGASM-26AUG31-4.08",
+        "KXAAAGASW-26AUG03-4.110",
+        "KXAAAGASW-26AUG10-4.010",
+        "KXAAAGASW-26JUL13-3.960",
+        "KXAAAGASW-26JUL20-4.060",
+        "KXARMOMINF-26AUG13-T1.8",
+        "KXCBDECISIONBRAZIL-26AUG05-C25",
+        "KXCPI-26AUG-T0.5",
+        "KXCPICORE-26JUN-T0.2",
+        "KXGDP-26JUL30-T1.0",
+        "KXJOBLESSCLAIMS-26JUL23-200000",
+        "KXPAYROLLS-26JUL-T-25000",
+        "KXPCECORE-26JUL-T0.2",
+        "KXPCECORE-26JUN-T0.2",
+        "KXU3-26AUG-T4.1"
+      ]
+    },
+    "sports": {
+      "supported_tickers": [
+        "KXATP-26CINCIN-NAK",
+        "KXATP-26MONTRE-FON",
+        "KXEPLGAME-26AUG22EVECRY-TIE",
+        "KXEPLGAME-26AUG22NFOLEE-TIE",
+        "KXEPLGAME-26AUG23BRIAVL-TIE",
+        "KXLIGAMX1H-26AUG17PACPUE-PAC",
+        "KXLIGAMX1H-26JUL21CRAPUE-CRA",
+        "KXMLSGAME-26AUG22CLTDCU-TIE",
+        "KXMLSGAME-26AUG29NYRBPHI-TIE",
+        "KXMLSGAME-26SEP05CLBCOL-TIE",
+        "KXNFLGAME-26AUG22ATLIND-IND",
+        "KXNFLGAME-26AUG28MINDEN-DEN",
+        "KXNFLGAME-26AUG28NYGNYJ-NYJ",
+        "KXUCLGAME-26JUL29ALMOMO-TIE",
+        "KXWTA-26TORONT-RYB"
+      ]
+    },
+    "pooled": {
+      "supported_tickers": [
+        "KXAAAGASM-26AUG31-4.08",
+        "KXAAAGASW-26AUG03-4.110",
+        "KXAAAGASW-26AUG10-4.010",
+        "KXAAAGASW-26JUL13-3.960",
+        "KXAAAGASW-26JUL20-4.060",
+        "KXARMOMINF-26AUG13-T1.8",
+        "KXATP-26CINCIN-NAK",
+        "KXATP-26MONTRE-FON",
+        "KXCBDECISIONBRAZIL-26AUG05-C25",
+        "KXCPI-26AUG-T0.5",
+        "KXCPICORE-26JUN-T0.2",
+        "KXEPLGAME-26AUG22EVECRY-TIE",
+        "KXEPLGAME-26AUG22NFOLEE-TIE",
+        "KXEPLGAME-26AUG23BRIAVL-TIE",
+        "KXGDP-26JUL30-T1.0",
+        "KXJOBLESSCLAIMS-26JUL23-200000",
+        "KXLIGAMX1H-26AUG17PACPUE-PAC",
+        "KXLIGAMX1H-26JUL21CRAPUE-CRA",
+        "KXMLSGAME-26AUG22CLTDCU-TIE",
+        "KXMLSGAME-26AUG29NYRBPHI-TIE",
+        "KXMLSGAME-26SEP05CLBCOL-TIE",
+        "KXNFLGAME-26AUG22ATLIND-IND",
+        "KXNFLGAME-26AUG28MINDEN-DEN",
+        "KXNFLGAME-26AUG28NYGNYJ-NYJ",
+        "KXPAYROLLS-26JUL-T-25000",
+        "KXPCECORE-26JUL-T0.2",
+        "KXPCECORE-26JUN-T0.2",
+        "KXU3-26AUG-T4.1",
+        "KXUCLGAME-26JUL29ALMOMO-TIE",
+        "KXWTA-26TORONT-RYB"
+      ]
+    }
+  },
+  "assumptions": [
+    "Spreads sampled independently from marginal trailing-window training quotes.",
+    "Midpoint, lifetime dependence, replenishment and queue depth are not estimated by this bank.",
+    "Queue ahead, market-volume participation and tick size are explicit scenario inputs."
+  ],
+  "generated_at_utc": "2026-10-09T23:10:42.891654+00:00",
+  "bank_file": "spread_bank.npz",
+  "bank_sha256": "fee04f72c644165b4c162a32a84344b1a23a78cc34b7ab32801d5be0d0942494",
+  "raw_quote_sha256": {
+    "candlesticks/KXCPI-26AUG-T0.5.parquet": "e299eaa3ac514b43e7cabea77d4c11f5aaf35c6ccb114ca9c5cf00d1d142ab91",
+    "candlesticks/KXCPIYOY-26JUL-T4.2.parquet": "e4fac6110199c7ca40ee02d9b4aca1b1b91d9fe537bf46b631624f2262391dac",
+    "candlesticks/KXNFLGAME-26AUG28MINDEN-DEN.parquet": "d4d1debe6c1eae322891550b5c67ee0fc2c791a2d9c6b39eb7675993e777bf8b",
+    "candlesticks/KXCPICORE-26JUN-T0.2.parquet": "df0dd3e07ffdeff39fa57099a3afd327e261ad42d3f7af297ce9ed5590f5bd42",
+    "candlesticks/KXEPLGAME-26AUG22EVECRY-TIE.parquet": "06ac23655b1bd0309d5a0347ba0d2f83718d78fb65962a136fd53b417d21fc7a",
+    "candlesticks/KXU3-26AUG-T4.1.parquet": "6e431b6d40f31af191c35761dbe9b96cd12d7a385c7d9b1eb2718dc70ab34d50",
+    "candlesticks/KXPAYROLLS-26JUL-T-25000.parquet": "f85e755be5badadee55e40571b3b73349f8bcb33c1c19f56bad586dd2e076339",
+    "candlesticks/KXMLSGAME-26AUG29NYRBPHI-TIE.parquet": "3addc9bc44a9dc69dfa254a138099e904840079a7d58be4128598c3d08005cde",
+    "candlesticks/KXFEDDECISION-26JUL-C26.parquet": "9669cf5aa5d6a3fed95d6c0cc5438f01a213a77f411670c278d943f5b5c17562",
+    "candlesticks/KXUCLGAME-26JUL29ALMOMO-TIE.parquet": "706dff96a6d9f7cb7b8a0b54f546da48ac4b03a56cbcf5a3dcf0287b9874c32c",
+    "candlesticks/KXPCECORE-26JUN-T0.2.parquet": "3a2029f09aa72d347a6440c8fa2b8867f56029daf2faddc14d88d1bade28d109",
+    "candlesticks/KXATP-26MONTRE-FON.parquet": "851a3ded0ff75c0a4cb2e2fed9bd99db3fa64e3215f2046fba8375f29d7c683f",
+    "candlesticks/KXGDP-26JUL30-T1.0.parquet": "b3329ff97062b4724bcef9d145968d143a8d0348b5b21f3e08dcfae9c5e8357f",
+    "candlesticks/KXWTA-26TORONT-RYB.parquet": "1fa22b529588c000f60f958cba61f9f48be9f9f2c82a18c721d71585c9d699a6",
+    "candlesticks/KXAAAGASM-26JUL31-3.90.parquet": "53a1aaec7803158f0fc8921e606be66f8d7c3e91b8d00cf994270d6e322a8545",
+    "candlesticks/KXLIGAMX1H-26JUL21CRAPUE-CRA.parquet": "4d60081ce9d22813cf0a4e54e8810c031a163eb19175ca3997b55d5f35181e15",
+    "candlesticks/KXNFLGAME-26AUG22ATLIND-IND.parquet": "39651e7b87afccbff0c6e00804353012facc16879d81b449bf52a99fa54fbce5",
+    "candlesticks/KXEPLGAME-26AUG23BRIAVL-TIE.parquet": "cf8a9bd705a9b17dfdcdbbbc229daf2007dfc10cd227c2cc3f57bf22430d86e7",
+    "candlesticks/KXMLSGAME-26SEP05CLBCOL-TIE.parquet": "a863de0d73ac63f190edfc489f90132b35cd7fee810645e202a3670b6286ff2a",
+    "candlesticks/KXPCECORE-26JUL-T0.2.parquet": "fb031f00cfba5a7023a18355f57c3387e0fe34f062fdf81562fa6c84a11403a0",
+    "candlesticks/KXATP-26CINCIN-NAK.parquet": "0a360d1f2f9497e1d09c27ad1f0216ef8e4e332e1aef8dcd2bb50ba3a83e717d",
+    "candlesticks/KXJOBLESSCLAIMS-26JUL23-200000.parquet": "5af194470ee6fb2bf3e2ab267b1d4d1f9f9fa5d2bf808a769aefe45dab8ee5f4",
+    "candlesticks/KXAAAGASM-26AUG31-4.08.parquet": "1e2d990f999fc768f877a5e2dd7f2eab654b8dbed5b66cc5f625dda4c6afc5e0",
+    "candlesticks/KXNFLGAME-26AUG28NYGNYJ-NYJ.parquet": "afa022c838859f4f67d2af7653f5f0be35a2138c2844d46ddd2da264d2010970",
+    "candlesticks/KXMLSGAME-26AUG22CLTDCU-TIE.parquet": "eddb7e72423c3e0a0d52de957913a056a2bbe723acd370c1bdaa058c619be70b",
+    "candlesticks/KXAAAGASW-26JUL20-4.060.parquet": "506f633079f14a3d309e108cf4186e7fde7f55dee4ecd15af42b836cb29d71cc",
+    "candlesticks/KXLIGAMX1H-26AUG17PACPUE-PAC.parquet": "3c20593c87016cd0d0d7ee4c9ce19d0c503d28f9177744c50e57e3e266c819c8",
+    "candlesticks/KXEPLGAME-26AUG22NFOLEE-TIE.parquet": "a8267a3cd2b2cd0dff00cecbf10a02cd0207f7521bb6412805f9755da243ebc0",
+    "candlesticks/KXAAAGASW-26AUG24-4.080.parquet": "8ab15c864d55ad3f694e83991b932bdfe95c53bc9046e614cb3a5b9db0f57125",
+    "candlesticks/KXAAAGASW-26AUG10-4.010.parquet": "498b03009333400076070f089ec2d4445205073264d533bf340d08cf905c4139",
+    "candlesticks/KXAAAGASW-26JUL13-3.960.parquet": "3b2fe68dba0dbadc3f6718089c72a9687cd6f3cca69d67601ff62a4330781dd2",
+    "candlesticks/KXAAAGASW-26JUL27-4.080.parquet": "aed74d349f4c0ca6436384d4fa0380d347dd67774f03fe00dee4c6cf1176945b",
+    "candlesticks/KXAAAGASW-26AUG03-4.110.parquet": "0d079704b19bd836053f38baac292e889bae0d2566b40f6835986a3d96061821",
+    "candlesticks/KXARMOMINF-26AUG13-T1.8.parquet": "dbdbd4587496a0d4e4c7fbec44c2f231f998a77e4bdf8dec7d9c0baaf5b675b1",
+    "candlesticks/KXH200CHINA-27-BEF.parquet": "9bc7c5cc2278817db89173c60942c76486f80f073b17eab4672ef5027005fef1",
+    "candlesticks/KXCBDECISIONBRAZIL-26AUG05-C25.parquet": "155ac157a42e75fd8651397bfbbb4c83167e977aa5248ce13a8ef82170243d57"
+  },
+  "dynamics_config_file": "../market_dynamics/market_dynamics_config.json",
+  "dynamics_config_sha256": "b3ed1671e0e28123d1821cbf50bf14a5081f69aca602c36b4804364a52649191",
+  "source_sha256": {
+    "calibration/calibrate_execution.py": "0146a7d399d2ebe30b2bee3c99c7b4a69b464be35ed5db568f5b3bbf631d2f21",
+    "calibration/calibrate_market_dynamics.py": "4839afd8f882d89dd70417f7eecf7c1961ee395376c940aa9503cf41d4dceaf9"
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "passed": true,
+  "training_quote_files": 36,
+  "supported_events": 30,
+  "heldout_quote_files_loaded": 0,
+  "usable_spread_rows": 32626,
+  "groups": {
+    "broad_based": 15,
+    "sports": 15,
+    "pooled": 30
+  }
+}

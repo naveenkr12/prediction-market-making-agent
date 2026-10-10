@@ -1,0 +1,15 @@
+{
+  "ticker": "KXU3-26AUG-T4.1",
+  "tape_complete": true,
+  "error": null,
+  "collected_at": "2026-10-09T21:19:10.505503+00:00",
+  "archive_cutoffs": {
+    "market_positions_last_updated_ts": "2026-08-10T00:00:00Z",
+    "market_settled_ts": "2026-08-10T00:00:00Z",
+    "orders_updated_ts": "2026-09-25T00:00:00Z",
+    "trades_created_ts": "2026-08-10T00:00:00Z"
+  },
+  "query_start_ts": 1780767600,
+  "query_end_ts": 1788524941,
+  "trade_rows": 1377
+}

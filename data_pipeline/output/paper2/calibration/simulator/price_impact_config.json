@@ -1,0 +1,484 @@
+{
+  "schema_version": 1,
+  "generated_at_utc": "2026-10-09T22:14:37.406916+00:00",
+  "beta_units": "log_odds_per_signed_market_contract",
+  "reference_observation": "post_trade",
+  "update_rule": "log_odds_next = log_odds + innovation_logodds + beta * signed_market_contracts",
+  "endpoint_mapping": "factor = Cov(total_flow, total_flow - first_trade_signed_quantity) / Var(total_flow); beta = max(0, median(training_lambda)) / median(training_factor)",
+  "scenario_rule": "Base matches full training median; low/high envelope all available sensitivity point calibrations, event-bootstrap 95% ranges and median individual HAC bounds. These are stress scenarios.",
+  "training": {
+    "split": "train",
+    "contracts": 36,
+    "event_clusters": 36,
+    "intervals": 9424,
+    "trades": 44506,
+    "tickers": [
+      "KXAAAGASM-26AUG31-4.08",
+      "KXAAAGASM-26JUL31-3.90",
+      "KXAAAGASW-26AUG03-4.110",
+      "KXAAAGASW-26AUG10-4.010",
+      "KXAAAGASW-26AUG24-4.080",
+      "KXAAAGASW-26JUL13-3.960",
+      "KXAAAGASW-26JUL20-4.060",
+      "KXAAAGASW-26JUL27-4.080",
+      "KXARMOMINF-26AUG13-T1.8",
+      "KXATP-26CINCIN-NAK",
+      "KXATP-26MONTRE-FON",
+      "KXCBDECISIONBRAZIL-26AUG05-C25",
+      "KXCPI-26AUG-T0.5",
+      "KXCPICORE-26JUN-T0.2",
+      "KXCPIYOY-26JUL-T4.2",
+      "KXEPLGAME-26AUG22EVECRY-TIE",
+      "KXEPLGAME-26AUG22NFOLEE-TIE",
+      "KXEPLGAME-26AUG23BRIAVL-TIE",
+      "KXFEDDECISION-26JUL-C26",
+      "KXGDP-26JUL30-T1.0",
+      "KXH200CHINA-27-BEF",
+      "KXJOBLESSCLAIMS-26JUL23-200000",
+      "KXLIGAMX1H-26AUG17PACPUE-PAC",
+      "KXLIGAMX1H-26JUL21CRAPUE-CRA",
+      "KXMLSGAME-26AUG22CLTDCU-TIE",
+      "KXMLSGAME-26AUG29NYRBPHI-TIE",
+      "KXMLSGAME-26SEP05CLBCOL-TIE",
+      "KXNFLGAME-26AUG22ATLIND-IND",
+      "KXNFLGAME-26AUG28MINDEN-DEN",
+      "KXNFLGAME-26AUG28NYGNYJ-NYJ",
+      "KXPAYROLLS-26JUL-T-25000",
+      "KXPCECORE-26JUL-T0.2",
+      "KXPCECORE-26JUN-T0.2",
+      "KXU3-26AUG-T4.1",
+      "KXUCLGAME-26JUL29ALMOMO-TIE",
+      "KXWTA-26TORONT-RYB"
+    ],
+    "trade_start_utc": "2025-11-22T19:04:58.927657+00:00",
+    "trade_end_utc": "2026-09-11T11:53:39.426395+00:00",
+    "min_events": 5,
+    "min_intervals_per_fit": 50,
+    "bootstrap_draws": 2000,
+    "seed": 42
+  },
+  "groups": {
+    "broad_based": {
+      "status": "calibrated",
+      "training_contracts": 20,
+      "training_event_clusters": 20,
+      "minimum_events": 5,
+      "scenarios": {
+        "zero": 0.0,
+        "low": 0.0,
+        "base": 5.473789936966611e-05,
+        "high": 0.00022343072377111947
+      },
+      "sensitivities": [
+        {
+          "variant": "full",
+          "contracts": 20,
+          "event_clusters": 20,
+          "status": "calibrated",
+          "lambda_mean": 8.009032229446594e-05,
+          "lambda_median": 4.32858352241989e-05,
+          "endpoint_factor_median": 0.7907836384416762,
+          "beta": 5.473789936966611e-05,
+          "bootstrap95_beta": [
+            1.9376347739861305e-05,
+            0.00011892149000066943
+          ],
+          "median_market_hac_bounds_beta": [
+            0.0,
+            0.00015532192228115765
+          ],
+          "bootstrap_invalid_factor_draws": 0
+        },
+        {
+          "variant": "interior_endpoints_30_70",
+          "contracts": 8,
+          "event_clusters": 8,
+          "status": "calibrated",
+          "lambda_mean": 6.648106452111274e-05,
+          "lambda_median": 2.1893655677280535e-05,
+          "endpoint_factor_median": 0.6949017504350694,
+          "beta": 3.15061167475448e-05,
+          "bootstrap95_beta": [
+            2.4487688584899273e-08,
+            0.00016604953765256262
+          ],
+          "median_market_hac_bounds_beta": [
+            0.0,
+            0.0001669910384545283
+          ],
+          "bootstrap_invalid_factor_draws": 0
+        },
+        {
+          "variant": "early_80pct_life",
+          "contracts": 14,
+          "event_clusters": 14,
+          "status": "calibrated",
+          "lambda_mean": 5.3939294955889784e-05,
+          "lambda_median": 1.8308849092029883e-05,
+          "endpoint_factor_median": 0.783784502871018,
+          "beta": 2.335954465157733e-05,
+          "bootstrap95_beta": [
+            6.443911814774676e-06,
+            0.00010695520578204297
+          ],
+          "median_market_hac_bounds_beta": [
+            0.0,
+            0.0001440950143465797
+          ],
+          "bootstrap_invalid_factor_draws": 0
+        },
+        {
+          "variant": "unambiguous_endpoints",
+          "contracts": 19,
+          "event_clusters": 19,
+          "status": "calibrated",
+          "lambda_mean": 0.00010057719567930041,
+          "lambda_median": 3.274192512510067e-05,
+          "endpoint_factor_median": 0.71327782324295,
+          "beta": 4.5903467145856324e-05,
+          "bootstrap95_beta": [
+            2.2383082527480688e-05,
+            0.0001450297369936704
+          ],
+          "median_market_hac_bounds_beta": [
+            0.0,
+            0.00010592328729654121
+          ],
+          "bootstrap_invalid_factor_draws": 0
+        },
+        {
+          "variant": "drop_max_leverage",
+          "contracts": 20,
+          "event_clusters": 20,
+          "status": "calibrated",
+          "lambda_mean": 8.633245703014057e-05,
+          "lambda_median": 5.9469931125874316e-05,
+          "endpoint_factor_median": 0.7710492426091182,
+          "beta": 7.712857731970106e-05,
+          "bootstrap95_beta": [
+            4.1491929177602854e-05,
+            0.0001366771932052574
+          ],
+          "median_market_hac_bounds_beta": [
+            0.0,
+            0.00022343072377111947
+          ],
+          "bootstrap_invalid_factor_draws": 0
+        }
+      ],
+      "target_lambda_median": 4.32858352241989e-05,
+      "target_lambda_mean": 8.009032229446594e-05,
+      "endpoint_flow_factor_median": 0.7907836384416762,
+      "base_beta_bootstrap95": [
+        1.9376347739861305e-05,
+        0.00011892149000066943
+      ],
+      "beta_boundary_projection": false,
+      "base_p50_move_100_contracts_pp": 0.13684440674236464
+    },
+    "single_name": {
+      "status": "insufficient_training_events",
+      "training_contracts": 1,
+      "training_event_clusters": 1,
+      "minimum_events": 5,
+      "scenarios": null,
+      "sensitivities": []
+    },
+    "sports": {
+      "status": "calibrated",
+      "training_contracts": 15,
+      "training_event_clusters": 15,
+      "minimum_events": 5,
+      "scenarios": {
+        "zero": 0.0,
+        "low": 0.0,
+        "base": 1.2698307937036599e-05,
+        "high": 0.0004839269863667887
+      },
+      "sensitivities": [
+        {
+          "variant": "full",
+          "contracts": 15,
+          "event_clusters": 15,
+          "status": "calibrated",
+          "lambda_mean": 4.8960779555507636e-05,
+          "lambda_median": 1.2536753425643117e-05,
+          "endpoint_factor_median": 0.9872774772674805,
+          "beta": 1.2698307937036599e-05,
+          "bootstrap95_beta": [
+            0.0,
+            9.068056150267256e-05
+          ],
+          "median_market_hac_bounds_beta": [
+            0.0,
+            5.083265882645084e-05
+          ],
+          "bootstrap_invalid_factor_draws": 0
+        },
+        {
+          "variant": "interior_endpoints_30_70",
+          "contracts": 5,
+          "event_clusters": 5,
+          "status": "calibrated",
+          "lambda_mean": -1.357351308589328e-05,
+          "lambda_median": 9.243334771789045e-08,
+          "endpoint_factor_median": 0.990449956500635,
+          "beta": 9.332460172391474e-08,
+          "bootstrap95_beta": [
+            0.0,
+            8.565278447353155e-06
+          ],
+          "median_market_hac_bounds_beta": [
+            0.0,
+            1.2454165979739398e-05
+          ],
+          "bootstrap_invalid_factor_draws": 0
+        },
+        {
+          "variant": "early_80pct_life",
+          "contracts": 6,
+          "event_clusters": 6,
+          "status": "calibrated",
+          "lambda_mean": 5.0662979970250066e-05,
+          "lambda_median": 1.0234391856434603e-05,
+          "endpoint_factor_median": 0.8646802858955067,
+          "beta": 1.1836041625298938e-05,
+          "bootstrap95_beta": [
+            0.0,
+            0.0004839269863667887
+          ],
+          "median_market_hac_bounds_beta": [
+            0.0,
+            3.207010445658968e-05
+          ],
+          "bootstrap_invalid_factor_draws": 0
+        },
+        {
+          "variant": "unambiguous_endpoints",
+          "contracts": 14,
+          "event_clusters": 14,
+          "status": "calibrated",
+          "lambda_mean": 6.361875609050534e-05,
+          "lambda_median": 1.5612036972825577e-05,
+          "endpoint_factor_median": 0.9835131929222596,
+          "beta": 1.5873744333249233e-05,
+          "bootstrap95_beta": [
+            8.21476373330418e-06,
+            0.00010657279687255405
+          ],
+          "median_market_hac_bounds_beta": [
+            0.0,
+            5.380475277075896e-05
+          ],
+          "bootstrap_invalid_factor_draws": 0
+        },
+        {
+          "variant": "drop_max_leverage",
+          "contracts": 15,
+          "event_clusters": 15,
+          "status": "calibrated",
+          "lambda_mean": 3.893097039433198e-05,
+          "lambda_median": 1.4395178310969097e-05,
+          "endpoint_factor_median": 0.9770937583739601,
+          "beta": 1.4732647903641274e-05,
+          "bootstrap95_beta": [
+            5.818299763320986e-06,
+            8.250928104043485e-05
+          ],
+          "median_market_hac_bounds_beta": [
+            0.0,
+            6.475583825406177e-05
+          ],
+          "bootstrap_invalid_factor_draws": 0
+        }
+      ],
+      "target_lambda_median": 1.2536753425643117e-05,
+      "target_lambda_mean": 4.8960779555507636e-05,
+      "endpoint_flow_factor_median": 0.9872774772674805,
+      "base_beta_bootstrap95": [
+        0.0,
+        9.068056150267256e-05
+      ],
+      "beta_boundary_projection": false,
+      "base_p50_move_100_contracts_pp": 0.0317457655768294
+    },
+    "pooled": {
+      "status": "calibrated",
+      "training_contracts": 36,
+      "training_event_clusters": 36,
+      "minimum_events": 5,
+      "scenarios": {
+        "zero": 0.0,
+        "low": 0.0,
+        "base": 3.135505860603734e-05,
+        "high": 0.00015736919071562526
+      },
+      "sensitivities": [
+        {
+          "variant": "full",
+          "contracts": 36,
+          "event_clusters": 36,
+          "status": "calibrated",
+          "lambda_mean": 7.068379415649237e-05,
+          "lambda_median": 2.7949124966325e-05,
+          "endpoint_factor_median": 0.8913753062143364,
+          "beta": 3.135505860603734e-05,
+          "bootstrap95_beta": [
+            1.3044277555260041e-05,
+            9.165662129047595e-05
+          ],
+          "median_market_hac_bounds_beta": [
+            0.0,
+            0.00012000508314513811
+          ],
+          "bootstrap_invalid_factor_draws": 0
+        },
+        {
+          "variant": "interior_endpoints_30_70",
+          "contracts": 13,
+          "event_clusters": 13,
+          "status": "calibrated",
+          "lambda_mean": 3.569084236457197e-05,
+          "lambda_median": 4.0598119623694136e-06,
+          "endpoint_factor_median": 0.8000301539475768,
+          "beta": 5.0745736799258676e-06,
+          "bootstrap95_beta": [
+            1.9138830519012896e-08,
+            4.8416908945194195e-05
+          ],
+          "median_market_hac_bounds_beta": [
+            0.0,
+            4.1468987618251344e-05
+          ],
+          "bootstrap_invalid_factor_draws": 0
+        },
+        {
+          "variant": "early_80pct_life",
+          "contracts": 21,
+          "event_clusters": 21,
+          "status": "calibrated",
+          "lambda_mean": 4.974745770451066e-05,
+          "lambda_median": 1.5173287855967737e-05,
+          "endpoint_factor_median": 0.815736500515902,
+          "beta": 1.8600721981144142e-05,
+          "bootstrap95_beta": [
+            5.301451803501942e-06,
+            6.402475008072866e-05
+          ],
+          "median_market_hac_bounds_beta": [
+            0.0,
+            0.0001228076686886891
+          ],
+          "bootstrap_invalid_factor_draws": 0
+        },
+        {
+          "variant": "unambiguous_endpoints",
+          "contracts": 33,
+          "event_clusters": 33,
+          "status": "calibrated",
+          "lambda_mean": 8.48978576719328e-05,
+          "lambda_median": 2.273920672163764e-05,
+          "endpoint_factor_median": 0.9192738997955839,
+          "beta": 2.4736051710696985e-05,
+          "bootstrap95_beta": [
+            1.3929262721139946e-05,
+            9.030708014560933e-05
+          ],
+          "median_market_hac_bounds_beta": [
+            0.0,
+            6.989555202423074e-05
+          ],
+          "bootstrap_invalid_factor_draws": 0
+        },
+        {
+          "variant": "drop_max_leverage",
+          "contracts": 36,
+          "event_clusters": 36,
+          "status": "calibrated",
+          "lambda_mean": 6.170006828143153e-05,
+          "lambda_median": 3.816081225774829e-05,
+          "endpoint_factor_median": 0.8314991192451908,
+          "beta": 4.589398999290522e-05,
+          "bootstrap95_beta": [
+            1.6708457650770612e-05,
+            9.130606623875437e-05
+          ],
+          "median_market_hac_bounds_beta": [
+            0.0,
+            0.00015736919071562526
+          ],
+          "bootstrap_invalid_factor_draws": 0
+        }
+      ],
+      "target_lambda_median": 2.7949124966325e-05,
+      "target_lambda_mean": 7.068379415649237e-05,
+      "endpoint_flow_factor_median": 0.8913753062143364,
+      "base_beta_bootstrap95": [
+        1.3044277555260041e-05,
+        9.165662129047595e-05
+      ],
+      "beta_boundary_projection": false,
+      "base_p50_move_100_contracts_pp": 0.07838758229348208
+    }
+  },
+  "training_tape_sha256": {
+    "trades/KXAAAGASM-26AUG31-4.08.parquet": "ed13012b1675bf8f583a6a5775ef94c10ec7972637e820a6eea2d310edc0d9e3",
+    "trades/KXAAAGASM-26JUL31-3.90.parquet": "0f9ee5503ebe59fd0ca744973feca319c35c100ac3730ae1b5470fa8c15c3ef2",
+    "trades/KXAAAGASW-26AUG03-4.110.parquet": "7d58f03509580d0d41d99be8644f02ca6f1ef6b452c0de310ac823039bd729c6",
+    "trades/KXAAAGASW-26AUG10-4.010.parquet": "abe9f627b0db08cef4fc65769a9e21ea6183cbd4d54e864b19fd1ee6483e4227",
+    "trades/KXAAAGASW-26AUG24-4.080.parquet": "375ed74dc790c740fcfcd55c67bbf8b17e69e8a02f0abeb3027bc86a50e50d06",
+    "trades/KXAAAGASW-26JUL13-3.960.parquet": "08b60f21f645b54b957717d18e390bfb0059f8cdd16d0199e0ce4b4728285b9d",
+    "trades/KXAAAGASW-26JUL20-4.060.parquet": "05b1d11a65c6cad7ad3934f2b707ebd25784e4d5750551179d7619c9b579eacf",
+    "trades/KXAAAGASW-26JUL27-4.080.parquet": "ad939146a6a5744ea15d1c35186bfa6533123e7a266343753d01429c77b9da02",
+    "trades/KXARMOMINF-26AUG13-T1.8.parquet": "6539aa6b76fa8dad671c1d1a80b33f27ea894b3dee1820b244b6b692d4d250d7",
+    "trades/KXATP-26CINCIN-NAK.parquet": "7874c68e808053c4ac0aa2cf70f240b43fd2ad7c8b9f628d80af16601e5bd625",
+    "trades/KXATP-26MONTRE-FON.parquet": "1e4acfcbf3943026b3ea63ea2e2aaffc53eedbc19ea6095f1ba40cb27d29158f",
+    "trades/KXCBDECISIONBRAZIL-26AUG05-C25.parquet": "293e92179bb319b96ab78f33c2952d969a57dfbe2f946d0e0f0e0bf0443df390",
+    "trades/KXCPI-26AUG-T0.5.parquet": "2085e32c7113f68872c4a61493ecd176e3e900eb50c9b5c450628b5c3327d508",
+    "trades/KXCPICORE-26JUN-T0.2.parquet": "24e5047208867f4c711d023addd4192b8be543a8a7d09420bf5be086ae5214be",
+    "trades/KXCPIYOY-26JUL-T4.2.parquet": "25dd1752ea886ba993be7669ac6f9b6c065b8e3c22184a092f2f92541e315822",
+    "trades/KXEPLGAME-26AUG22EVECRY-TIE.parquet": "763f435acbfd293689e8e0be4c618817c4ee0b3a347db9410d62ab339b8e5982",
+    "trades/KXEPLGAME-26AUG22NFOLEE-TIE.parquet": "d68122b867602251a5880bd96400712ee2deec0b93edf685bba92942c8a80f4f",
+    "trades/KXEPLGAME-26AUG23BRIAVL-TIE.parquet": "2efc2dea6e367cd3ceec3452872e159fd49ab8189395e12ce586a08051d94322",
+    "trades/KXFEDDECISION-26JUL-C26.parquet": "0ffda8f5979248311e2080ce639fef8bcfd7013c73c8f653e55b58e9b18390f6",
+    "trades/KXGDP-26JUL30-T1.0.parquet": "ad26866429555a22fa726c80bf88211bf57deea79a8e3d4d63ad38a40321b674",
+    "trades/KXH200CHINA-27-BEF.parquet": "b0cad372362c41f576ad2d176338aad788bab739db896a7148b0962653aa5c5b",
+    "trades/KXJOBLESSCLAIMS-26JUL23-200000.parquet": "c47d6905dfb4eb1326503730e97517024829c593ecbcecf4c8aca9448126998f",
+    "trades/KXLIGAMX1H-26AUG17PACPUE-PAC.parquet": "ec0f7db664c3b1450ac044f7aa0e05de5aa1951de5e0fc2828049b2f8cdd5a83",
+    "trades/KXLIGAMX1H-26JUL21CRAPUE-CRA.parquet": "ceeaded4da70fcdc90f74d1f80c8bd4c18cc46b5c6eeacb841d2c8fdec6dcc37",
+    "trades/KXMLSGAME-26AUG22CLTDCU-TIE.parquet": "20a0709bddcc731fff19576110ca7677763bdd4250e191720ea937b9771d7ec5",
+    "trades/KXMLSGAME-26AUG29NYRBPHI-TIE.parquet": "5b7fe16f0067180c66d4568dc5a18e5a0cab2266f44d819d58f7eb98f0b9fcf6",
+    "trades/KXMLSGAME-26SEP05CLBCOL-TIE.parquet": "adf628905293d3cd0057f4ec45f69ae6f6fb02b8625ed9553e1142d493056056",
+    "trades/KXNFLGAME-26AUG22ATLIND-IND.parquet": "c222a5f98d7b5d01e66a07413fc834f9707a15030365f555b2f95bb100911f62",
+    "trades/KXNFLGAME-26AUG28MINDEN-DEN.parquet": "5cb53e82db6208c723af89f5440542c1f8b429960a15a3d29867e8b0818d80d1",
+    "trades/KXNFLGAME-26AUG28NYGNYJ-NYJ.parquet": "5da0d5b9c646869ec3ee929a275a5b0562c8b4ca9d47aa7aace9ce1c60f5633b",
+    "trades/KXPAYROLLS-26JUL-T-25000.parquet": "0817b27f5f053e4f933c0e0752af5f70ad00051c81305489c1466cba416d2570",
+    "trades/KXPCECORE-26JUL-T0.2.parquet": "fb94d78141e8f2ffef00f29aa3a5ad8c2389f936212c7563e6bd35f069b16174",
+    "trades/KXPCECORE-26JUN-T0.2.parquet": "a22dfb317f1fb1624e57bf9dcb7999548f7aaa96d875cb5cd595386a77ea38a2",
+    "trades/KXU3-26AUG-T4.1.parquet": "928b3921d56b3fab6096de6b8888f226a25d28f16d7c024493645471bd128aec",
+    "trades/KXUCLGAME-26JUL29ALMOMO-TIE.parquet": "35c3e36e33a4405bfeb8e4db3322647110c56541a3e137f2e81f561115f0a31c",
+    "trades/KXWTA-26TORONT-RYB.parquet": "e5a0fe27d36fdd81a80dd148fcf94d67321834a9dce8aab989cb03b666fd3e9d"
+  },
+  "source_file_sha256": {
+    "calibration/calibrate_price_impact.py": "ebbb79506311b41214fc12226221d63e11ce1217c7cf098f4a6dfffedb59c748",
+    "simulator/price_impact.py": "4a3a9bf1c74ad1a0ab25cca6ccfa68d71e96dee0f265760fba9665b030f7b2f2",
+    "calibration/estimate_lambda.py": "08cb95973f018aa682bde77849ead158b2efbfadcc2a57e58cc9c1450ea3f298",
+    "calibration/build_intervals.py": "d250d11950c0f92796919f16267dbe35593fcd85bc18e2e51ba88b51f69dd747",
+    "data_pipeline/calibration_quality.py": "0acba60a73c1794f39b6bde243cd623238816e5f4836024c8ddd3f3a3c79d719",
+    "data_pipeline/utils.py": "e4a8368e62fbdbf069bfd4ff9211fff1defbb73643756e63578df08d91a3d2ed"
+  },
+  "upstream_file_sha256": {
+    "five_minute_intervals.parquet": "9e5a7d89c2caf02750597cbc130c4b940173624c6f3026e2adcac1c58584d4a5",
+    "lambda_estimates.parquet": "399fa7ae32b90adce16363ac0c3ae56481ac1ead60017eac942cbf84bbc3f35b"
+  },
+  "limitations": [
+    "Transaction-price lambda does not identify causal reference-price impact or an informed-trader fraction.",
+    "Post-trade reference observations are an explicit modelling proxy; actual execution quotes need separate validation.",
+    "Base targets an equal-weight median, not every contract's coefficient or the pooled OLS slope.",
+    "Low/high ranges are uncertainty stress scenarios, not confidence bounds for a causal structural parameter.",
+    "Event bootstraps do not eliminate cross-event dependence or convenience-sample selection.",
+    "Single-name has insufficient training events for its own parameter; pooled use must be explicit.",
+    "Replay checks reset each bucket and use zero innovations: no full-life, out-of-sample or PnL performance claim.",
+    "Arrival rates, independent volatility and inventory/risk parameters are not calibrated in this step."
+  ]
+}
