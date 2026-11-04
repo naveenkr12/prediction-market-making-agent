@@ -1,0 +1,285 @@
+{
+  "kyle_lambda": {
+    "FGH-L|broad_based": {
+      "kyle_lambda_median_replicate_averaged": 0.0,
+      "kyle_lambda_median_pooled": 8.515790662347203e-06,
+      "kyle_lambda_target": 4.32858352241989e-05
+    },
+    "FGH-L|sports": {
+      "kyle_lambda_median_replicate_averaged": 1.9453339615571e-06,
+      "kyle_lambda_median_pooled": 1.3040684953098157e-05,
+      "kyle_lambda_target": 1.2536753425643117e-05
+    },
+    "FGH-LJ|broad_based": {
+      "kyle_lambda_median_replicate_averaged": 0.0,
+      "kyle_lambda_median_pooled": 8.515790662347203e-06,
+      "kyle_lambda_target": 4.32858352241989e-05
+    },
+    "FGH-LJ|sports": {
+      "kyle_lambda_median_replicate_averaged": 4.24752528417153e-06,
+      "kyle_lambda_median_pooled": 1.097598690913627e-06,
+      "kyle_lambda_target": 1.2536753425643117e-05
+    },
+    "L0b|broad_based": {
+      "kyle_lambda_median_replicate_averaged": 0.0,
+      "kyle_lambda_median_pooled": 0.0,
+      "kyle_lambda_target": 4.32858352241989e-05
+    },
+    "L0b|sports": {
+      "kyle_lambda_median_replicate_averaged": 1.0901291038938053e-05,
+      "kyle_lambda_median_pooled": 1.7177559856729263e-05,
+      "kyle_lambda_target": 1.2536753425643117e-05
+    },
+    "L0c|broad_based": {
+      "kyle_lambda_median_replicate_averaged": 0.0,
+      "kyle_lambda_median_pooled": 0.0,
+      "kyle_lambda_target": 4.32858352241989e-05
+    },
+    "L0c|sports": {
+      "kyle_lambda_median_replicate_averaged": 3.108292268086391e-06,
+      "kyle_lambda_median_pooled": 7.138121767220065e-06,
+      "kyle_lambda_target": 1.2536753425643117e-05
+    },
+    "L1|broad_based": {
+      "kyle_lambda_median_replicate_averaged": 0.0,
+      "kyle_lambda_median_pooled": 0.0,
+      "kyle_lambda_target": 4.32858352241989e-05
+    },
+    "L1|sports": {
+      "kyle_lambda_median_replicate_averaged": 9.0293268712534e-06,
+      "kyle_lambda_median_pooled": 1.4612936202335055e-05,
+      "kyle_lambda_target": 1.2536753425643117e-05
+    },
+    "L1J|broad_based": {
+      "kyle_lambda_median_replicate_averaged": 0.0,
+      "kyle_lambda_median_pooled": 0.0,
+      "kyle_lambda_target": 4.32858352241989e-05
+    },
+    "L1J|sports": {
+      "kyle_lambda_median_replicate_averaged": 2.8753923884564956e-06,
+      "kyle_lambda_median_pooled": 1.3473966869200857e-05,
+      "kyle_lambda_target": 1.2536753425643117e-05
+    },
+    "M0|broad_based": {
+      "kyle_lambda_median_replicate_averaged": 0.0,
+      "kyle_lambda_median_pooled": 0.0,
+      "kyle_lambda_target": 4.32858352241989e-05
+    },
+    "M0|sports": {
+      "kyle_lambda_median_replicate_averaged": -2.092398471237825e-06,
+      "kyle_lambda_median_pooled": 1.0205849271680917e-05,
+      "kyle_lambda_target": 1.2536753425643117e-05
+    },
+    "M0-emp|broad_based": {
+      "kyle_lambda_median_replicate_averaged": 0.0,
+      "kyle_lambda_median_pooled": 0.0,
+      "kyle_lambda_target": 4.32858352241989e-05
+    },
+    "M0-emp|sports": {
+      "kyle_lambda_median_replicate_averaged": -4.15476421455099e-06,
+      "kyle_lambda_median_pooled": 9.405090401691272e-06,
+      "kyle_lambda_target": 1.2536753425643117e-05
+    },
+    "M0-s1|broad_based": {
+      "kyle_lambda_median_replicate_averaged": 0.0,
+      "kyle_lambda_median_pooled": 0.0,
+      "kyle_lambda_target": 4.32858352241989e-05
+    },
+    "M0-s1|sports": {
+      "kyle_lambda_median_replicate_averaged": -5.371646070624729e-07,
+      "kyle_lambda_median_pooled": 2.4366337978096345e-06,
+      "kyle_lambda_target": 1.2536753425643117e-05
+    },
+    "M1|broad_based": {
+      "kyle_lambda_median_replicate_averaged": 0.0,
+      "kyle_lambda_median_pooled": 0.0,
+      "kyle_lambda_target": 4.32858352241989e-05
+    },
+    "M1|sports": {
+      "kyle_lambda_median_replicate_averaged": 2.1560611547660514e-05,
+      "kyle_lambda_median_pooled": 2.8007999622049647e-05,
+      "kyle_lambda_target": 1.2536753425643117e-05
+    },
+    "M1-emp|broad_based": {
+      "kyle_lambda_median_replicate_averaged": 0.0,
+      "kyle_lambda_median_pooled": 0.0,
+      "kyle_lambda_target": 4.32858352241989e-05
+    },
+    "M1-emp|sports": {
+      "kyle_lambda_median_replicate_averaged": 1.7163157712047514e-05,
+      "kyle_lambda_median_pooled": 2.925513224818279e-05,
+      "kyle_lambda_target": 1.2536753425643117e-05
+    },
+    "M1-native|broad_based": {
+      "kyle_lambda_median_replicate_averaged": 0.0,
+      "kyle_lambda_median_pooled": 0.0,
+      "kyle_lambda_target": 4.32858352241989e-05
+    },
+    "M1-native|sports": {
+      "kyle_lambda_median_replicate_averaged": 1.6650078063037603e-05,
+      "kyle_lambda_median_pooled": 2.3399333514953984e-05,
+      "kyle_lambda_target": 1.2536753425643117e-05
+    },
+    "M2|broad_based": {
+      "kyle_lambda_median_replicate_averaged": 0.0,
+      "kyle_lambda_median_pooled": 0.0,
+      "kyle_lambda_target": 4.32858352241989e-05
+    },
+    "M2|sports": {
+      "kyle_lambda_median_replicate_averaged": -2.872666441133306e-06,
+      "kyle_lambda_median_pooled": -2.4381424922066417e-06,
+      "kyle_lambda_target": 1.2536753425643117e-05
+    },
+    "M2-emp|broad_based": {
+      "kyle_lambda_median_replicate_averaged": 0.0,
+      "kyle_lambda_median_pooled": 0.0,
+      "kyle_lambda_target": 4.32858352241989e-05
+    },
+    "M2-emp|sports": {
+      "kyle_lambda_median_replicate_averaged": -5.039209871139439e-05,
+      "kyle_lambda_median_pooled": -2.089214667078982e-06,
+      "kyle_lambda_target": 1.2536753425643117e-05
+    },
+    "M2-s1|broad_based": {
+      "kyle_lambda_median_replicate_averaged": 0.0,
+      "kyle_lambda_median_pooled": 0.0,
+      "kyle_lambda_target": 4.32858352241989e-05
+    },
+    "M2-s1|sports": {
+      "kyle_lambda_median_replicate_averaged": -1.9187783262683118e-06,
+      "kyle_lambda_median_pooled": -1.8502176634757952e-06,
+      "kyle_lambda_target": 1.2536753425643117e-05
+    },
+    "M3|broad_based": {
+      "kyle_lambda_median_replicate_averaged": 0.0,
+      "kyle_lambda_median_pooled": 0.0,
+      "kyle_lambda_target": 4.32858352241989e-05
+    },
+    "M3|sports": {
+      "kyle_lambda_median_replicate_averaged": 8.3481859792159e-06,
+      "kyle_lambda_median_pooled": 1.661028766127329e-05,
+      "kyle_lambda_target": 1.2536753425643117e-05
+    },
+    "M3-emp|broad_based": {
+      "kyle_lambda_median_replicate_averaged": 0.0,
+      "kyle_lambda_median_pooled": 0.0,
+      "kyle_lambda_target": 4.32858352241989e-05
+    },
+    "M3-emp|sports": {
+      "kyle_lambda_median_replicate_averaged": -3.1803526614719354e-05,
+      "kyle_lambda_median_pooled": 1.4106167957728648e-05,
+      "kyle_lambda_target": 1.2536753425643117e-05
+    }
+  },
+  "jumps": {
+    "FGH-LJ|broad_based": {
+      "mean_jumps_per_episode": 0.3235294117647059,
+      "mean_jump_magnitude": 0.5373555957475485,
+      "bank_mean_magnitude": 0.5477771124022001,
+      "expected_jumps_per_episode": 0.33484286645055944
+    },
+    "FGH-LJ|sports": {
+      "mean_jumps_per_episode": 1.5433333333333332,
+      "mean_jump_magnitude": 1.0417742069065696,
+      "bank_mean_magnitude": 0.9579501930700098,
+      "expected_jumps_per_episode": 1.5428571428571425
+    },
+    "L0c|broad_based": {
+      "mean_jumps_per_episode": 0.3235294117647059,
+      "mean_jump_magnitude": 0.5373555957475485,
+      "bank_mean_magnitude": 0.5477771124022001,
+      "expected_jumps_per_episode": 0.33484286645055944
+    },
+    "L0c|sports": {
+      "mean_jumps_per_episode": 1.5433333333333332,
+      "mean_jump_magnitude": 1.0417742069065696,
+      "bank_mean_magnitude": 0.9579501930700098,
+      "expected_jumps_per_episode": 1.5428571428571425
+    },
+    "L1J|broad_based": {
+      "mean_jumps_per_episode": 0.3235294117647059,
+      "mean_jump_magnitude": 0.5373555957475485,
+      "bank_mean_magnitude": 0.5477771124022001,
+      "expected_jumps_per_episode": 0.33484286645055944
+    },
+    "L1J|sports": {
+      "mean_jumps_per_episode": 1.5433333333333332,
+      "mean_jump_magnitude": 1.0417742069065696,
+      "bank_mean_magnitude": 0.9579501930700098,
+      "expected_jumps_per_episode": 1.5428571428571425
+    },
+    "M2|broad_based": {
+      "mean_jumps_per_episode": 0.3235294117647059,
+      "mean_jump_magnitude": 0.5373555957475485,
+      "bank_mean_magnitude": 0.5477771124022001,
+      "expected_jumps_per_episode": 0.33484286645055944
+    },
+    "M2|sports": {
+      "mean_jumps_per_episode": 1.5433333333333332,
+      "mean_jump_magnitude": 1.0417742069065696,
+      "bank_mean_magnitude": 0.9579501930700098,
+      "expected_jumps_per_episode": 1.5428571428571425
+    },
+    "M2-emp|broad_based": {
+      "mean_jumps_per_episode": 0.3235294117647059,
+      "mean_jump_magnitude": 0.5373555957475485,
+      "bank_mean_magnitude": 0.5477771124022001,
+      "expected_jumps_per_episode": 0.33484286645055944
+    },
+    "M2-emp|sports": {
+      "mean_jumps_per_episode": 1.5433333333333332,
+      "mean_jump_magnitude": 1.0417742069065696,
+      "bank_mean_magnitude": 0.9579501930700098,
+      "expected_jumps_per_episode": 1.5428571428571425
+    },
+    "M2-s1|broad_based": {
+      "mean_jumps_per_episode": 0.3235294117647059,
+      "mean_jump_magnitude": 0.5373555957475485,
+      "bank_mean_magnitude": 0.5477771124022001,
+      "expected_jumps_per_episode": 0.33484286645055944
+    },
+    "M2-s1|sports": {
+      "mean_jumps_per_episode": 1.5433333333333332,
+      "mean_jump_magnitude": 1.0417742069065696,
+      "bank_mean_magnitude": 0.9579501930700098,
+      "expected_jumps_per_episode": 1.5428571428571425
+    },
+    "M3|broad_based": {
+      "mean_jumps_per_episode": 0.3235294117647059,
+      "mean_jump_magnitude": 0.5373555957475485,
+      "bank_mean_magnitude": 0.5477771124022001,
+      "expected_jumps_per_episode": 0.33484286645055944
+    },
+    "M3|sports": {
+      "mean_jumps_per_episode": 1.5433333333333332,
+      "mean_jump_magnitude": 1.0417742069065696,
+      "bank_mean_magnitude": 0.9579501930700098,
+      "expected_jumps_per_episode": 1.5428571428571425
+    },
+    "M3-emp|broad_based": {
+      "mean_jumps_per_episode": 0.3235294117647059,
+      "mean_jump_magnitude": 0.5373555957475485,
+      "bank_mean_magnitude": 0.5477771124022001,
+      "expected_jumps_per_episode": 0.33484286645055944
+    },
+    "M3-emp|sports": {
+      "mean_jumps_per_episode": 1.5433333333333332,
+      "mean_jump_magnitude": 1.0417742069065696,
+      "bank_mean_magnitude": 0.9579501930700098,
+      "expected_jumps_per_episode": 1.5428571428571425
+    }
+  },
+  "scope": "Experiment-path fidelity (V10 report); full V10 is in validate.py",
+  "flow_replay": {
+    "broad_based": {
+      "target_lambda_median": 4.32858352241989e-05,
+      "calibration_statistic": 4.3296040957563215e-05,
+      "calibration_relative_gap": 0.00023577535957097773
+    },
+    "sports": {
+      "target_lambda_median": 1.2536753425643117e-05,
+      "calibration_statistic": 1.254612267494159e-05,
+      "calibration_relative_gap": 0.0007473425519648469
+    }
+  }
+}

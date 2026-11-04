@@ -1,0 +1,6 @@
+# Resumable run caches: regenerated on demand, never committed.
+**/checkpoints/
+# Per-episode results are large. They regenerate exactly from fixed seeds; each manifest.json
+# records the sha256 to check against (see simulator/INFORMATION_ARRIVAL.md §5).
+experiment/episode_results.csv
+sensitivity/*/episode_results.csv
