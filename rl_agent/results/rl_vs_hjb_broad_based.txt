@@ -1,0 +1,1 @@
+episodes=300 mean_diff=0.439693 ci95=[-0.010152,0.899062] win_fraction=0.1767
