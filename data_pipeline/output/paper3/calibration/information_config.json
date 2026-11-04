@@ -1,0 +1,2066 @@
+{
+  "schema_version": 1,
+  "generated_at_utc": "2026-10-31T17:41:25.674153+00:00",
+  "units": {
+    "time": "seconds",
+    "sigma_c": "log_odds_per_sqrt_second",
+    "lambda_J": "jumps_per_second",
+    "magnitude": "log_odds",
+    "eta": "per_contract",
+    "u": "probability_of_YES_taker"
+  },
+  "conventions": {
+    "ttr": "TTR = t_r - t; buckets B0 [0,3600), B1 [3600,10800), B2 [10800,86400), B3 [86400,inf) seconds",
+    "exposure": "300 s per observed quote pair, bucket of the pair's left endpoint TTR",
+    "pooling_order": {
+      "B0": [
+        "B0",
+        "B1",
+        "B2",
+        "B3"
+      ],
+      "B1": [
+        "B1",
+        "B0",
+        "B2",
+        "B3"
+      ],
+      "B2": [
+        "B2",
+        "B1",
+        "B3",
+        "B0"
+      ],
+      "B3": [
+        "B3",
+        "B2",
+        "B1",
+        "B0"
+      ]
+    },
+    "min_bucket_jumps": 5,
+    "detection": "|eta_tilde_k| > 4 sigma_hat_k; sigma_hat_k^2 = (pi/2) mean of adjacent products |eta_i||eta_{i-1}| (consecutive pairs only) with |i-k| <= 12 observed pairs, excluding products involving k-1,k,k+1 (i in {k-1..k+2}); >=12 products else contract level",
+    "effective_innovations": "eta_tilde = eta*sqrt(n/(n-d)) so sum eta_tilde^2/(n*300) = legacy sigma^2",
+    "sign": "+1 YES taker, -1 NO taker; S_u = 2*1{V_u < u} - 1",
+    "release_time": "broad_based: metadata occurrence_datetime (else template close, flagged); sports: template close (provisional)",
+    "noise_donors": "templates without own quote support use the legacy MarketDynamics donor draw; sigma_c is the donor's",
+    "u_rates": "u[tpl,b,k] = clip((n_yes + 20 u_class[b])/(n + 20), .02, .98); b = class quintile size bin (side='right' of interior edges); k = legacy lifetime phase",
+    "p0_emp": "last training trade strictly before t_c - 3600 s, else first at/after; simulation start clipped to [.01,.99]"
+  },
+  "parameters": {
+    "jump_threshold": 4.0,
+    "bipower_half_window": 12,
+    "min_local_products": 12,
+    "bootstrap_draws": 2000,
+    "bootstrap_seed": 42,
+    "replay": {
+      "initial_replications": 200,
+      "max_replications": 51200,
+      "batches": 20,
+      "bisection_tolerance": 0.001,
+      "mc_se_tolerance": 0.0025,
+      "validation_tolerance": 0.02,
+      "bracket_start": 1e-06,
+      "max_doublings": 60,
+      "max_bisection_steps": 200,
+      "seed": 20261031
+    },
+    "size_bins": 5,
+    "u_prior_weight": 20.0
+  },
+  "training": {
+    "tickers": [
+      "KXAAAGASM-26AUG31-4.08",
+      "KXAAAGASM-26JUL31-3.90",
+      "KXAAAGASW-26AUG03-4.110",
+      "KXAAAGASW-26AUG10-4.010",
+      "KXAAAGASW-26AUG24-4.080",
+      "KXAAAGASW-26JUL13-3.960",
+      "KXAAAGASW-26JUL20-4.060",
+      "KXAAAGASW-26JUL27-4.080",
+      "KXARMOMINF-26AUG13-T1.8",
+      "KXATP-26CINCIN-NAK",
+      "KXATP-26MONTRE-FON",
+      "KXCBDECISIONBRAZIL-26AUG05-C25",
+      "KXCPI-26AUG-T0.5",
+      "KXCPICORE-26JUN-T0.2",
+      "KXCPIYOY-26JUL-T4.2",
+      "KXEPLGAME-26AUG22EVECRY-TIE",
+      "KXEPLGAME-26AUG22NFOLEE-TIE",
+      "KXEPLGAME-26AUG23BRIAVL-TIE",
+      "KXFEDDECISION-26JUL-C26",
+      "KXGDP-26JUL30-T1.0",
+      "KXH200CHINA-27-BEF",
+      "KXJOBLESSCLAIMS-26JUL23-200000",
+      "KXLIGAMX1H-26AUG17PACPUE-PAC",
+      "KXLIGAMX1H-26JUL21CRAPUE-CRA",
+      "KXMLSGAME-26AUG22CLTDCU-TIE",
+      "KXMLSGAME-26AUG29NYRBPHI-TIE",
+      "KXMLSGAME-26SEP05CLBCOL-TIE",
+      "KXNFLGAME-26AUG22ATLIND-IND",
+      "KXNFLGAME-26AUG28MINDEN-DEN",
+      "KXNFLGAME-26AUG28NYGNYJ-NYJ",
+      "KXPAYROLLS-26JUL-T-25000",
+      "KXPCECORE-26JUL-T0.2",
+      "KXPCECORE-26JUN-T0.2",
+      "KXU3-26AUG-T4.1",
+      "KXUCLGAME-26JUL29ALMOMO-TIE",
+      "KXWTA-26TORONT-RYB"
+    ],
+    "class_tickers": {
+      "broad_based": [
+        "KXAAAGASM-26AUG31-4.08",
+        "KXAAAGASM-26JUL31-3.90",
+        "KXAAAGASW-26AUG03-4.110",
+        "KXAAAGASW-26AUG10-4.010",
+        "KXAAAGASW-26AUG24-4.080",
+        "KXAAAGASW-26JUL13-3.960",
+        "KXAAAGASW-26JUL20-4.060",
+        "KXAAAGASW-26JUL27-4.080",
+        "KXARMOMINF-26AUG13-T1.8",
+        "KXCBDECISIONBRAZIL-26AUG05-C25",
+        "KXCPI-26AUG-T0.5",
+        "KXCPICORE-26JUN-T0.2",
+        "KXCPIYOY-26JUL-T4.2",
+        "KXFEDDECISION-26JUL-C26",
+        "KXGDP-26JUL30-T1.0",
+        "KXJOBLESSCLAIMS-26JUL23-200000",
+        "KXPAYROLLS-26JUL-T-25000",
+        "KXPCECORE-26JUL-T0.2",
+        "KXPCECORE-26JUN-T0.2",
+        "KXU3-26AUG-T4.1"
+      ],
+      "sports": [
+        "KXATP-26CINCIN-NAK",
+        "KXATP-26MONTRE-FON",
+        "KXEPLGAME-26AUG22EVECRY-TIE",
+        "KXEPLGAME-26AUG22NFOLEE-TIE",
+        "KXEPLGAME-26AUG23BRIAVL-TIE",
+        "KXLIGAMX1H-26AUG17PACPUE-PAC",
+        "KXLIGAMX1H-26JUL21CRAPUE-CRA",
+        "KXMLSGAME-26AUG22CLTDCU-TIE",
+        "KXMLSGAME-26AUG29NYRBPHI-TIE",
+        "KXMLSGAME-26SEP05CLBCOL-TIE",
+        "KXNFLGAME-26AUG22ATLIND-IND",
+        "KXNFLGAME-26AUG28MINDEN-DEN",
+        "KXNFLGAME-26AUG28NYGNYJ-NYJ",
+        "KXUCLGAME-26JUL29ALMOMO-TIE",
+        "KXWTA-26TORONT-RYB"
+      ]
+    }
+  },
+  "classes": {
+    "broad_based": {
+      "jumps": {
+        "pooled_class_profile": false,
+        "post_release_pairs_excluded": 0,
+        "post_release_jumps_excluded": 0,
+        "total_detected_jumps": 48,
+        "buckets": {
+          "B0": {
+            "lambda_per_second": 9.70873786407767e-05,
+            "pooled_count": 15,
+            "pooled_exposure_seconds": 154500.0,
+            "contributing_buckets": [
+              "B0",
+              "B1",
+              "B2"
+            ],
+            "pooled": true,
+            "reached_min_jumps": true,
+            "detected_jumps": 0,
+            "exposure_seconds": 900.0,
+            "implied_jumps": 0.08737864077669903,
+            "bootstrap95_lambda": [
+              3.7810047406046935e-05,
+              0.0005555555555555556
+            ],
+            "probability_variance_p50_jump_per_hour": 0.007902019784120869,
+            "probability_variance_p50_continuous_median_per_hour": 0.005950465916680846
+          },
+          "B1": {
+            "lambda_per_second": 9.70873786407767e-05,
+            "pooled_count": 15,
+            "pooled_exposure_seconds": 154500.0,
+            "contributing_buckets": [
+              "B1",
+              "B0",
+              "B2"
+            ],
+            "pooled": true,
+            "reached_min_jumps": true,
+            "detected_jumps": 2,
+            "exposure_seconds": 4500.0,
+            "implied_jumps": 0.4368932038834952,
+            "bootstrap95_lambda": [
+              3.7810047406046935e-05,
+              0.0005757769263516332
+            ],
+            "probability_variance_p50_jump_per_hour": 0.007902019784120869,
+            "probability_variance_p50_continuous_median_per_hour": 0.005950465916680846
+          },
+          "B2": {
+            "lambda_per_second": 8.718980549966466e-05,
+            "pooled_count": 13,
+            "pooled_exposure_seconds": 149100.0,
+            "contributing_buckets": [
+              "B2"
+            ],
+            "pooled": false,
+            "reached_min_jumps": true,
+            "detected_jumps": 13,
+            "exposure_seconds": 149100.0,
+            "implied_jumps": 13.0,
+            "bootstrap95_lambda": [
+              3.227064837234329e-05,
+              0.00020094659073418482
+            ],
+            "probability_variance_p50_jump_per_hour": 0.007096448350729606,
+            "probability_variance_p50_continuous_median_per_hour": 0.005950465916680846
+          },
+          "B3": {
+            "lambda_per_second": 6.010928961748634e-05,
+            "pooled_count": 33,
+            "pooled_exposure_seconds": 549000.0,
+            "contributing_buckets": [
+              "B3"
+            ],
+            "pooled": false,
+            "reached_min_jumps": true,
+            "detected_jumps": 33,
+            "exposure_seconds": 549000.0,
+            "implied_jumps": 33.0,
+            "bootstrap95_lambda": [
+              2.944692732677097e-05,
+              0.0001004409997255581
+            ],
+            "probability_variance_p50_jump_per_hour": 0.0048923433963983295,
+            "probability_variance_p50_continuous_median_per_hour": 0.005950465916680846
+          }
+        },
+        "magnitude_bank_key": "broad_based_abs_eta_tilde",
+        "magnitude_count": 48,
+        "magnitude_quantiles": {
+          "0": 0.019596480423645184,
+          "0.1": 0.18295365011903253,
+          "0.25": 0.3430218718177133,
+          "0.5": 0.4389432826044811,
+          "0.75": 0.7332896939425753,
+          "0.9": 1.0528137118875573,
+          "1": 2.244260488151184
+        },
+        "mean_a2": 0.45180887821985016,
+        "mean_a2_bootstrap95": [
+          0.2495519585858217,
+          0.7620665005303132
+        ],
+        "mean_probability_jump2_p50": 0.02260855660456804,
+        "bootstrap": {
+          "draws": 2000,
+          "draws_without_jumps": 0,
+          "draws_below_min_total_jumps": 0
+        },
+        "supported_tickers": [
+          "KXAAAGASM-26AUG31-4.08",
+          "KXAAAGASW-26AUG03-4.110",
+          "KXAAAGASW-26AUG10-4.010",
+          "KXAAAGASW-26JUL13-3.960",
+          "KXAAAGASW-26JUL20-4.060",
+          "KXAAAGASW-26JUL27-4.080",
+          "KXCBDECISIONBRAZIL-26AUG05-C25",
+          "KXCPICORE-26JUN-T0.2",
+          "KXGDP-26JUL30-T1.0",
+          "KXJOBLESSCLAIMS-26JUL23-200000",
+          "KXPCECORE-26JUL-T0.2",
+          "KXU3-26AUG-T4.1"
+        ],
+        "sigma_c": {
+          "KXAAAGASM-26AUG31-4.08": 0.023648850703174438,
+          "KXAAAGASW-26AUG03-4.110": 0.009019792171402316,
+          "KXAAAGASW-26AUG10-4.010": 0.005000435831501001,
+          "KXAAAGASW-26JUL13-3.960": 0.005017981887569211,
+          "KXAAAGASW-26JUL20-4.060": 0.0074713724188989914,
+          "KXAAAGASW-26JUL27-4.080": 0.0,
+          "KXCBDECISIONBRAZIL-26AUG05-C25": 0.010889788801078373,
+          "KXCPICORE-26JUN-T0.2": 0.002183915668327103,
+          "KXGDP-26JUL30-T1.0": 0.005395386548613504,
+          "KXJOBLESSCLAIMS-26JUL23-200000": 0.0019165259466835402,
+          "KXPCECORE-26JUL-T0.2": 0.005264303196675107,
+          "KXU3-26AUG-T4.1": 0.0010380042726261755
+        },
+        "label": "reduced-form jump proxies from 300-s quote-midpoint residuals"
+      },
+      "flow": {
+        "law": "alpha(c; eta) = min(1 - exp(-eta c), 1 - 1e-12)",
+        "eta_per_contract": 3.2562500000000005e-05,
+        "target_lambda_median": 4.32858352241989e-05,
+        "target_source": "price_impact_config.json groups[class].target_lambda_median",
+        "replications": 1600,
+        "calibration_statistic": 4.3296040957563215e-05,
+        "calibration_mc_se": 1.0580261558636126e-07,
+        "calibration_relative_gap": 0.00023577535957097773,
+        "validation": {
+          "statistic": 4.333842657352166e-05,
+          "mc_se": 1.0595086184649895e-07,
+          "relative_error": 0.0012149782729238279,
+          "ci95_relative_error": [
+            -0.005564838371295037,
+            0.007994794917142693
+          ],
+          "passed": true,
+          "status": "validated"
+        },
+        "contracts": 20,
+        "buckets": 6147,
+        "trades": 16075,
+        "size_quantiles": {
+          "0.1": 1.0,
+          "0.5": 10.0,
+          "0.9": 200.0,
+          "0.99": 3677.2800000000047
+        },
+        "alpha_at_size_quantiles": {
+          "0.1": 3.2561969847551256e-05,
+          "0.5": 0.00032557198993364464,
+          "0.9": 0.006491339632425098,
+          "0.99": 0.1128502026139045
+        },
+        "simulated_moments": {
+          "buy_fraction": 0.6120227449455676,
+          "mean_signed_contracts_per_trade": 59.68729948911354,
+          "informed_fraction": 0.005522900466562986,
+          "mean_abs_bucket_flow": 364.44360850211484
+        },
+        "empirical_moments": {
+          "buy_fraction": 0.6118818040435459,
+          "mean_signed_contracts_per_trade": 139.47032161741834,
+          "mean_size": 198.0153443234837
+        },
+        "information_variance_p50": {
+          "mean_per_trade": 0.0004281512717783164,
+          "mean_per_bucket": 0.0011196570186817042,
+          "units": "probability^2 at p = 1/2"
+        },
+        "fg_half": {
+          "beta": 5.473789936966611e-05,
+          "u": 0.5,
+          "alpha": "tanh(beta c / 2)",
+          "statistic": 4.050470640607268e-05,
+          "mc_se": 7.56082558984601e-08,
+          "relative_to_target": 0.9357496787639334,
+          "validation_uniform_statistic": 4.061814541207512e-05,
+          "validation_uniform_mc_se": 8.372273541366427e-08
+        },
+        "constant_alpha": {
+          "status": "calibrated",
+          "alpha0": 0.033792,
+          "replications": 51200,
+          "statistic": 4.3268456670670564e-05,
+          "mc_se": 7.128874625436925e-08,
+          "validation": {
+            "statistic": 4.310121229927345e-05,
+            "mc_se": 9.317559603780258e-08,
+            "relative_error": -0.004265204170583736,
+            "ci95_relative_error": [
+              -0.009577363635191679,
+              0.0010469552940242073
+            ],
+            "passed": true,
+            "status": "validated"
+          }
+        },
+        "degenerate_contract_slopes": 0,
+        "assumption": "alpha small => YES rate approximately u; u from training marks; observation after each trade"
+      },
+      "uninformed": {
+        "size_bin_edges": [
+          1.8,
+          5.366000000000004,
+          15.0,
+          61.278000000000105
+        ],
+        "u_class": [
+          0.5666251556662516,
+          0.5366687383467993,
+          0.5777994791666666,
+          0.6429422275163788,
+          0.7325038880248833
+        ],
+        "u_class_raw": [
+          0.5666251556662516,
+          0.5366687383467993,
+          0.5777994791666666,
+          0.6429422275163788,
+          0.7325038880248833
+        ],
+        "overall_yes_rate": 0.6118818040435459,
+        "empty_class_bins": [],
+        "pooled_marks": 16075,
+        "prior_weight": 20.0,
+        "clip": [
+          0.02,
+          0.98
+        ]
+      },
+      "impact_beta_base": 5.473789936966611e-05,
+      "noise_donor_tickers": [
+        "KXAAAGASM-26AUG31-4.08",
+        "KXAAAGASW-26AUG03-4.110",
+        "KXAAAGASW-26AUG10-4.010",
+        "KXAAAGASW-26JUL13-3.960",
+        "KXAAAGASW-26JUL20-4.060",
+        "KXAAAGASW-26JUL27-4.080",
+        "KXCBDECISIONBRAZIL-26AUG05-C25",
+        "KXCPICORE-26JUN-T0.2",
+        "KXGDP-26JUL30-T1.0",
+        "KXJOBLESSCLAIMS-26JUL23-200000",
+        "KXPCECORE-26JUL-T0.2",
+        "KXU3-26AUG-T4.1"
+      ]
+    },
+    "sports": {
+      "jumps": {
+        "pooled_class_profile": false,
+        "post_release_pairs_excluded": 0,
+        "post_release_jumps_excluded": 0,
+        "total_detected_jumps": 26,
+        "buckets": {
+          "B0": {
+            "lambda_per_second": 0.00042857142857142855,
+            "pooled_count": 9,
+            "pooled_exposure_seconds": 21000.0,
+            "contributing_buckets": [
+              "B0"
+            ],
+            "pooled": false,
+            "reached_min_jumps": true,
+            "detected_jumps": 9,
+            "exposure_seconds": 21000.0,
+            "implied_jumps": 9.0,
+            "bootstrap95_lambda": [
+              0.00013561192346581627,
+              0.0007909604519774011
+            ],
+            "probability_variance_p50_jump_per_hour": 0.0848454314791907,
+            "probability_variance_p50_continuous_median_per_hour": 0.012134883433800923
+          },
+          "B1": {
+            "lambda_per_second": 9.150326797385621e-05,
+            "pooled_count": 7,
+            "pooled_exposure_seconds": 76500.0,
+            "contributing_buckets": [
+              "B1"
+            ],
+            "pooled": false,
+            "reached_min_jumps": true,
+            "detected_jumps": 7,
+            "exposure_seconds": 76500.0,
+            "implied_jumps": 7.0,
+            "bootstrap95_lambda": [
+              6.17283950617284e-05,
+              0.00018230426747311822
+            ],
+            "probability_variance_p50_jump_per_hour": 0.0181151465903283,
+            "probability_variance_p50_continuous_median_per_hour": 0.012134883433800923
+          },
+          "B2": {
+            "lambda_per_second": 3.3433634236041456e-05,
+            "pooled_count": 10,
+            "pooled_exposure_seconds": 299100.0,
+            "contributing_buckets": [
+              "B2",
+              "B1"
+            ],
+            "pooled": true,
+            "reached_min_jumps": true,
+            "detected_jumps": 3,
+            "exposure_seconds": 222600.0,
+            "implied_jumps": 7.442326980942828,
+            "bootstrap95_lambda": [
+              1.7997429146422324e-05,
+              4.991118148139021e-05
+            ],
+            "probability_variance_p50_jump_per_hour": 0.006618945952906886,
+            "probability_variance_p50_continuous_median_per_hour": 0.012134883433800923
+          },
+          "B3": {
+            "lambda_per_second": 3.178928247048138e-05,
+            "pooled_count": 7,
+            "pooled_exposure_seconds": 220200.0,
+            "contributing_buckets": [
+              "B3"
+            ],
+            "pooled": false,
+            "reached_min_jumps": true,
+            "detected_jumps": 7,
+            "exposure_seconds": 220200.0,
+            "implied_jumps": 7.0,
+            "bootstrap95_lambda": [
+              1.1703709467303319e-05,
+              5.747126436781609e-05
+            ],
+            "probability_variance_p50_jump_per_hour": 0.0062934092377843545,
+            "probability_variance_p50_continuous_median_per_hour": 0.012134883433800923
+          }
+        },
+        "magnitude_bank_key": "sports_abs_eta_tilde",
+        "magnitude_count": 26,
+        "magnitude_quantiles": {
+          "0": 0.14441216830236875,
+          "0.1": 0.2437582702007257,
+          "0.25": 0.5222146539489508,
+          "0.5": 0.8269367128145266,
+          "0.75": 1.1364151568860834,
+          "0.9": 2.020417057407784,
+          "1": 2.5059324926128115
+        },
+        "mean_a2": 1.350298280529748,
+        "mean_a2_bootstrap95": [
+          0.8092422855136383,
+          1.9561534240683578
+        ],
+        "mean_probability_jump2_p50": 0.05499240929206805,
+        "bootstrap": {
+          "draws": 2000,
+          "draws_without_jumps": 0,
+          "draws_below_min_total_jumps": 0
+        },
+        "supported_tickers": [
+          "KXATP-26CINCIN-NAK",
+          "KXEPLGAME-26AUG22EVECRY-TIE",
+          "KXEPLGAME-26AUG22NFOLEE-TIE",
+          "KXEPLGAME-26AUG23BRIAVL-TIE",
+          "KXMLSGAME-26AUG22CLTDCU-TIE",
+          "KXMLSGAME-26AUG29NYRBPHI-TIE",
+          "KXMLSGAME-26SEP05CLBCOL-TIE",
+          "KXNFLGAME-26AUG22ATLIND-IND",
+          "KXNFLGAME-26AUG28MINDEN-DEN",
+          "KXNFLGAME-26AUG28NYGNYJ-NYJ",
+          "KXUCLGAME-26JUL29ALMOMO-TIE",
+          "KXWTA-26TORONT-RYB"
+        ],
+        "sigma_c": {
+          "KXATP-26CINCIN-NAK": 0.008619433514539395,
+          "KXEPLGAME-26AUG22EVECRY-TIE": 0.01090121159152806,
+          "KXEPLGAME-26AUG22NFOLEE-TIE": 0.0051409120093619445,
+          "KXEPLGAME-26AUG23BRIAVL-TIE": 0.007357802117987389,
+          "KXMLSGAME-26AUG22CLTDCU-TIE": 0.010385857925914238,
+          "KXMLSGAME-26AUG29NYRBPHI-TIE": 0.010391547342026158,
+          "KXMLSGAME-26SEP05CLBCOL-TIE": 0.003977025071692972,
+          "KXNFLGAME-26AUG22ATLIND-IND": 0.005485208265459636,
+          "KXNFLGAME-26AUG28MINDEN-DEN": 0.007329964427963832,
+          "KXNFLGAME-26AUG28NYGNYJ-NYJ": 0.006113397321645673,
+          "KXUCLGAME-26JUL29ALMOMO-TIE": 0.005721569562600154,
+          "KXWTA-26TORONT-RYB": 0.007499142553678673
+        },
+        "label": "reduced-form jump proxies from 300-s quote-midpoint residuals"
+      },
+      "flow": {
+        "law": "alpha(c; eta) = min(1 - exp(-eta c), 1 - 1e-12)",
+        "eta_per_contract": 1.8187499999999995e-05,
+        "target_lambda_median": 1.2536753425643117e-05,
+        "target_source": "price_impact_config.json groups[class].target_lambda_median",
+        "replications": 25600,
+        "calibration_statistic": 1.254612267494159e-05,
+        "calibration_mc_se": 2.7192512466726507e-08,
+        "calibration_relative_gap": 0.0007473425519648469,
+        "validation": {
+          "statistic": 1.2569853200243928e-05,
+          "mc_se": 2.139152839436967e-08,
+          "relative_error": 0.002640219000647148,
+          "ci95_relative_error": [
+            -0.0027687633505107685,
+            0.008049201351805065
+          ],
+          "passed": true,
+          "status": "validated"
+        },
+        "contracts": 15,
+        "buckets": 3214,
+        "trades": 28271,
+        "size_quantiles": {
+          "0.1": 1.24,
+          "0.5": 15.83,
+          "0.9": 184.48,
+          "0.99": 2037.96
+        },
+        "alpha_at_size_quantiles": {
+          "0.1": 2.2552245694283617e-05,
+          "0.5": 0.0002878666834329961,
+          "0.9": 0.003349607505835066,
+          "0.99": 0.036386884600312
+        },
+        "simulated_moments": {
+          "buy_fraction": 0.7537861636593152,
+          "mean_signed_contracts_per_trade": 51.321094250678655,
+          "informed_fraction": 0.0020466326469703935,
+          "mean_abs_bucket_flow": 529.4606851990314
+        },
+        "empirical_moments": {
+          "buy_fraction": 0.7545187648119982,
+          "mean_signed_contracts_per_trade": 45.943464681121995,
+          "mean_size": 115.48868416398429
+        },
+        "information_variance_p50": {
+          "mean_per_trade": 2.9588336902395835e-05,
+          "mean_per_bucket": 0.00026026505058109295,
+          "units": "probability^2 at p = 1/2"
+        },
+        "fg_half": {
+          "beta": 1.2698307937036599e-05,
+          "u": 0.5,
+          "alpha": "tanh(beta c / 2)",
+          "statistic": 1.1892295414194852e-05,
+          "mc_se": 2.270191177169806e-09,
+          "relative_to_target": 0.9485945053262299,
+          "validation_uniform_statistic": 1.1886796743483524e-05,
+          "validation_uniform_mc_se": 2.4136159253256264e-09
+        },
+        "constant_alpha": {
+          "status": "failed",
+          "reason": "constant_alpha: MC SE tolerance not reached by 51200 replications"
+        },
+        "degenerate_contract_slopes": 0,
+        "assumption": "alpha small => YES rate approximately u; u from training marks; observation after each trade"
+      },
+      "uninformed": {
+        "size_bin_edges": [
+          4.0,
+          10.0,
+          24.11,
+          74.0
+        ],
+        "u_class": [
+          0.7184660123591421,
+          0.71374274854971,
+          0.8097817675282464,
+          0.7821922667612629,
+          0.7349673778874978
+        ],
+        "u_class_raw": [
+          0.7184660123591421,
+          0.71374274854971,
+          0.8097817675282464,
+          0.7821922667612629,
+          0.7349673778874978
+        ],
+        "overall_yes_rate": 0.7545187648119982,
+        "empty_class_bins": [],
+        "pooled_marks": 28271,
+        "prior_weight": 20.0,
+        "clip": [
+          0.02,
+          0.98
+        ]
+      },
+      "impact_beta_base": 1.2698307937036599e-05,
+      "noise_donor_tickers": [
+        "KXATP-26CINCIN-NAK",
+        "KXEPLGAME-26AUG22EVECRY-TIE",
+        "KXEPLGAME-26AUG22NFOLEE-TIE",
+        "KXEPLGAME-26AUG23BRIAVL-TIE",
+        "KXMLSGAME-26AUG22CLTDCU-TIE",
+        "KXMLSGAME-26AUG29NYRBPHI-TIE",
+        "KXMLSGAME-26SEP05CLBCOL-TIE",
+        "KXNFLGAME-26AUG22ATLIND-IND",
+        "KXNFLGAME-26AUG28MINDEN-DEN",
+        "KXNFLGAME-26AUG28NYGNYJ-NYJ",
+        "KXUCLGAME-26JUL29ALMOMO-TIE",
+        "KXWTA-26TORONT-RYB"
+      ]
+    }
+  },
+  "templates": {
+    "KXAAAGASM-26AUG31-4.08": {
+      "information_class": "broad_based",
+      "mark_bank_key": "event_000",
+      "t_c_utc": "2026-08-31T03:59:00+00:00",
+      "t_r_utc": "2026-08-31T14:00:00+00:00",
+      "t_r_source": "occurrence_datetime",
+      "flags": [
+        "occurrence_after_settlement_ts"
+      ],
+      "early_revelation": false,
+      "release_minus_close_seconds": 36060.0,
+      "noise_supported": true,
+      "n_pairs": 231,
+      "d": 2,
+      "sigma_legacy": 0.02566071580720944,
+      "sigma_c": 0.023648850703174438,
+      "n_jumps": 5,
+      "jumps": [
+        {
+          "left_time_utc": "2026-08-28T14:25:00+00:00",
+          "ttr_left_seconds": 257700.0,
+          "bucket": "B3",
+          "eta_tilde": 0.7642688717477032
+        },
+        {
+          "left_time_utc": "2026-08-28T17:05:00+00:00",
+          "ttr_left_seconds": 248100.0,
+          "bucket": "B3",
+          "eta_tilde": 0.76535718970749
+        },
+        {
+          "left_time_utc": "2026-08-29T12:50:00+00:00",
+          "ttr_left_seconds": 177000.0,
+          "bucket": "B3",
+          "eta_tilde": 2.244260488151184
+        },
+        {
+          "left_time_utc": "2026-08-30T09:15:00+00:00",
+          "ttr_left_seconds": 103500.0,
+          "bucket": "B3",
+          "eta_tilde": 0.3959651238966712
+        },
+        {
+          "left_time_utc": "2026-08-30T13:30:00+00:00",
+          "ttr_left_seconds": 88200.0,
+          "bucket": "B3",
+          "eta_tilde": 0.7151774182150348
+        }
+      ],
+      "p0_emp": 0.2,
+      "p0_source": "last_trade_before_episode_start",
+      "p0_trade_timestamp_utc": "2026-08-31T02:57:16.041652+00:00",
+      "p0_sim": 0.2,
+      "p0_clipped": false
+    },
+    "KXAAAGASM-26JUL31-3.90": {
+      "information_class": "broad_based",
+      "mark_bank_key": "event_001",
+      "t_c_utc": "2026-07-31T03:59:00+00:00",
+      "t_r_utc": "2026-07-31T11:58:11.729000+00:00",
+      "t_r_source": "occurrence_datetime",
+      "flags": [],
+      "early_revelation": false,
+      "release_minus_close_seconds": 28751.729,
+      "noise_supported": false,
+      "jumps": [],
+      "p0_emp": 0.99,
+      "p0_source": "last_trade_before_episode_start",
+      "p0_trade_timestamp_utc": "2026-07-31T02:36:28.190603+00:00",
+      "p0_sim": 0.99,
+      "p0_clipped": false
+    },
+    "KXAAAGASW-26AUG03-4.110": {
+      "information_class": "broad_based",
+      "mark_bank_key": "event_002",
+      "t_c_utc": "2026-08-03T03:59:00+00:00",
+      "t_r_utc": "2026-08-03T14:00:00+00:00",
+      "t_r_source": "occurrence_datetime",
+      "flags": [
+        "occurrence_after_settlement_ts"
+      ],
+      "early_revelation": false,
+      "release_minus_close_seconds": 36060.0,
+      "noise_supported": true,
+      "n_pairs": 212,
+      "d": 2,
+      "sigma_legacy": 0.010504821844851278,
+      "sigma_c": 0.009019792171402316,
+      "n_jumps": 5,
+      "jumps": [
+        {
+          "left_time_utc": "2026-07-31T21:10:00+00:00",
+          "ttr_left_seconds": 233400.0,
+          "bucket": "B3",
+          "eta_tilde": -0.4695643457298027
+        },
+        {
+          "left_time_utc": "2026-08-01T14:30:00+00:00",
+          "ttr_left_seconds": 171000.0,
+          "bucket": "B3",
+          "eta_tilde": 0.18037545849224815
+        },
+        {
+          "left_time_utc": "2026-08-02T08:15:00+00:00",
+          "ttr_left_seconds": 107100.0,
+          "bucket": "B3",
+          "eta_tilde": -0.3976715124887047
+        },
+        {
+          "left_time_utc": "2026-08-02T08:20:00+00:00",
+          "ttr_left_seconds": 106800.0,
+          "bucket": "B3",
+          "eta_tilde": 0.42728583705466433
+        },
+        {
+          "left_time_utc": "2026-08-02T13:35:00+00:00",
+          "ttr_left_seconds": 87900.0,
+          "bucket": "B3",
+          "eta_tilde": 1.1181756318411396
+        }
+      ],
+      "p0_emp": 0.01,
+      "p0_source": "last_trade_before_episode_start",
+      "p0_trade_timestamp_utc": "2026-08-03T01:50:36.037837+00:00",
+      "p0_sim": 0.01,
+      "p0_clipped": false
+    },
+    "KXAAAGASW-26AUG10-4.010": {
+      "information_class": "broad_based",
+      "mark_bank_key": "event_003",
+      "t_c_utc": "2026-08-10T03:59:00+00:00",
+      "t_r_utc": "2026-08-10T14:00:00+00:00",
+      "t_r_source": "occurrence_datetime",
+      "flags": [
+        "occurrence_after_settlement_ts"
+      ],
+      "early_revelation": false,
+      "release_minus_close_seconds": 36060.0,
+      "noise_supported": true,
+      "n_pairs": 440,
+      "d": 2,
+      "sigma_legacy": 0.006163049997866119,
+      "sigma_c": 0.005000435831501001,
+      "n_jumps": 8,
+      "jumps": [
+        {
+          "left_time_utc": "2026-08-07T08:00:00+00:00",
+          "ttr_left_seconds": 280800.0,
+          "bucket": "B3",
+          "eta_tilde": -0.5182749314266001
+        },
+        {
+          "left_time_utc": "2026-08-08T15:30:00+00:00",
+          "ttr_left_seconds": 167400.0,
+          "bucket": "B3",
+          "eta_tilde": 0.21327994239749887
+        },
+        {
+          "left_time_utc": "2026-08-08T23:40:00+00:00",
+          "ttr_left_seconds": 138000.0,
+          "bucket": "B3",
+          "eta_tilde": -0.39900810391059377
+        },
+        {
+          "left_time_utc": "2026-08-09T02:05:00+00:00",
+          "ttr_left_seconds": 129300.0,
+          "bucket": "B3",
+          "eta_tilde": 0.3939449628184666
+        },
+        {
+          "left_time_utc": "2026-08-09T03:20:00+00:00",
+          "ttr_left_seconds": 124800.0,
+          "bucket": "B3",
+          "eta_tilde": -0.724773294076704
+        },
+        {
+          "left_time_utc": "2026-08-09T04:50:00+00:00",
+          "ttr_left_seconds": 119400.0,
+          "bucket": "B3",
+          "eta_tilde": 0.43783261985091443
+        },
+        {
+          "left_time_utc": "2026-08-10T01:20:00+00:00",
+          "ttr_left_seconds": 45600.0,
+          "bucket": "B2",
+          "eta_tilde": -0.3433618594369508
+        },
+        {
+          "left_time_utc": "2026-08-10T03:40:00+00:00",
+          "ttr_left_seconds": 37200.0,
+          "bucket": "B2",
+          "eta_tilde": -0.49981666377229156
+        }
+      ],
+      "p0_emp": 0.26,
+      "p0_source": "last_trade_before_episode_start",
+      "p0_trade_timestamp_utc": "2026-08-10T02:58:10.814547+00:00",
+      "p0_sim": 0.26,
+      "p0_clipped": false
+    },
+    "KXAAAGASW-26AUG24-4.080": {
+      "information_class": "broad_based",
+      "mark_bank_key": "event_004",
+      "t_c_utc": "2026-08-24T03:59:00+00:00",
+      "t_r_utc": "2026-08-24T14:00:00+00:00",
+      "t_r_source": "occurrence_datetime",
+      "flags": [
+        "occurrence_after_settlement_ts"
+      ],
+      "early_revelation": false,
+      "release_minus_close_seconds": 36060.0,
+      "noise_supported": false,
+      "jumps": [],
+      "p0_emp": 0.99,
+      "p0_source": "last_trade_before_episode_start",
+      "p0_trade_timestamp_utc": "2026-08-24T01:11:30.453315+00:00",
+      "p0_sim": 0.99,
+      "p0_clipped": false
+    },
+    "KXAAAGASW-26JUL13-3.960": {
+      "information_class": "broad_based",
+      "mark_bank_key": "event_005",
+      "t_c_utc": "2026-07-13T03:59:00+00:00",
+      "t_r_utc": "2026-07-13T14:00:00+00:00",
+      "t_r_source": "occurrence_datetime",
+      "flags": [
+        "occurrence_after_settlement_ts"
+      ],
+      "early_revelation": false,
+      "release_minus_close_seconds": 36060.0,
+      "noise_supported": true,
+      "n_pairs": 176,
+      "d": 2,
+      "sigma_legacy": 0.009465066156970427,
+      "sigma_c": 0.005017981887569211,
+      "n_jumps": 6,
+      "jumps": [
+        {
+          "left_time_utc": "2026-07-10T10:20:00+00:00",
+          "ttr_left_seconds": 272400.0,
+          "bucket": "B3",
+          "eta_tilde": -0.5077733828048583
+        },
+        {
+          "left_time_utc": "2026-07-10T13:00:00+00:00",
+          "ttr_left_seconds": 262800.0,
+          "bucket": "B3",
+          "eta_tilde": 0.3514618909016144
+        },
+        {
+          "left_time_utc": "2026-07-10T13:05:00+00:00",
+          "ttr_left_seconds": 262500.0,
+          "bucket": "B3",
+          "eta_tilde": 0.36783490991622897
+        },
+        {
+          "left_time_utc": "2026-07-10T15:40:00+00:00",
+          "ttr_left_seconds": 253200.0,
+          "bucket": "B3",
+          "eta_tilde": -0.8462637385877027
+        },
+        {
+          "left_time_utc": "2026-07-10T21:50:00+00:00",
+          "ttr_left_seconds": 231000.0,
+          "bucket": "B3",
+          "eta_tilde": -0.6815494470126444
+        },
+        {
+          "left_time_utc": "2026-07-13T02:00:00+00:00",
+          "ttr_left_seconds": 43200.0,
+          "bucket": "B2",
+          "eta_tilde": -1.30513353377956
+        }
+      ],
+      "p0_emp": 0.03,
+      "p0_source": "last_trade_before_episode_start",
+      "p0_trade_timestamp_utc": "2026-07-13T02:24:13.273338+00:00",
+      "p0_sim": 0.03,
+      "p0_clipped": false
+    },
+    "KXAAAGASW-26JUL20-4.060": {
+      "information_class": "broad_based",
+      "mark_bank_key": "event_006",
+      "t_c_utc": "2026-07-20T03:59:00+00:00",
+      "t_r_utc": "2026-07-20T14:00:00+00:00",
+      "t_r_source": "occurrence_datetime",
+      "flags": [
+        "occurrence_after_settlement_ts"
+      ],
+      "early_revelation": false,
+      "release_minus_close_seconds": 36060.0,
+      "noise_supported": true,
+      "n_pairs": 51,
+      "d": 2,
+      "sigma_legacy": 0.011425566320696615,
+      "sigma_c": 0.0074713724188989914,
+      "n_jumps": 1,
+      "jumps": [
+        {
+          "left_time_utc": "2026-07-18T15:25:00+00:00",
+          "ttr_left_seconds": 167700.0,
+          "bucket": "B3",
+          "eta_tilde": -1.0692282482610103
+        }
+      ],
+      "p0_emp": 0.01,
+      "p0_source": "last_trade_before_episode_start",
+      "p0_trade_timestamp_utc": "2026-07-19T22:00:08.733690+00:00",
+      "p0_sim": 0.01,
+      "p0_clipped": false
+    },
+    "KXAAAGASW-26JUL27-4.080": {
+      "information_class": "broad_based",
+      "mark_bank_key": "event_007",
+      "t_c_utc": "2026-07-27T03:59:00+00:00",
+      "t_r_utc": "2026-07-27T14:00:00+00:00",
+      "t_r_source": "occurrence_datetime",
+      "flags": [
+        "occurrence_after_settlement_ts"
+      ],
+      "early_revelation": false,
+      "release_minus_close_seconds": 36060.0,
+      "noise_supported": true,
+      "n_pairs": 608,
+      "d": 2,
+      "sigma_legacy": 0.0,
+      "sigma_c": 0.0,
+      "n_jumps": 0,
+      "jumps": [],
+      "p0_emp": 0.99,
+      "p0_source": "last_trade_before_episode_start",
+      "p0_trade_timestamp_utc": "2026-07-27T01:46:05.824721+00:00",
+      "p0_sim": 0.99,
+      "p0_clipped": false
+    },
+    "KXARMOMINF-26AUG13-T1.8": {
+      "information_class": "broad_based",
+      "mark_bank_key": "event_008",
+      "t_c_utc": "2026-08-13T18:59:00+00:00",
+      "t_r_utc": "2026-08-13T19:10:00+00:00",
+      "t_r_source": "occurrence_datetime",
+      "flags": [],
+      "early_revelation": false,
+      "release_minus_close_seconds": 660.0,
+      "noise_supported": false,
+      "jumps": [],
+      "p0_emp": 0.78,
+      "p0_source": "last_trade_before_episode_start",
+      "p0_trade_timestamp_utc": "2026-08-13T17:56:22.875767+00:00",
+      "p0_sim": 0.78,
+      "p0_clipped": false
+    },
+    "KXCBDECISIONBRAZIL-26AUG05-C25": {
+      "information_class": "broad_based",
+      "mark_bank_key": "event_011",
+      "t_c_utc": "2026-08-05T21:29:00+00:00",
+      "t_r_utc": "2026-08-05T21:30:00+00:00",
+      "t_r_source": "occurrence_datetime",
+      "flags": [],
+      "early_revelation": false,
+      "release_minus_close_seconds": 60.0,
+      "noise_supported": true,
+      "n_pairs": 55,
+      "d": 2,
+      "sigma_legacy": 0.016503367363567032,
+      "sigma_c": 0.010889788801078373,
+      "n_jumps": 2,
+      "jumps": [
+        {
+          "left_time_utc": "2026-08-04T23:40:00+00:00",
+          "ttr_left_seconds": 78600.0,
+          "bucket": "B2",
+          "eta_tilde": -1.0457789105846487
+        },
+        {
+          "left_time_utc": "2026-08-05T12:05:00+00:00",
+          "ttr_left_seconds": 33900.0,
+          "bucket": "B2",
+          "eta_tilde": 1.2015038221141385
+        }
+      ],
+      "p0_emp": 0.98,
+      "p0_source": "last_trade_before_episode_start",
+      "p0_trade_timestamp_utc": "2026-08-05T16:12:46.615277+00:00",
+      "p0_sim": 0.98,
+      "p0_clipped": false
+    },
+    "KXCPI-26AUG-T0.5": {
+      "information_class": "broad_based",
+      "mark_bank_key": "event_012",
+      "t_c_utc": "2026-09-11T12:25:00+00:00",
+      "t_r_utc": "2026-09-11T13:11:28.126000+00:00",
+      "t_r_source": "occurrence_datetime",
+      "flags": [],
+      "early_revelation": false,
+      "release_minus_close_seconds": 2788.126,
+      "noise_supported": false,
+      "jumps": [],
+      "p0_emp": 0.05,
+      "p0_source": "last_trade_before_episode_start",
+      "p0_trade_timestamp_utc": "2026-09-11T11:22:21.285956+00:00",
+      "p0_sim": 0.05,
+      "p0_clipped": false
+    },
+    "KXCPICORE-26JUN-T0.2": {
+      "information_class": "broad_based",
+      "mark_bank_key": "event_013",
+      "t_c_utc": "2026-07-14T12:25:00+00:00",
+      "t_r_utc": "2026-07-14T12:30:08.038000+00:00",
+      "t_r_source": "occurrence_datetime",
+      "flags": [],
+      "early_revelation": false,
+      "release_minus_close_seconds": 308.038,
+      "noise_supported": true,
+      "n_pairs": 86,
+      "d": 2,
+      "sigma_legacy": 0.006340537491937487,
+      "sigma_c": 0.002183915668327103,
+      "n_jumps": 4,
+      "jumps": [
+        {
+          "left_time_utc": "2026-07-13T16:55:00+00:00",
+          "ttr_left_seconds": 70508.038,
+          "bucket": "B2",
+          "eta_tilde": 0.34459276140773776
+        },
+        {
+          "left_time_utc": "2026-07-13T17:00:00+00:00",
+          "ttr_left_seconds": 70208.038,
+          "bucket": "B2",
+          "eta_tilde": -0.36026485952062076
+        },
+        {
+          "left_time_utc": "2026-07-13T17:10:00+00:00",
+          "ttr_left_seconds": 69608.038,
+          "bucket": "B2",
+          "eta_tilde": 0.7948314531347838
+        },
+        {
+          "left_time_utc": "2026-07-13T21:30:00+00:00",
+          "ttr_left_seconds": 54008.038,
+          "bucket": "B2",
+          "eta_tilde": 0.1840585893876544
+        }
+      ],
+      "p0_emp": 0.33,
+      "p0_source": "last_trade_before_episode_start",
+      "p0_trade_timestamp_utc": "2026-07-14T11:05:58.250708+00:00",
+      "p0_sim": 0.33,
+      "p0_clipped": false
+    },
+    "KXCPIYOY-26JUL-T4.2": {
+      "information_class": "broad_based",
+      "mark_bank_key": "event_014",
+      "t_c_utc": "2026-08-12T12:29:00+00:00",
+      "t_r_utc": "2026-08-12T14:00:00+00:00",
+      "t_r_source": "occurrence_datetime",
+      "flags": [
+        "occurrence_after_settlement_ts"
+      ],
+      "early_revelation": false,
+      "release_minus_close_seconds": 5460.0,
+      "noise_supported": false,
+      "jumps": [],
+      "p0_emp": 0.01,
+      "p0_source": "last_trade_before_episode_start",
+      "p0_trade_timestamp_utc": "2026-08-09T01:06:55.203438+00:00",
+      "p0_sim": 0.01,
+      "p0_clipped": false
+    },
+    "KXFEDDECISION-26JUL-C26": {
+      "information_class": "broad_based",
+      "mark_bank_key": "event_018",
+      "t_c_utc": "2026-07-29T17:59:00+00:00",
+      "t_r_utc": "2026-07-29T17:33:56.766000+00:00",
+      "t_r_source": "occurrence_datetime",
+      "flags": [
+        "early_revelation"
+      ],
+      "early_revelation": true,
+      "release_minus_close_seconds": -1503.234,
+      "noise_supported": false,
+      "jumps": [],
+      "p0_emp": 0.01,
+      "p0_source": "last_trade_before_episode_start",
+      "p0_trade_timestamp_utc": "2026-07-29T16:58:48.299709+00:00",
+      "p0_sim": 0.01,
+      "p0_clipped": false
+    },
+    "KXGDP-26JUL30-T1.0": {
+      "information_class": "broad_based",
+      "mark_bank_key": "event_019",
+      "t_c_utc": "2026-07-30T12:29:00+00:00",
+      "t_r_utc": "2026-07-30T12:53:10.687000+00:00",
+      "t_r_source": "occurrence_datetime",
+      "flags": [],
+      "early_revelation": false,
+      "release_minus_close_seconds": 1450.687,
+      "noise_supported": true,
+      "n_pairs": 184,
+      "d": 2,
+      "sigma_legacy": 0.008078776254955164,
+      "sigma_c": 0.005395386548613504,
+      "n_jumps": 7,
+      "jumps": [
+        {
+          "left_time_utc": "2026-07-27T21:15:00+00:00",
+          "ttr_left_seconds": 229090.687,
+          "bucket": "B3",
+          "eta_tilde": -0.5136985691316535
+        },
+        {
+          "left_time_utc": "2026-07-28T16:20:00+00:00",
+          "ttr_left_seconds": 160390.687,
+          "bucket": "B3",
+          "eta_tilde": 0.38394770353770935
+        },
+        {
+          "left_time_utc": "2026-07-28T17:55:00+00:00",
+          "ttr_left_seconds": 154690.687,
+          "bucket": "B3",
+          "eta_tilde": 0.4867156022244453
+        },
+        {
+          "left_time_utc": "2026-07-28T22:15:00+00:00",
+          "ttr_left_seconds": 139090.687,
+          "bucket": "B3",
+          "eta_tilde": -0.6923483436865332
+        },
+        {
+          "left_time_utc": "2026-07-29T13:15:00+00:00",
+          "ttr_left_seconds": 85090.687,
+          "bucket": "B2",
+          "eta_tilde": 0.30395597280303527
+        },
+        {
+          "left_time_utc": "2026-07-29T13:20:00+00:00",
+          "ttr_left_seconds": 84790.687,
+          "bucket": "B2",
+          "eta_tilde": -0.34200190896000093
+        },
+        {
+          "left_time_utc": "2026-07-30T10:55:00+00:00",
+          "ttr_left_seconds": 7090.687,
+          "bucket": "B1",
+          "eta_tilde": -0.8117512049030543
+        }
+      ],
+      "p0_emp": 0.97,
+      "p0_source": "last_trade_before_episode_start",
+      "p0_trade_timestamp_utc": "2026-07-30T10:57:54.884512+00:00",
+      "p0_sim": 0.97,
+      "p0_clipped": false
+    },
+    "KXJOBLESSCLAIMS-26JUL23-200000": {
+      "information_class": "broad_based",
+      "mark_bank_key": "event_021",
+      "t_c_utc": "2026-07-23T12:25:00+00:00",
+      "t_r_utc": "2026-07-23T13:55:00+00:00",
+      "t_r_source": "occurrence_datetime",
+      "flags": [
+        "occurrence_after_settlement_ts"
+      ],
+      "early_revelation": false,
+      "release_minus_close_seconds": 5400.0,
+      "noise_supported": true,
+      "n_pairs": 72,
+      "d": 2,
+      "sigma_legacy": 0.0031419212904804893,
+      "sigma_c": 0.0019165259466835402,
+      "n_jumps": 2,
+      "jumps": [
+        {
+          "left_time_utc": "2026-07-22T17:15:00+00:00",
+          "ttr_left_seconds": 74400.0,
+          "bucket": "B2",
+          "eta_tilde": -0.23366679217277098
+        },
+        {
+          "left_time_utc": "2026-07-22T21:15:00+00:00",
+          "ttr_left_seconds": 60000.0,
+          "bucket": "B2",
+          "eta_tilde": 0.28158398457116707
+        }
+      ],
+      "p0_emp": 0.58,
+      "p0_source": "last_trade_before_episode_start",
+      "p0_trade_timestamp_utc": "2026-07-23T11:17:25.222174+00:00",
+      "p0_sim": 0.58,
+      "p0_clipped": false
+    },
+    "KXPAYROLLS-26JUL-T-25000": {
+      "information_class": "broad_based",
+      "mark_bank_key": "event_030",
+      "t_c_utc": "2026-08-07T12:29:00+00:00",
+      "t_r_utc": "2026-08-07T12:46:08.080000+00:00",
+      "t_r_source": "occurrence_datetime",
+      "flags": [],
+      "early_revelation": false,
+      "release_minus_close_seconds": 1028.08,
+      "noise_supported": false,
+      "jumps": [],
+      "p0_emp": 0.96,
+      "p0_source": "last_trade_before_episode_start",
+      "p0_trade_timestamp_utc": "2026-08-07T11:10:25.003594+00:00",
+      "p0_sim": 0.96,
+      "p0_clipped": false
+    },
+    "KXPCECORE-26JUL-T0.2": {
+      "information_class": "broad_based",
+      "mark_bank_key": "event_031",
+      "t_c_utc": "2026-08-26T12:25:00+00:00",
+      "t_r_utc": "2026-08-26T12:23:09+00:00",
+      "t_r_source": "occurrence_datetime",
+      "flags": [
+        "early_revelation"
+      ],
+      "early_revelation": true,
+      "release_minus_close_seconds": -111.0,
+      "noise_supported": true,
+      "n_pairs": 159,
+      "d": 2,
+      "sigma_legacy": 0.00705599360479531,
+      "sigma_c": 0.005264303196675107,
+      "n_jumps": 3,
+      "jumps": [
+        {
+          "left_time_utc": "2026-08-24T17:30:00+00:00",
+          "ttr_left_seconds": 154389.0,
+          "bucket": "B3",
+          "eta_tilde": -0.4400539453580478
+        },
+        {
+          "left_time_utc": "2026-08-24T17:45:00+00:00",
+          "ttr_left_seconds": 153489.0,
+          "bucket": "B3",
+          "eta_tilde": 0.5324033964531524
+        },
+        {
+          "left_time_utc": "2026-08-24T22:30:00+00:00",
+          "ttr_left_seconds": 136389.0,
+          "bucket": "B3",
+          "eta_tilde": 0.758838893540189
+        }
+      ],
+      "p0_emp": 0.09,
+      "p0_source": "last_trade_before_episode_start",
+      "p0_trade_timestamp_utc": "2026-08-26T11:18:26.245237+00:00",
+      "p0_sim": 0.09,
+      "p0_clipped": false
+    },
+    "KXPCECORE-26JUN-T0.2": {
+      "information_class": "broad_based",
+      "mark_bank_key": "event_032",
+      "t_c_utc": "2026-07-30T12:25:00+00:00",
+      "t_r_utc": "2026-07-30T12:47:30.179000+00:00",
+      "t_r_source": "occurrence_datetime",
+      "flags": [],
+      "early_revelation": false,
+      "release_minus_close_seconds": 1350.179,
+      "noise_supported": false,
+      "jumps": [],
+      "p0_emp": 0.06,
+      "p0_source": "last_trade_before_episode_start",
+      "p0_trade_timestamp_utc": "2026-07-30T11:17:24.610793+00:00",
+      "p0_sim": 0.06,
+      "p0_clipped": false
+    },
+    "KXU3-26AUG-T4.1": {
+      "information_class": "broad_based",
+      "mark_bank_key": "event_033",
+      "t_c_utc": "2026-09-04T12:29:00+00:00",
+      "t_r_utc": "2026-09-04T14:00:00+00:00",
+      "t_r_source": "occurrence_datetime",
+      "flags": [
+        "occurrence_after_settlement_ts"
+      ],
+      "early_revelation": false,
+      "release_minus_close_seconds": 5460.0,
+      "noise_supported": true,
+      "n_pairs": 71,
+      "d": 2,
+      "sigma_legacy": 0.0021625127705499963,
+      "sigma_c": 0.0010380042726261755,
+      "n_jumps": 5,
+      "jumps": [
+        {
+          "left_time_utc": "2026-09-02T12:15:00+00:00",
+          "ttr_left_seconds": 179100.0,
+          "bucket": "B3",
+          "eta_tilde": 0.040736600191154944
+        },
+        {
+          "left_time_utc": "2026-09-02T13:20:00+00:00",
+          "ttr_left_seconds": 175200.0,
+          "bucket": "B3",
+          "eta_tilde": -0.04049852126380823
+        },
+        {
+          "left_time_utc": "2026-09-02T13:35:00+00:00",
+          "ttr_left_seconds": 174300.0,
+          "bucket": "B3",
+          "eta_tilde": 0.019596480423645184
+        },
+        {
+          "left_time_utc": "2026-09-03T13:55:00+00:00",
+          "ttr_left_seconds": 86700.0,
+          "bucket": "B3",
+          "eta_tilde": 0.25570146381156644
+        },
+        {
+          "left_time_utc": "2026-09-04T12:15:00+00:00",
+          "ttr_left_seconds": 6300.0,
+          "bucket": "B1",
+          "eta_tilde": -0.08713220984580494
+        }
+      ],
+      "p0_emp": 0.23,
+      "p0_source": "last_trade_before_episode_start",
+      "p0_trade_timestamp_utc": "2026-09-04T11:26:31.513796+00:00",
+      "p0_sim": 0.23,
+      "p0_clipped": false
+    },
+    "KXATP-26CINCIN-NAK": {
+      "information_class": "sports",
+      "mark_bank_key": "event_009",
+      "t_c_utc": "2026-08-23T01:19:49+00:00",
+      "t_r_utc": "2026-08-23T01:19:49+00:00",
+      "t_r_source": "template_close",
+      "flags": [
+        "provisional_sports_close",
+        "occurrence_after_settlement_ts"
+      ],
+      "early_revelation": false,
+      "release_minus_close_seconds": 0.0,
+      "noise_supported": true,
+      "n_pairs": 132,
+      "d": 2,
+      "sigma_legacy": 0.01393345942727303,
+      "sigma_c": 0.008619433514539395,
+      "n_jumps": 4,
+      "jumps": [
+        {
+          "left_time_utc": "2026-08-21T13:40:00+00:00",
+          "ttr_left_seconds": 128389.0,
+          "bucket": "B3",
+          "eta_tilde": -0.25268367291823973
+        },
+        {
+          "left_time_utc": "2026-08-21T22:05:00+00:00",
+          "ttr_left_seconds": 98089.0,
+          "bucket": "B3",
+          "eta_tilde": 0.7496415596834644
+        },
+        {
+          "left_time_utc": "2026-08-21T22:10:00+00:00",
+          "ttr_left_seconds": 97789.0,
+          "bucket": "B3",
+          "eta_tilde": 0.5669490465819853
+        },
+        {
+          "left_time_utc": "2026-08-23T00:55:00+00:00",
+          "ttr_left_seconds": 1489.0,
+          "bucket": "B0",
+          "eta_tilde": -1.9490215260513821
+        }
+      ],
+      "p0_emp": 0.14,
+      "p0_source": "last_trade_before_episode_start",
+      "p0_trade_timestamp_utc": "2026-08-23T00:18:13.636792+00:00",
+      "p0_sim": 0.14,
+      "p0_clipped": false
+    },
+    "KXATP-26MONTRE-FON": {
+      "information_class": "sports",
+      "mark_bank_key": "event_010",
+      "t_c_utc": "2026-08-10T00:29:51+00:00",
+      "t_r_utc": "2026-08-10T00:29:51+00:00",
+      "t_r_source": "template_close",
+      "flags": [
+        "provisional_sports_close",
+        "occurrence_after_settlement_ts"
+      ],
+      "early_revelation": false,
+      "release_minus_close_seconds": 0.0,
+      "noise_supported": false,
+      "jumps": [],
+      "p0_emp": 0.06,
+      "p0_source": "last_trade_before_episode_start",
+      "p0_trade_timestamp_utc": "2026-08-09T23:26:56.555873+00:00",
+      "p0_sim": 0.06,
+      "p0_clipped": false
+    },
+    "KXEPLGAME-26AUG22EVECRY-TIE": {
+      "information_class": "sports",
+      "mark_bank_key": "event_015",
+      "t_c_utc": "2026-08-22T16:15:49+00:00",
+      "t_r_utc": "2026-08-22T16:15:49+00:00",
+      "t_r_source": "template_close",
+      "flags": [
+        "provisional_sports_close",
+        "occurrence_after_settlement_ts"
+      ],
+      "early_revelation": false,
+      "release_minus_close_seconds": 0.0,
+      "noise_supported": true,
+      "n_pairs": 86,
+      "d": 2,
+      "sigma_legacy": 0.01090121159152806,
+      "sigma_c": 0.01090121159152806,
+      "n_jumps": 0,
+      "jumps": [],
+      "p0_emp": 0.09,
+      "p0_source": "last_trade_before_episode_start",
+      "p0_trade_timestamp_utc": "2026-08-22T15:15:42.699526+00:00",
+      "p0_sim": 0.09,
+      "p0_clipped": false
+    },
+    "KXEPLGAME-26AUG22NFOLEE-TIE": {
+      "information_class": "sports",
+      "mark_bank_key": "event_016",
+      "t_c_utc": "2026-08-22T16:36:08+00:00",
+      "t_r_utc": "2026-08-22T16:36:08+00:00",
+      "t_r_source": "template_close",
+      "flags": [
+        "provisional_sports_close",
+        "occurrence_after_settlement_ts"
+      ],
+      "early_revelation": false,
+      "release_minus_close_seconds": 0.0,
+      "noise_supported": true,
+      "n_pairs": 108,
+      "d": 2,
+      "sigma_legacy": 0.014253351854092586,
+      "sigma_c": 0.0051409120093619445,
+      "n_jumps": 2,
+      "jumps": [
+        {
+          "left_time_utc": "2026-08-22T15:40:00+00:00",
+          "ttr_left_seconds": 3368.0,
+          "bucket": "B0",
+          "eta_tilde": -1.139118836436616
+        },
+        {
+          "left_time_utc": "2026-08-22T15:45:00+00:00",
+          "ttr_left_seconds": 3068.0,
+          "bucket": "B0",
+          "eta_tilde": -2.1043834989907904
+        }
+      ],
+      "p0_emp": 0.63,
+      "p0_source": "last_trade_before_episode_start",
+      "p0_trade_timestamp_utc": "2026-08-22T15:36:00.583285+00:00",
+      "p0_sim": 0.63,
+      "p0_clipped": false
+    },
+    "KXEPLGAME-26AUG23BRIAVL-TIE": {
+      "information_class": "sports",
+      "mark_bank_key": "event_017",
+      "t_c_utc": "2026-08-23T15:15:17+00:00",
+      "t_r_utc": "2026-08-23T15:15:17+00:00",
+      "t_r_source": "template_close",
+      "flags": [
+        "provisional_sports_close",
+        "occurrence_after_settlement_ts"
+      ],
+      "early_revelation": false,
+      "release_minus_close_seconds": 0.0,
+      "noise_supported": true,
+      "n_pairs": 113,
+      "d": 2,
+      "sigma_legacy": 0.01206745622693414,
+      "sigma_c": 0.007357802117987389,
+      "n_jumps": 2,
+      "jumps": [
+        {
+          "left_time_utc": "2026-08-23T13:25:00+00:00",
+          "ttr_left_seconds": 6617.0,
+          "bucket": "B1",
+          "eta_tilde": -0.934365589797704
+        },
+        {
+          "left_time_utc": "2026-08-23T13:30:00+00:00",
+          "ttr_left_seconds": 6317.0,
+          "bucket": "B1",
+          "eta_tilde": -1.492764128854669
+        }
+      ],
+      "p0_emp": 0.01,
+      "p0_source": "last_trade_before_episode_start",
+      "p0_trade_timestamp_utc": "2026-08-23T14:14:22.313712+00:00",
+      "p0_sim": 0.01,
+      "p0_clipped": false
+    },
+    "KXLIGAMX1H-26AUG17PACPUE-PAC": {
+      "information_class": "sports",
+      "mark_bank_key": "event_022",
+      "t_c_utc": "2026-08-18T03:56:20+00:00",
+      "t_r_utc": "2026-08-18T03:56:20+00:00",
+      "t_r_source": "template_close",
+      "flags": [
+        "provisional_sports_close",
+        "occurrence_after_settlement_ts"
+      ],
+      "early_revelation": false,
+      "release_minus_close_seconds": 0.0,
+      "noise_supported": false,
+      "jumps": [],
+      "p0_emp": 0.47,
+      "p0_source": "last_trade_before_episode_start",
+      "p0_trade_timestamp_utc": "2026-08-18T02:56:17.690625+00:00",
+      "p0_sim": 0.47,
+      "p0_clipped": false
+    },
+    "KXLIGAMX1H-26JUL21CRAPUE-CRA": {
+      "information_class": "sports",
+      "mark_bank_key": "event_023",
+      "t_c_utc": "2026-07-22T01:50:51+00:00",
+      "t_r_utc": "2026-07-22T01:50:51+00:00",
+      "t_r_source": "template_close",
+      "flags": [
+        "provisional_sports_close",
+        "occurrence_after_settlement_ts"
+      ],
+      "early_revelation": false,
+      "release_minus_close_seconds": 0.0,
+      "noise_supported": false,
+      "jumps": [],
+      "p0_emp": 0.54,
+      "p0_source": "last_trade_before_episode_start",
+      "p0_trade_timestamp_utc": "2026-07-22T00:50:50.928258+00:00",
+      "p0_sim": 0.54,
+      "p0_clipped": false
+    },
+    "KXMLSGAME-26AUG22CLTDCU-TIE": {
+      "information_class": "sports",
+      "mark_bank_key": "event_024",
+      "t_c_utc": "2026-08-23T02:05:14+00:00",
+      "t_r_utc": "2026-08-23T02:05:14+00:00",
+      "t_r_source": "template_close",
+      "flags": [
+        "provisional_sports_close",
+        "occurrence_after_settlement_ts"
+      ],
+      "early_revelation": false,
+      "release_minus_close_seconds": 0.0,
+      "noise_supported": true,
+      "n_pairs": 96,
+      "d": 2,
+      "sigma_legacy": 0.012193202270927055,
+      "sigma_c": 0.010385857925914238,
+      "n_jumps": 1,
+      "jumps": [
+        {
+          "left_time_utc": "2026-08-23T01:15:00+00:00",
+          "ttr_left_seconds": 3014.0,
+          "bucket": "B0",
+          "eta_tilde": -1.0841007050818636
+        }
+      ],
+      "p0_emp": 0.19,
+      "p0_source": "last_trade_before_episode_start",
+      "p0_trade_timestamp_utc": "2026-08-23T01:05:10.670309+00:00",
+      "p0_sim": 0.19,
+      "p0_clipped": false
+    },
+    "KXMLSGAME-26AUG29NYRBPHI-TIE": {
+      "information_class": "sports",
+      "mark_bank_key": "event_025",
+      "t_c_utc": "2026-08-30T02:04:54+00:00",
+      "t_r_utc": "2026-08-30T02:04:54+00:00",
+      "t_r_source": "template_close",
+      "flags": [
+        "provisional_sports_close",
+        "occurrence_after_settlement_ts"
+      ],
+      "early_revelation": false,
+      "release_minus_close_seconds": 0.0,
+      "noise_supported": true,
+      "n_pairs": 87,
+      "d": 2,
+      "sigma_legacy": 0.010900696041634805,
+      "sigma_c": 0.010391547342026158,
+      "n_jumps": 1,
+      "jumps": [
+        {
+          "left_time_utc": "2026-08-29T23:25:00+00:00",
+          "ttr_left_seconds": 9594.0,
+          "bucket": "B1",
+          "eta_tilde": -0.5319285295950382
+        }
+      ],
+      "p0_emp": 0.01,
+      "p0_source": "last_trade_before_episode_start",
+      "p0_trade_timestamp_utc": "2026-08-30T01:04:45.543848+00:00",
+      "p0_sim": 0.01,
+      "p0_clipped": false
+    },
+    "KXMLSGAME-26SEP05CLBCOL-TIE": {
+      "information_class": "sports",
+      "mark_bank_key": "event_026",
+      "t_c_utc": "2026-09-06T02:03:22+00:00",
+      "t_r_utc": "2026-09-06T02:03:22+00:00",
+      "t_r_source": "template_close",
+      "flags": [
+        "provisional_sports_close",
+        "occurrence_after_settlement_ts"
+      ],
+      "early_revelation": false,
+      "release_minus_close_seconds": 0.0,
+      "noise_supported": true,
+      "n_pairs": 202,
+      "d": 2,
+      "sigma_legacy": 0.010426319116326932,
+      "sigma_c": 0.003977025071692972,
+      "n_jumps": 3,
+      "jumps": [
+        {
+          "left_time_utc": "2026-09-06T00:00:00+00:00",
+          "ttr_left_seconds": 7402.0,
+          "bucket": "B1",
+          "eta_tilde": -0.5641139919179138
+        },
+        {
+          "left_time_utc": "2026-09-06T01:20:00+00:00",
+          "ttr_left_seconds": 2602.0,
+          "bucket": "B0",
+          "eta_tilde": -2.091812588764186
+        },
+        {
+          "left_time_utc": "2026-09-06T01:25:00+00:00",
+          "ttr_left_seconds": 2302.0,
+          "bucket": "B0",
+          "eta_tilde": -0.9671165660991818
+        }
+      ],
+      "p0_emp": 0.2,
+      "p0_source": "last_trade_before_episode_start",
+      "p0_trade_timestamp_utc": "2026-09-06T01:02:58.857874+00:00",
+      "p0_sim": 0.2,
+      "p0_clipped": false
+    },
+    "KXNFLGAME-26AUG22ATLIND-IND": {
+      "information_class": "sports",
+      "mark_bank_key": "event_027",
+      "t_c_utc": "2026-08-22T20:00:06+00:00",
+      "t_r_utc": "2026-08-22T20:00:06+00:00",
+      "t_r_source": "template_close",
+      "flags": [
+        "provisional_sports_close"
+      ],
+      "early_revelation": false,
+      "release_minus_close_seconds": 0.0,
+      "noise_supported": true,
+      "n_pairs": 262,
+      "d": 2,
+      "sigma_legacy": 0.0068227311668602715,
+      "sigma_c": 0.005485208265459636,
+      "n_jumps": 2,
+      "jumps": [
+        {
+          "left_time_utc": "2026-08-22T15:15:00+00:00",
+          "ttr_left_seconds": 17106.0,
+          "bucket": "B2",
+          "eta_tilde": -0.14441216830236875
+        },
+        {
+          "left_time_utc": "2026-08-22T18:50:00+00:00",
+          "ttr_left_seconds": 4206.0,
+          "bucket": "B1",
+          "eta_tilde": -1.1283041182344857
+        }
+      ],
+      "p0_emp": 0.01,
+      "p0_source": "last_trade_before_episode_start",
+      "p0_trade_timestamp_utc": "2026-08-22T19:00:02.581395+00:00",
+      "p0_sim": 0.01,
+      "p0_clipped": false
+    },
+    "KXNFLGAME-26AUG28MINDEN-DEN": {
+      "information_class": "sports",
+      "mark_bank_key": "event_028",
+      "t_c_utc": "2026-08-29T04:07:19+00:00",
+      "t_r_utc": "2026-08-29T04:07:19+00:00",
+      "t_r_source": "template_close",
+      "flags": [
+        "provisional_sports_close"
+      ],
+      "early_revelation": false,
+      "release_minus_close_seconds": 0.0,
+      "noise_supported": true,
+      "n_pairs": 232,
+      "d": 2,
+      "sigma_legacy": 0.007356584686692543,
+      "sigma_c": 0.007329964427963832,
+      "n_jumps": 1,
+      "jumps": [
+        {
+          "left_time_utc": "2026-08-27T10:20:00+00:00",
+          "ttr_left_seconds": 150439.0,
+          "bucket": "B3",
+          "eta_tilde": 0.16495695715422332
+        }
+      ],
+      "p0_emp": 0.93,
+      "p0_source": "last_trade_before_episode_start",
+      "p0_trade_timestamp_utc": "2026-08-29T03:07:18.225075+00:00",
+      "p0_sim": 0.93,
+      "p0_clipped": false
+    },
+    "KXNFLGAME-26AUG28NYGNYJ-NYJ": {
+      "information_class": "sports",
+      "mark_bank_key": "event_029",
+      "t_c_utc": "2026-08-29T02:33:27+00:00",
+      "t_r_utc": "2026-08-29T02:33:27+00:00",
+      "t_r_source": "template_close",
+      "flags": [
+        "provisional_sports_close"
+      ],
+      "early_revelation": false,
+      "release_minus_close_seconds": 0.0,
+      "noise_supported": true,
+      "n_pairs": 163,
+      "d": 2,
+      "sigma_legacy": 0.013267740547769413,
+      "sigma_c": 0.006113397321645673,
+      "n_jumps": 3,
+      "jumps": [
+        {
+          "left_time_utc": "2026-08-28T22:15:00+00:00",
+          "ttr_left_seconds": 15507.0,
+          "bucket": "B2",
+          "eta_tilde": -0.34581492373954764
+        },
+        {
+          "left_time_utc": "2026-08-29T02:00:00+00:00",
+          "ttr_left_seconds": 2007.0,
+          "bucket": "B0",
+          "eta_tilde": -0.6173773229101283
+        },
+        {
+          "left_time_utc": "2026-08-29T02:05:00+00:00",
+          "ttr_left_seconds": 1707.0,
+          "bucket": "B0",
+          "eta_tilde": -2.5059324926128115
+        }
+      ],
+      "p0_emp": 0.23,
+      "p0_source": "last_trade_before_episode_start",
+      "p0_trade_timestamp_utc": "2026-08-29T01:33:23.351009+00:00",
+      "p0_sim": 0.23,
+      "p0_clipped": false
+    },
+    "KXUCLGAME-26JUL29ALMOMO-TIE": {
+      "information_class": "sports",
+      "mark_bank_key": "event_034",
+      "t_c_utc": "2026-07-29T17:56:20+00:00",
+      "t_r_utc": "2026-07-29T17:56:20+00:00",
+      "t_r_source": "template_close",
+      "flags": [
+        "provisional_sports_close",
+        "occurrence_after_settlement_ts"
+      ],
+      "early_revelation": false,
+      "release_minus_close_seconds": 0.0,
+      "noise_supported": true,
+      "n_pairs": 103,
+      "d": 2,
+      "sigma_legacy": 0.013667456987133019,
+      "sigma_c": 0.005721569562600154,
+      "n_jumps": 2,
+      "jumps": [
+        {
+          "left_time_utc": "2026-07-29T15:35:00+00:00",
+          "ttr_left_seconds": 8480.0,
+          "bucket": "B1",
+          "eta_tilde": -1.0962164278776652
+        },
+        {
+          "left_time_utc": "2026-07-29T16:50:00+00:00",
+          "ttr_left_seconds": 3980.0,
+          "bucket": "B1",
+          "eta_tilde": -1.8864932892345003
+        }
+      ],
+      "p0_emp": 0.01,
+      "p0_source": "last_trade_before_episode_start",
+      "p0_trade_timestamp_utc": "2026-07-29T16:54:05.688934+00:00",
+      "p0_sim": 0.01,
+      "p0_clipped": false
+    },
+    "KXWTA-26TORONT-RYB": {
+      "information_class": "sports",
+      "mark_bank_key": "event_035",
+      "t_c_utc": "2026-08-13T23:53:33+00:00",
+      "t_r_utc": "2026-08-13T23:53:33+00:00",
+      "t_r_source": "template_close",
+      "flags": [
+        "provisional_sports_close",
+        "occurrence_after_settlement_ts"
+      ],
+      "early_revelation": false,
+      "release_minus_close_seconds": 0.0,
+      "noise_supported": true,
+      "n_pairs": 217,
+      "d": 2,
+      "sigma_legacy": 0.00897675364412133,
+      "sigma_c": 0.007499142553678673,
+      "n_jumps": 5,
+      "jumps": [
+        {
+          "left_time_utc": "2026-08-12T01:55:00+00:00",
+          "ttr_left_seconds": 165513.0,
+          "bucket": "B3",
+          "eta_tilde": 0.5334503984185482
+        },
+        {
+          "left_time_utc": "2026-08-12T11:15:00+00:00",
+          "ttr_left_seconds": 131913.0,
+          "bucket": "B3",
+          "eta_tilde": -0.39770525173388444
+        },
+        {
+          "left_time_utc": "2026-08-12T15:20:00+00:00",
+          "ttr_left_seconds": 117213.0,
+          "bucket": "B3",
+          "eta_tilde": 0.23483286748321172
+        },
+        {
+          "left_time_utc": "2026-08-13T03:35:00+00:00",
+          "ttr_left_seconds": 73113.0,
+          "bucket": "B2",
+          "eta_tilde": -0.518976695400255
+        },
+        {
+          "left_time_utc": "2026-08-13T23:05:00+00:00",
+          "ttr_left_seconds": 2913.0,
+          "bucket": "B0",
+          "eta_tilde": -0.9042318659455888
+        }
+      ],
+      "p0_emp": 0.25,
+      "p0_source": "last_trade_before_episode_start",
+      "p0_trade_timestamp_utc": "2026-08-13T22:53:00.348426+00:00",
+      "p0_sim": 0.25,
+      "p0_clipped": false
+    }
+  },
+  "early_revelation_templates": [
+    "KXFEDDECISION-26JUL-C26",
+    "KXPCECORE-26JUL-T0.2"
+  ],
+  "candidate_roster": [
+    "KXAAAGASM-26AUG31-4.08",
+    "KXAAAGASM-26JUL31-3.90",
+    "KXAAAGASW-26AUG03-4.110",
+    "KXAAAGASW-26AUG10-4.010",
+    "KXAAAGASW-26AUG24-4.080",
+    "KXAAAGASW-26JUL13-3.960",
+    "KXAAAGASW-26JUL20-4.060",
+    "KXAAAGASW-26JUL27-4.080",
+    "KXARMOMINF-26AUG13-T1.8",
+    "KXCBDECISIONBRAZIL-26AUG05-C25",
+    "KXCPI-26AUG-T0.5",
+    "KXCPICORE-26JUN-T0.2",
+    "KXCPIYOY-26JUL-T4.2",
+    "KXGDP-26JUL30-T1.0",
+    "KXJOBLESSCLAIMS-26JUL23-200000",
+    "KXPAYROLLS-26JUL-T-25000",
+    "KXPCECORE-26JUN-T0.2",
+    "KXU3-26AUG-T4.1",
+    "KXATP-26CINCIN-NAK",
+    "KXATP-26MONTRE-FON",
+    "KXEPLGAME-26AUG22EVECRY-TIE",
+    "KXEPLGAME-26AUG22NFOLEE-TIE",
+    "KXEPLGAME-26AUG23BRIAVL-TIE",
+    "KXLIGAMX1H-26AUG17PACPUE-PAC",
+    "KXLIGAMX1H-26JUL21CRAPUE-CRA",
+    "KXMLSGAME-26AUG22CLTDCU-TIE",
+    "KXMLSGAME-26AUG29NYRBPHI-TIE",
+    "KXMLSGAME-26SEP05CLBCOL-TIE",
+    "KXNFLGAME-26AUG22ATLIND-IND",
+    "KXNFLGAME-26AUG28MINDEN-DEN",
+    "KXNFLGAME-26AUG28NYGNYJ-NYJ",
+    "KXUCLGAME-26JUL29ALMOMO-TIE",
+    "KXWTA-26TORONT-RYB"
+  ],
+  "roster_note": "Candidate roster before matching; R* (Section 8) additionally drops templates unmatched for any M arm.",
+  "file_sha256": {
+    "jump_magnitude_bank.npz": "5d3133c12a5c73f06eccb942cb3280f954731060ea504bb14566f7c332985732",
+    "uninformed_sign_rates.npz": "63772cb79939d87e5c51b0abdab5d96fa63a06c8af08f246f5fffaa3fa01d8d2",
+    "jump_detection.csv": "54e79511dde590bc942b4ca25b0f740b7e34755952122610b7c4ead4aba9f3c9",
+    "decomposition_check.csv": "50aae2d1b17522a665be40ea17bb9a5252e6556c7bb5621d1a63463f6deedfb4",
+    "release_time_verification.csv": "2f89fb8a58918270b61d115394c9b2a3ab595512372e433db0e9aeb893596f2b",
+    "flow_replay_calibration.csv": "cfbfc01289563ee8aa1d8a9088c522784601d27687f0f3f81ef25251e3da9b94"
+  },
+  "input_sha256": {
+    "paper2/dynamics": "b3ed1671e0e28123d1821cbf50bf14a5081f69aca602c36b4804364a52649191",
+    "paper2/impact": "b17bc7b4b166cdff1119a5e92410c53a9ccc423daeeafff3bf198ecc90b2b9dc",
+    "paper2/splits": "a301d965d80ec16494a6892d5ed5612f1611e48b59a616e889189034029a6719",
+    "paper2/noise_intervals": "443df2929a215f1a6a19ef872019537b16b22e2105b514948a27d117272ad8c1",
+    "paper2/mark_bank": "38b48b10c75ca75c0010b01eaab3899989ece7a25611eef0b1f6ba7bee75d58b",
+    "paper2/buckets": "9e5a7d89c2caf02750597cbc130c4b940173624c6f3026e2adcac1c58584d4a5",
+    "paper2/estimates": "399fa7ae32b90adce16363ac0c3ae56481ac1ead60017eac942cbf84bbc3f35b",
+    "paper2/markets": "98661e5ed88ea0c92d601637d9b6a1d721d800b32b77e1e9028f905695af6fa4",
+    "trades/KXAAAGASM-26AUG31-4.08.parquet": "ed13012b1675bf8f583a6a5775ef94c10ec7972637e820a6eea2d310edc0d9e3",
+    "trades/KXAAAGASM-26JUL31-3.90.parquet": "0f9ee5503ebe59fd0ca744973feca319c35c100ac3730ae1b5470fa8c15c3ef2",
+    "trades/KXAAAGASW-26AUG03-4.110.parquet": "7d58f03509580d0d41d99be8644f02ca6f1ef6b452c0de310ac823039bd729c6",
+    "trades/KXAAAGASW-26AUG10-4.010.parquet": "abe9f627b0db08cef4fc65769a9e21ea6183cbd4d54e864b19fd1ee6483e4227",
+    "trades/KXAAAGASW-26AUG24-4.080.parquet": "375ed74dc790c740fcfcd55c67bbf8b17e69e8a02f0abeb3027bc86a50e50d06",
+    "trades/KXAAAGASW-26JUL13-3.960.parquet": "08b60f21f645b54b957717d18e390bfb0059f8cdd16d0199e0ce4b4728285b9d",
+    "trades/KXAAAGASW-26JUL20-4.060.parquet": "05b1d11a65c6cad7ad3934f2b707ebd25784e4d5750551179d7619c9b579eacf",
+    "trades/KXAAAGASW-26JUL27-4.080.parquet": "ad939146a6a5744ea15d1c35186bfa6533123e7a266343753d01429c77b9da02",
+    "trades/KXARMOMINF-26AUG13-T1.8.parquet": "6539aa6b76fa8dad671c1d1a80b33f27ea894b3dee1820b244b6b692d4d250d7",
+    "trades/KXCBDECISIONBRAZIL-26AUG05-C25.parquet": "293e92179bb319b96ab78f33c2952d969a57dfbe2f946d0e0f0e0bf0443df390",
+    "trades/KXCPI-26AUG-T0.5.parquet": "2085e32c7113f68872c4a61493ecd176e3e900eb50c9b5c450628b5c3327d508",
+    "trades/KXCPICORE-26JUN-T0.2.parquet": "24e5047208867f4c711d023addd4192b8be543a8a7d09420bf5be086ae5214be",
+    "trades/KXCPIYOY-26JUL-T4.2.parquet": "25dd1752ea886ba993be7669ac6f9b6c065b8e3c22184a092f2f92541e315822",
+    "trades/KXFEDDECISION-26JUL-C26.parquet": "0ffda8f5979248311e2080ce639fef8bcfd7013c73c8f653e55b58e9b18390f6",
+    "trades/KXGDP-26JUL30-T1.0.parquet": "ad26866429555a22fa726c80bf88211bf57deea79a8e3d4d63ad38a40321b674",
+    "trades/KXJOBLESSCLAIMS-26JUL23-200000.parquet": "c47d6905dfb4eb1326503730e97517024829c593ecbcecf4c8aca9448126998f",
+    "trades/KXPAYROLLS-26JUL-T-25000.parquet": "0817b27f5f053e4f933c0e0752af5f70ad00051c81305489c1466cba416d2570",
+    "trades/KXPCECORE-26JUL-T0.2.parquet": "fb94d78141e8f2ffef00f29aa3a5ad8c2389f936212c7563e6bd35f069b16174",
+    "trades/KXPCECORE-26JUN-T0.2.parquet": "a22dfb317f1fb1624e57bf9dcb7999548f7aaa96d875cb5cd595386a77ea38a2",
+    "trades/KXU3-26AUG-T4.1.parquet": "928b3921d56b3fab6096de6b8888f226a25d28f16d7c024493645471bd128aec",
+    "trades/KXATP-26CINCIN-NAK.parquet": "7874c68e808053c4ac0aa2cf70f240b43fd2ad7c8b9f628d80af16601e5bd625",
+    "trades/KXATP-26MONTRE-FON.parquet": "1e4acfcbf3943026b3ea63ea2e2aaffc53eedbc19ea6095f1ba40cb27d29158f",
+    "trades/KXEPLGAME-26AUG22EVECRY-TIE.parquet": "763f435acbfd293689e8e0be4c618817c4ee0b3a347db9410d62ab339b8e5982",
+    "trades/KXEPLGAME-26AUG22NFOLEE-TIE.parquet": "d68122b867602251a5880bd96400712ee2deec0b93edf685bba92942c8a80f4f",
+    "trades/KXEPLGAME-26AUG23BRIAVL-TIE.parquet": "2efc2dea6e367cd3ceec3452872e159fd49ab8189395e12ce586a08051d94322",
+    "trades/KXLIGAMX1H-26AUG17PACPUE-PAC.parquet": "ec0f7db664c3b1450ac044f7aa0e05de5aa1951de5e0fc2828049b2f8cdd5a83",
+    "trades/KXLIGAMX1H-26JUL21CRAPUE-CRA.parquet": "ceeaded4da70fcdc90f74d1f80c8bd4c18cc46b5c6eeacb841d2c8fdec6dcc37",
+    "trades/KXMLSGAME-26AUG22CLTDCU-TIE.parquet": "20a0709bddcc731fff19576110ca7677763bdd4250e191720ea937b9771d7ec5",
+    "trades/KXMLSGAME-26AUG29NYRBPHI-TIE.parquet": "5b7fe16f0067180c66d4568dc5a18e5a0cab2266f44d819d58f7eb98f0b9fcf6",
+    "trades/KXMLSGAME-26SEP05CLBCOL-TIE.parquet": "adf628905293d3cd0057f4ec45f69ae6f6fb02b8625ed9553e1142d493056056",
+    "trades/KXNFLGAME-26AUG22ATLIND-IND.parquet": "c222a5f98d7b5d01e66a07413fc834f9707a15030365f555b2f95bb100911f62",
+    "trades/KXNFLGAME-26AUG28MINDEN-DEN.parquet": "5cb53e82db6208c723af89f5440542c1f8b429960a15a3d29867e8b0818d80d1",
+    "trades/KXNFLGAME-26AUG28NYGNYJ-NYJ.parquet": "5da0d5b9c646869ec3ee929a275a5b0562c8b4ca9d47aa7aace9ce1c60f5633b",
+    "trades/KXUCLGAME-26JUL29ALMOMO-TIE.parquet": "35c3e36e33a4405bfeb8e4db3322647110c56541a3e137f2e81f561115f0a31c",
+    "trades/KXWTA-26TORONT-RYB.parquet": "e5a0fe27d36fdd81a80dd148fcf94d67321834a9dce8aab989cb03b666fd3e9d",
+    "market_metadata/KXAAAGASM-26AUG31-4.08.json": "da5eea06585d5dbb85f66c6dde2d3cbc523258b81ad3308f5dce7ccb40c2f657",
+    "market_metadata/KXAAAGASM-26JUL31-3.90.json": "875bd6b1882132ea2fa70c7689a787378fcd7d90a98b79143008948b7a657d1c",
+    "market_metadata/KXAAAGASW-26AUG03-4.110.json": "0fff189b18a0e075d40f01209b86779984c8243839af35093d88b3e94d0ed9fd",
+    "market_metadata/KXAAAGASW-26AUG10-4.010.json": "799e9858a917398acf24c91683c2a197ea9eefc1c3f195560f410e1a3ac49c78",
+    "market_metadata/KXAAAGASW-26AUG24-4.080.json": "0cc0d9ecd937d652d56c42e7c03411b55a4cce5461803953eec26ce41ee7a14e",
+    "market_metadata/KXAAAGASW-26JUL13-3.960.json": "688f43cbffb2c18d6f4b2c0d1b79932f9d7918e538d07452a46f93f2bfca6ee6",
+    "market_metadata/KXAAAGASW-26JUL20-4.060.json": "f52e852c85bb24d4824d61c08f9fea69a442dd628c982fbff0ce3d788a35f575",
+    "market_metadata/KXAAAGASW-26JUL27-4.080.json": "0627d49f3e0696530e560ea2d5c6f63c30c4c8e4135350896c51b23a849e379f",
+    "market_metadata/KXARMOMINF-26AUG13-T1.8.json": "7e0cdbba5d283160a63b96b9e95b9353ba117664c4d6ed3f1a971a57805f3ad5",
+    "market_metadata/KXCBDECISIONBRAZIL-26AUG05-C25.json": "5afbcd176e588724ca554e6d18acaff8906b7c7f156abcee79cd9592c9ef87c5",
+    "market_metadata/KXCPI-26AUG-T0.5.json": "84c1c3a4cc3413652c34abaefe9d6ca42134f33fc8c5b9478f112a1e350516d8",
+    "market_metadata/KXCPICORE-26JUN-T0.2.json": "0a9b479cb59e1d17a4fe08f8c45ed1baa46ba1702f4ac961f141cd24621aadeb",
+    "market_metadata/KXCPIYOY-26JUL-T4.2.json": "474a4869c4a3e982cd1eb5f7011e28502dc86d10a1985830083bb025e301dc1a",
+    "market_metadata/KXFEDDECISION-26JUL-C26.json": "b0f0e58ccfcf27fc26f5df224fdd0c2b52c6303a800d067e797fd9c33153da99",
+    "market_metadata/KXGDP-26JUL30-T1.0.json": "e20bb4dfb1bfa307cb0deacccb784546403728809ce620793718f1b7f048a824",
+    "market_metadata/KXJOBLESSCLAIMS-26JUL23-200000.json": "b14907692d2183e9404daa8a69fe24a743f3c7801295408a15e333d10b32690f",
+    "market_metadata/KXPAYROLLS-26JUL-T-25000.json": "f908d98fbce7376f8cb82f5fd6453dd60f3b3c6f8185542a89295a6218f53f77",
+    "market_metadata/KXPCECORE-26JUL-T0.2.json": "7994249b3f3e880f853eef8bb088e4ed09503f59b628da394e598a9b99c59ac8",
+    "market_metadata/KXPCECORE-26JUN-T0.2.json": "c45ded90e6794a0e5635ceca31b67a6fd6179b83b9f7a66d30bde0366a65536a",
+    "market_metadata/KXU3-26AUG-T4.1.json": "03cd28b7f28a100468e554ad41c129e8bde5e9833eb3f0296c1da3091dd98b96",
+    "market_metadata/KXATP-26CINCIN-NAK.json": "f96fb42789baaa185a7b7f8f271a063eb06de1862edac13b19d00fca8e2ada7b",
+    "market_metadata/KXATP-26MONTRE-FON.json": "f37380e03975ffeddf15f9aed80c88a5649b14c4ea4d85f543d3db9e7990ff16",
+    "market_metadata/KXEPLGAME-26AUG22EVECRY-TIE.json": "ed988981b109cf2b0e3ad7aac73266876439e56289ea83915a1e0f3287675b2a",
+    "market_metadata/KXEPLGAME-26AUG22NFOLEE-TIE.json": "857d34050a56556515b0087b6f0ce60fc9e67e9adef4c32a7bc78aa56777ee0f",
+    "market_metadata/KXEPLGAME-26AUG23BRIAVL-TIE.json": "a225862f58d2f73e22a21fa4ad07c76cf5e68cea4608773d2ee7cb5677c0022a",
+    "market_metadata/KXLIGAMX1H-26AUG17PACPUE-PAC.json": "1d95eec43ff1e5ac200049228d5037a28020db4e7f8139eb5465ef8a3759ae81",
+    "market_metadata/KXLIGAMX1H-26JUL21CRAPUE-CRA.json": "64c38cdb30c38a3f71699974df5bee79278fab15217fac4dfea8c1fb04ccb6c8",
+    "market_metadata/KXMLSGAME-26AUG22CLTDCU-TIE.json": "ea6aeee1723b4397a54b0080e026d6975f02376756b249857985c65462b0e25d",
+    "market_metadata/KXMLSGAME-26AUG29NYRBPHI-TIE.json": "84386fbcb242c6b68912002f1caf92f7b8c8f8eae34e04497559e2c915a7dc24",
+    "market_metadata/KXMLSGAME-26SEP05CLBCOL-TIE.json": "0da69d581f859c245a9bd3af9d9fa1cba420fcacd6d7ae8dea5ae29b4eb168a0",
+    "market_metadata/KXNFLGAME-26AUG22ATLIND-IND.json": "5e81051633d53c781e23bace300f21de79d5fd422ca62f0468420306653047c4",
+    "market_metadata/KXNFLGAME-26AUG28MINDEN-DEN.json": "4235bde3c7911025618c56a6d6d45ec14a2cb7662b46507cfa0a521a7fee8ff6",
+    "market_metadata/KXNFLGAME-26AUG28NYGNYJ-NYJ.json": "a9c685729fdf1b82abd76e66f27c28b14a09c05f7229e0da146bc75f032d1d88",
+    "market_metadata/KXUCLGAME-26JUL29ALMOMO-TIE.json": "7f8016a7d8b7293e4d4fcce9783200f7de3e4ac86b8a6c609707301e2f0663eb",
+    "market_metadata/KXWTA-26TORONT-RYB.json": "64e07c08183a274b6220fbc2d411a1362ae51d0a8712ab057d654206fb7161ef"
+  },
+  "source_sha256": {
+    "calibration/calibrate_information_arrival.py": "33ec41793ed174f7cbb5389e97cbe66a6ba94eddd2fec8721697f628179ba884",
+    "simulator/information/kernels.py": "5ae398a42598164d6474df1684a31ffd821f4bdb528cd2c73054aec8fa59fa4e",
+    "calibration/calibrate_market_dynamics.py": "4839afd8f882d89dd70417f7eecf7c1961ee395376c940aa9503cf41d4dceaf9",
+    "calibration/estimate_lambda.py": "08cb95973f018aa682bde77849ead158b2efbfadcc2a57e58cc9c1450ea3f298",
+    "calibration/build_intervals.py": "d250d11950c0f92796919f16267dbe35593fcd85bc18e2e51ba88b51f69dd747",
+    "data_pipeline/calibration_quality.py": "0acba60a73c1794f39b6bde243cd623238816e5f4836024c8ddd3f3a3c79d719"
+  },
+  "limitations": [
+    "Jumps are reduced-form proxies: large 300-s quote-midpoint residuals, not identified news events.",
+    "Quote support covers the trailing window (usually three days); intensities use that exposure only.",
+    "Sports release time is the provisional template close (official game-end timestamps deferred).",
+    "eta matches the train-median Kyle lambda in a flow-only post-trade replay; it does not identify informed traders.",
+    "u rates treat observed YES-taker frequencies as uninformed rates (alpha small).",
+    "Bootstrap ranges resample training contracts; they are sampling scenarios, not causal bounds."
+  ]
+}

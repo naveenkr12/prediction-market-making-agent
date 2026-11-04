@@ -1,0 +1,219 @@
+{
+  "passed": true,
+  "heldout_files_loaded": 0,
+  "training_files_loaded": {
+    "market_metadata": [
+      "KXAAAGASM-26AUG31-4.08",
+      "KXAAAGASM-26JUL31-3.90",
+      "KXAAAGASW-26AUG03-4.110",
+      "KXAAAGASW-26AUG10-4.010",
+      "KXAAAGASW-26AUG24-4.080",
+      "KXAAAGASW-26JUL13-3.960",
+      "KXAAAGASW-26JUL20-4.060",
+      "KXAAAGASW-26JUL27-4.080",
+      "KXARMOMINF-26AUG13-T1.8",
+      "KXATP-26CINCIN-NAK",
+      "KXATP-26MONTRE-FON",
+      "KXCBDECISIONBRAZIL-26AUG05-C25",
+      "KXCPI-26AUG-T0.5",
+      "KXCPICORE-26JUN-T0.2",
+      "KXCPIYOY-26JUL-T4.2",
+      "KXEPLGAME-26AUG22EVECRY-TIE",
+      "KXEPLGAME-26AUG22NFOLEE-TIE",
+      "KXEPLGAME-26AUG23BRIAVL-TIE",
+      "KXFEDDECISION-26JUL-C26",
+      "KXGDP-26JUL30-T1.0",
+      "KXJOBLESSCLAIMS-26JUL23-200000",
+      "KXLIGAMX1H-26AUG17PACPUE-PAC",
+      "KXLIGAMX1H-26JUL21CRAPUE-CRA",
+      "KXMLSGAME-26AUG22CLTDCU-TIE",
+      "KXMLSGAME-26AUG29NYRBPHI-TIE",
+      "KXMLSGAME-26SEP05CLBCOL-TIE",
+      "KXNFLGAME-26AUG22ATLIND-IND",
+      "KXNFLGAME-26AUG28MINDEN-DEN",
+      "KXNFLGAME-26AUG28NYGNYJ-NYJ",
+      "KXPAYROLLS-26JUL-T-25000",
+      "KXPCECORE-26JUL-T0.2",
+      "KXPCECORE-26JUN-T0.2",
+      "KXU3-26AUG-T4.1",
+      "KXUCLGAME-26JUL29ALMOMO-TIE",
+      "KXWTA-26TORONT-RYB"
+    ],
+    "trades": [
+      "KXAAAGASM-26AUG31-4.08",
+      "KXAAAGASM-26JUL31-3.90",
+      "KXAAAGASW-26AUG03-4.110",
+      "KXAAAGASW-26AUG10-4.010",
+      "KXAAAGASW-26AUG24-4.080",
+      "KXAAAGASW-26JUL13-3.960",
+      "KXAAAGASW-26JUL20-4.060",
+      "KXAAAGASW-26JUL27-4.080",
+      "KXARMOMINF-26AUG13-T1.8",
+      "KXATP-26CINCIN-NAK",
+      "KXATP-26MONTRE-FON",
+      "KXCBDECISIONBRAZIL-26AUG05-C25",
+      "KXCPI-26AUG-T0.5",
+      "KXCPICORE-26JUN-T0.2",
+      "KXCPIYOY-26JUL-T4.2",
+      "KXEPLGAME-26AUG22EVECRY-TIE",
+      "KXEPLGAME-26AUG22NFOLEE-TIE",
+      "KXEPLGAME-26AUG23BRIAVL-TIE",
+      "KXFEDDECISION-26JUL-C26",
+      "KXGDP-26JUL30-T1.0",
+      "KXJOBLESSCLAIMS-26JUL23-200000",
+      "KXLIGAMX1H-26AUG17PACPUE-PAC",
+      "KXLIGAMX1H-26JUL21CRAPUE-CRA",
+      "KXMLSGAME-26AUG22CLTDCU-TIE",
+      "KXMLSGAME-26AUG29NYRBPHI-TIE",
+      "KXMLSGAME-26SEP05CLBCOL-TIE",
+      "KXNFLGAME-26AUG22ATLIND-IND",
+      "KXNFLGAME-26AUG28MINDEN-DEN",
+      "KXNFLGAME-26AUG28NYGNYJ-NYJ",
+      "KXPAYROLLS-26JUL-T-25000",
+      "KXPCECORE-26JUL-T0.2",
+      "KXPCECORE-26JUN-T0.2",
+      "KXU3-26AUG-T4.1",
+      "KXUCLGAME-26JUL29ALMOMO-TIE",
+      "KXWTA-26TORONT-RYB"
+    ]
+  },
+  "supported_noise_templates": 24,
+  "max_decomposition_identity_error": 1.0842021724855044e-19,
+  "early_revelation_templates": [
+    "KXFEDDECISION-26JUL-C26",
+    "KXPCECORE-26JUL-T0.2"
+  ],
+  "summary": {
+    "broad_based": {
+      "jumps_by_bucket": {
+        "B0": 0,
+        "B1": 2,
+        "B2": 13,
+        "B3": 33
+      },
+      "lambda_J_per_second": {
+        "B0": 9.70873786407767e-05,
+        "B1": 9.70873786407767e-05,
+        "B2": 8.718980549966466e-05,
+        "B3": 6.010928961748634e-05
+      },
+      "contributing_buckets": {
+        "B0": [
+          "B0",
+          "B1",
+          "B2"
+        ],
+        "B1": [
+          "B1",
+          "B0",
+          "B2"
+        ],
+        "B2": [
+          "B2"
+        ],
+        "B3": [
+          "B3"
+        ]
+      },
+      "magnitude_bank_size": 48,
+      "eta": 3.2562500000000005e-05,
+      "replications": 1600,
+      "validation": {
+        "statistic": 4.333842657352166e-05,
+        "mc_se": 1.0595086184649895e-07,
+        "relative_error": 0.0012149782729238279,
+        "ci95_relative_error": [
+          -0.005564838371295037,
+          0.007994794917142693
+        ],
+        "passed": true,
+        "status": "validated"
+      },
+      "fg_half_relative_to_target": 0.9357496787639334,
+      "constant_alpha": {
+        "status": "calibrated",
+        "alpha0": 0.033792,
+        "replications": 51200,
+        "statistic": 4.3268456670670564e-05,
+        "mc_se": 7.128874625436925e-08,
+        "validation": {
+          "statistic": 4.310121229927345e-05,
+          "mc_se": 9.317559603780258e-08,
+          "relative_error": -0.004265204170583736,
+          "ci95_relative_error": [
+            -0.009577363635191679,
+            0.0010469552940242073
+          ],
+          "passed": true,
+          "status": "validated"
+        }
+      }
+    },
+    "sports": {
+      "jumps_by_bucket": {
+        "B0": 9,
+        "B1": 7,
+        "B2": 3,
+        "B3": 7
+      },
+      "lambda_J_per_second": {
+        "B0": 0.00042857142857142855,
+        "B1": 9.150326797385621e-05,
+        "B2": 3.3433634236041456e-05,
+        "B3": 3.178928247048138e-05
+      },
+      "contributing_buckets": {
+        "B0": [
+          "B0"
+        ],
+        "B1": [
+          "B1"
+        ],
+        "B2": [
+          "B2",
+          "B1"
+        ],
+        "B3": [
+          "B3"
+        ]
+      },
+      "magnitude_bank_size": 26,
+      "eta": 1.8187499999999995e-05,
+      "replications": 25600,
+      "validation": {
+        "statistic": 1.2569853200243928e-05,
+        "mc_se": 2.139152839436967e-08,
+        "relative_error": 0.002640219000647148,
+        "ci95_relative_error": [
+          -0.0027687633505107685,
+          0.008049201351805065
+        ],
+        "passed": true,
+        "status": "validated"
+      },
+      "fg_half_relative_to_target": 0.9485945053262299,
+      "constant_alpha": {
+        "status": "failed",
+        "reason": "constant_alpha: MC SE tolerance not reached by 51200 replications"
+      }
+    }
+  },
+  "checks": [
+    "Upstream Paper 2 inputs match recorded hashes",
+    "Training tapes match recorded hashes",
+    "Recomputed legacy sigma^2 equals stored template sigma^2 (rel 1e-10)",
+    "sigma_c^2 + jump variance = legacy sigma^2 for every supported template",
+    "Mark bank equals training tapes (quantity, sign, phase)",
+    "Replay buckets reconcile to Paper 2 five-minute intervals",
+    "No validation/test ticker file was opened"
+  ],
+  "output_sha256": {
+    "jump_magnitude_bank.npz": "5d3133c12a5c73f06eccb942cb3280f954731060ea504bb14566f7c332985732",
+    "uninformed_sign_rates.npz": "63772cb79939d87e5c51b0abdab5d96fa63a06c8af08f246f5fffaa3fa01d8d2",
+    "jump_detection.csv": "54e79511dde590bc942b4ca25b0f740b7e34755952122610b7c4ead4aba9f3c9",
+    "decomposition_check.csv": "50aae2d1b17522a665be40ea17bb9a5252e6556c7bb5621d1a63463f6deedfb4",
+    "release_time_verification.csv": "2f89fb8a58918270b61d115394c9b2a3ab595512372e433db0e9aeb893596f2b",
+    "flow_replay_calibration.csv": "cfbfc01289563ee8aa1d8a9088c522784601d27687f0f3f81ef25251e3da9b94",
+    "information_config.json": "8b696e84e946eafd24a25a602360e70dec0e424f5034ea618a1ba45efe04d493"
+  }
+}

@@ -1,0 +1,55 @@
+{
+  "cells": {
+    "M0": {
+      "tier1_arm": "M0",
+      "rows": 5120,
+      "columns_compared": 47,
+      "exact": true
+    },
+    "M1": {
+      "tier1_arm": "M1",
+      "rows": 5120,
+      "columns_compared": 47,
+      "exact": true
+    },
+    "M2": {
+      "tier1_arm": "M2",
+      "rows": 5120,
+      "columns_compared": 47,
+      "exact": true
+    },
+    "M3": {
+      "tier1_arm": "M3",
+      "rows": 5120,
+      "columns_compared": 47,
+      "exact": true
+    },
+    "M0-s1": {
+      "tier1_arm": "M0-s1",
+      "rows": 5120,
+      "columns_compared": 47,
+      "exact": true
+    },
+    "M2-s1": {
+      "tier1_arm": "M2-s1",
+      "rows": 5120,
+      "columns_compared": 47,
+      "exact": true
+    },
+    "M1-native": {
+      "tier1_arm": "M1-native",
+      "rows": 5120,
+      "columns_compared": 47,
+      "exact": true
+    }
+  },
+  "rows_compared": 35840,
+  "columns_compared_include": [
+    "realized_pnl",
+    "signal_sha256",
+    "book_sha256",
+    "settlement_sha256",
+    "base_input_sha256"
+  ],
+  "all_exact": true
+}

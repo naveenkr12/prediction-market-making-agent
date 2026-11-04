@@ -1,0 +1,597 @@
+{
+  "R_star": {
+    "p0_label": "0.5",
+    "templates": [
+      "KXAAAGASM-26AUG31-4.08",
+      "KXAAAGASM-26JUL31-3.90",
+      "KXAAAGASW-26AUG03-4.110",
+      "KXAAAGASW-26AUG10-4.010",
+      "KXAAAGASW-26AUG24-4.080",
+      "KXAAAGASW-26JUL13-3.960",
+      "KXAAAGASW-26JUL20-4.060",
+      "KXARMOMINF-26AUG13-T1.8",
+      "KXCBDECISIONBRAZIL-26AUG05-C25",
+      "KXCPI-26AUG-T0.5",
+      "KXCPICORE-26JUN-T0.2",
+      "KXCPIYOY-26JUL-T4.2",
+      "KXGDP-26JUL30-T1.0",
+      "KXJOBLESSCLAIMS-26JUL23-200000",
+      "KXPAYROLLS-26JUL-T-25000",
+      "KXPCECORE-26JUN-T0.2",
+      "KXU3-26AUG-T4.1",
+      "KXATP-26CINCIN-NAK",
+      "KXATP-26MONTRE-FON",
+      "KXEPLGAME-26AUG22EVECRY-TIE",
+      "KXEPLGAME-26AUG22NFOLEE-TIE",
+      "KXEPLGAME-26AUG23BRIAVL-TIE",
+      "KXLIGAMX1H-26AUG17PACPUE-PAC",
+      "KXLIGAMX1H-26JUL21CRAPUE-CRA",
+      "KXMLSGAME-26AUG22CLTDCU-TIE",
+      "KXMLSGAME-26AUG29NYRBPHI-TIE",
+      "KXMLSGAME-26SEP05CLBCOL-TIE",
+      "KXNFLGAME-26AUG22ATLIND-IND",
+      "KXNFLGAME-26AUG28MINDEN-DEN",
+      "KXNFLGAME-26AUG28NYGNYJ-NYJ",
+      "KXUCLGAME-26JUL29ALMOMO-TIE",
+      "KXWTA-26TORONT-RYB"
+    ],
+    "matched_s": {
+      "KXAAAGASM-26AUG31-4.08": {
+        "M0": 1.0585933290421963,
+        "M1": 1.058495745062828,
+        "M2": 1.0001045987010002,
+        "M3": 1.0
+      },
+      "KXAAAGASM-26JUL31-3.90": {
+        "M0": 1.6008984744548798,
+        "M1": 1.598292350769043,
+        "M2": 1.0144928693771362,
+        "M3": 1.0
+      },
+      "KXAAAGASW-26AUG03-4.110": {
+        "M0": 1.3952364027500153,
+        "M1": 1.3933001458644867,
+        "M2": 0.9993963241577148,
+        "M3": 1.0
+      },
+      "KXAAAGASW-26AUG10-4.010": {
+        "M0": 2.288047671318054,
+        "M1": 2.2679330110549927,
+        "M2": 1.0325376987457275,
+        "M3": 1.0
+      },
+      "KXAAAGASW-26AUG24-4.080": {
+        "M0": 1.6053591966629028,
+        "M1": 1.6003254055976868,
+        "M2": 1.0057243704795837,
+        "M3": 1.0
+      },
+      "KXAAAGASW-26JUL13-3.960": {
+        "M0": 2.7871906757354736,
+        "M1": 2.2686755657196045,
+        "M2": 1.514263093471527,
+        "M3": 1.0
+      },
+      "KXAAAGASW-26JUL20-4.060": {
+        "M0": 1.5741241574287415,
+        "M1": 1.573440432548523,
+        "M2": 1.001527488231659,
+        "M3": 1.0
+      },
+      "KXARMOMINF-26AUG13-T1.8": {
+        "M0": 1.658132791519165,
+        "M1": 1.6531502604484558,
+        "M2": 0.9897000193595886,
+        "M3": 1.0
+      },
+      "KXCBDECISIONBRAZIL-26AUG05-C25": {
+        "M0": 1.301916629076004,
+        "M1": 1.3018583208322525,
+        "M2": 1.0032731294631958,
+        "M3": 1.0
+      },
+      "KXCPI-26AUG-T0.5": {
+        "M0": 1.6723600327968597,
+        "M1": 1.6682842075824738,
+        "M2": 1.004334270954132,
+        "M3": 1.0
+      },
+      "KXCPICORE-26JUN-T0.2": {
+        "M0": 8.50965166091919,
+        "M1": 8.461471557617188,
+        "M2": 1.0588021278381348,
+        "M3": 1.0
+      },
+      "KXCPIYOY-26JUL-T4.2": {
+        "M0": 1.6735746264457703,
+        "M1": 1.691801130771637,
+        "M2": 1.0048558115959167,
+        "M3": 1.0
+      },
+      "KXGDP-26JUL30-T1.0": {
+        "M0": 2.225321054458618,
+        "M1": 2.219883441925049,
+        "M2": 1.0071316957473755,
+        "M3": 1.0
+      },
+      "KXJOBLESSCLAIMS-26JUL23-200000": {
+        "M0": 10.694613456726074,
+        "M1": 10.648163795471191,
+        "M2": 1.0459489822387695,
+        "M3": 1.0
+      },
+      "KXPAYROLLS-26JUL-T-25000": {
+        "M0": 1.683095633983612,
+        "M1": 1.6782936751842499,
+        "M2": 1.0154023170471191,
+        "M3": 1.0
+      },
+      "KXPCECORE-26JUN-T0.2": {
+        "M0": 1.668670892715454,
+        "M1": 1.6765562295913696,
+        "M2": 1.0036550760269165,
+        "M3": 1.0
+      },
+      "KXU3-26AUG-T4.1": {
+        "M0": 33.77374076843262,
+        "M1": 33.599342346191406,
+        "M2": 0.9534282684326172,
+        "M3": 1.0
+      },
+      "KXATP-26CINCIN-NAK": {
+        "M0": 6.451340347528458,
+        "M1": 6.445881426334381,
+        "M2": 1.0056583881378174,
+        "M3": 1.0
+      },
+      "KXATP-26MONTRE-FON": {
+        "M0": 8.394423961639404,
+        "M1": 8.375098407268524,
+        "M2": 0.981174111366272,
+        "M3": 1.0
+      },
+      "KXEPLGAME-26AUG22EVECRY-TIE": {
+        "M0": 4.451987087726593,
+        "M1": 4.443780183792114,
+        "M2": 1.049107402563095,
+        "M3": 1.0
+      },
+      "KXEPLGAME-26AUG22NFOLEE-TIE": {
+        "M0": 16.260584354400635,
+        "M1": 16.230355381965637,
+        "M2": 0.9816532731056213,
+        "M3": 1.0
+      },
+      "KXEPLGAME-26AUG23BRIAVL-TIE": {
+        "M0": 8.574792981147766,
+        "M1": 8.475476682186127,
+        "M2": 1.1113086938858032,
+        "M3": 1.0
+      },
+      "KXLIGAMX1H-26AUG17PACPUE-PAC": {
+        "M0": 8.425615012645721,
+        "M1": 8.398283064365387,
+        "M2": 1.0319667756557465,
+        "M3": 1.0
+      },
+      "KXLIGAMX1H-26JUL21CRAPUE-CRA": {
+        "M0": 8.429315984249115,
+        "M1": 8.428148925304413,
+        "M2": 1.0252746045589447,
+        "M3": 1.0
+      },
+      "KXMLSGAME-26AUG22CLTDCU-TIE": {
+        "M0": 4.757564306259155,
+        "M1": 4.754802465438843,
+        "M2": 0.9803429543972015,
+        "M3": 1.0
+      },
+      "KXMLSGAME-26AUG29NYRBPHI-TIE": {
+        "M0": 4.774410247802734,
+        "M1": 4.770796209573746,
+        "M2": 1.0093931555747986,
+        "M3": 1.0
+      },
+      "KXMLSGAME-26SEP05CLBCOL-TIE": {
+        "M0": 26.542985439300537,
+        "M1": 26.519556760787964,
+        "M2": 1.1276943683624268,
+        "M3": 1.0
+      },
+      "KXNFLGAME-26AUG22ATLIND-IND": {
+        "M0": 16.878883719444275,
+        "M1": 14.397472977638245,
+        "M2": 3.349060535430908,
+        "M3": 1.0
+      },
+      "KXNFLGAME-26AUG28MINDEN-DEN": {
+        "M0": 9.15104952454567,
+        "M1": 8.53782033920288,
+        "M2": 1.6013875007629395,
+        "M3": 1.0
+      },
+      "KXNFLGAME-26AUG28NYGNYJ-NYJ": {
+        "M0": 13.424706518650055,
+        "M1": 11.877751290798187,
+        "M2": 2.5826687812805176,
+        "M3": 1.0
+      },
+      "KXUCLGAME-26JUL29ALMOMO-TIE": {
+        "M0": 13.319399058818817,
+        "M1": 13.272791862487793,
+        "M2": 1.0155613422393799,
+        "M3": 1.0
+      },
+      "KXWTA-26TORONT-RYB": {
+        "M0": 8.191895246505737,
+        "M1": 8.17486560344696,
+        "M2": 0.9879004955291748,
+        "M3": 1.0
+      }
+    },
+    "excluded": {
+      "KXAAAGASW-26JUL27-4.080": "M0:unmatched_sigma_c_zero;M1:unmatched_sigma_c_zero;M2:unmatched_sigma_c_zero",
+      "KXFEDDECISION-26JUL-C26": "early_revelation",
+      "KXPCECORE-26JUL-T0.2": "early_revelation"
+    }
+  },
+  "R_star_emp": {
+    "p0_label": "emp",
+    "templates": [
+      "KXAAAGASM-26AUG31-4.08",
+      "KXAAAGASM-26JUL31-3.90",
+      "KXAAAGASW-26AUG03-4.110",
+      "KXAAAGASW-26AUG10-4.010",
+      "KXAAAGASW-26AUG24-4.080",
+      "KXAAAGASW-26JUL13-3.960",
+      "KXAAAGASW-26JUL20-4.060",
+      "KXARMOMINF-26AUG13-T1.8",
+      "KXCBDECISIONBRAZIL-26AUG05-C25",
+      "KXCPI-26AUG-T0.5",
+      "KXCPICORE-26JUN-T0.2",
+      "KXCPIYOY-26JUL-T4.2",
+      "KXGDP-26JUL30-T1.0",
+      "KXJOBLESSCLAIMS-26JUL23-200000",
+      "KXPAYROLLS-26JUL-T-25000",
+      "KXPCECORE-26JUN-T0.2",
+      "KXU3-26AUG-T4.1",
+      "KXATP-26CINCIN-NAK",
+      "KXATP-26MONTRE-FON",
+      "KXEPLGAME-26AUG22EVECRY-TIE",
+      "KXEPLGAME-26AUG22NFOLEE-TIE",
+      "KXEPLGAME-26AUG23BRIAVL-TIE",
+      "KXLIGAMX1H-26AUG17PACPUE-PAC",
+      "KXLIGAMX1H-26JUL21CRAPUE-CRA",
+      "KXMLSGAME-26AUG22CLTDCU-TIE",
+      "KXMLSGAME-26AUG29NYRBPHI-TIE",
+      "KXMLSGAME-26SEP05CLBCOL-TIE",
+      "KXNFLGAME-26AUG22ATLIND-IND",
+      "KXNFLGAME-26AUG28MINDEN-DEN",
+      "KXNFLGAME-26AUG28NYGNYJ-NYJ",
+      "KXUCLGAME-26JUL29ALMOMO-TIE",
+      "KXWTA-26TORONT-RYB"
+    ],
+    "matched_s": {
+      "KXAAAGASM-26AUG31-4.08": {
+        "M0": 1.0605713054537773,
+        "M1": 1.0604196041822433,
+        "M2": 1.000152125954628,
+        "M3": 1.0
+      },
+      "KXAAAGASM-26JUL31-3.90": {
+        "M0": 1.3675342798233032,
+        "M1": 1.3732998371124268,
+        "M2": 1.0011098384857178,
+        "M3": 1.0
+      },
+      "KXAAAGASW-26AUG03-4.110": {
+        "M0": 1.3369207382202148,
+        "M1": 1.3344388008117676,
+        "M2": 0.9661722183227539,
+        "M3": 1.0
+      },
+      "KXAAAGASW-26AUG10-4.010": {
+        "M0": 2.3456480503082275,
+        "M1": 2.3220934867858887,
+        "M2": 1.0234925746917725,
+        "M3": 1.0
+      },
+      "KXAAAGASW-26AUG24-4.080": {
+        "M0": 1.2551008462905884,
+        "M1": 1.2563138008117676,
+        "M2": 0.9977905750274658,
+        "M3": 1.0
+      },
+      "KXAAAGASW-26JUL13-3.960": {
+        "M0": 2.9954476356506348,
+        "M1": 2.6926522254943848,
+        "M2": 1.252791404724121,
+        "M3": 1.0
+      },
+      "KXAAAGASW-26JUL20-4.060": {
+        "M0": 1.9487199783325195,
+        "M1": 1.966038703918457,
+        "M2": 0.7578239440917969,
+        "M3": 1.0
+      },
+      "KXARMOMINF-26AUG13-T1.8": {
+        "M0": 1.5954592823982239,
+        "M1": 1.5856428146362305,
+        "M2": 0.9728280901908875,
+        "M3": 1.0
+      },
+      "KXCBDECISIONBRAZIL-26AUG05-C25": {
+        "M0": 1.2656409740447998,
+        "M1": 1.2665687799453735,
+        "M2": 0.9472839832305908,
+        "M3": 1.0
+      },
+      "KXCPI-26AUG-T0.5": {
+        "M0": 1.3569154739379883,
+        "M1": 1.3720955848693848,
+        "M2": 0.9575295448303223,
+        "M3": 1.0
+      },
+      "KXCPICORE-26JUN-T0.2": {
+        "M0": 8.558800220489502,
+        "M1": 8.498053073883057,
+        "M2": 0.9757614135742188,
+        "M3": 1.0
+      },
+      "KXCPIYOY-26JUL-T4.2": {
+        "M0": 1.2800240516662598,
+        "M1": 1.2770814895629883,
+        "M2": 0.9097437858581543,
+        "M3": 1.0
+      },
+      "KXGDP-26JUL30-T1.0": {
+        "M0": 2.6714630126953125,
+        "M1": 2.6863741874694824,
+        "M2": 1.0835342407226562,
+        "M3": 1.0
+      },
+      "KXJOBLESSCLAIMS-26JUL23-200000": {
+        "M0": 10.634875297546387,
+        "M1": 10.588043689727783,
+        "M2": 0.9129095077514648,
+        "M3": 1.0
+      },
+      "KXPAYROLLS-26JUL-T-25000": {
+        "M0": 1.3846367597579956,
+        "M1": 1.3822011947631836,
+        "M2": 0.9787442684173584,
+        "M3": 1.0
+      },
+      "KXPCECORE-26JUN-T0.2": {
+        "M0": 1.4470324516296387,
+        "M1": 1.4441159963607788,
+        "M2": 0.9827666282653809,
+        "M3": 1.0
+      },
+      "KXU3-26AUG-T4.1": {
+        "M0": 36.886850357055664,
+        "M1": 36.68002700805664,
+        "M2": 1.5262794494628906,
+        "M3": 1.0
+      },
+      "KXATP-26CINCIN-NAK": {
+        "M0": 6.892015606164932,
+        "M1": 6.888046950101852,
+        "M2": 0.9761797189712524,
+        "M3": 1.0
+      },
+      "KXATP-26MONTRE-FON": {
+        "M0": 8.744231820106506,
+        "M1": 8.745482802391052,
+        "M2": 0.9441725015640259,
+        "M3": 1.0
+      },
+      "KXEPLGAME-26AUG22EVECRY-TIE": {
+        "M0": 4.856287926435471,
+        "M1": 4.845946729183197,
+        "M2": 0.9838838577270508,
+        "M3": 1.0
+      },
+      "KXEPLGAME-26AUG22NFOLEE-TIE": {
+        "M0": 16.460286021232605,
+        "M1": 16.430564165115356,
+        "M2": 1.1587325930595398,
+        "M3": 1.0
+      },
+      "KXEPLGAME-26AUG23BRIAVL-TIE": {
+        "M0": 11.00475811958313,
+        "M1": 10.913420677185059,
+        "M2": 0.0720677375793457,
+        "M3": 1.0
+      },
+      "KXLIGAMX1H-26AUG17PACPUE-PAC": {
+        "M0": 8.402193039655685,
+        "M1": 8.366258144378662,
+        "M2": 1.0041421949863434,
+        "M3": 1.0
+      },
+      "KXLIGAMX1H-26JUL21CRAPUE-CRA": {
+        "M0": 8.353242307901382,
+        "M1": 8.359941750764847,
+        "M2": 0.9576703310012817,
+        "M3": 1.0
+      },
+      "KXMLSGAME-26AUG22CLTDCU-TIE": {
+        "M0": 4.978179544210434,
+        "M1": 4.975077837705612,
+        "M2": 1.019327163696289,
+        "M3": 1.0
+      },
+      "KXMLSGAME-26AUG29NYRBPHI-TIE": {
+        "M0": 5.892158508300781,
+        "M1": 5.893476963043213,
+        "M2": 0.9273929595947266,
+        "M3": 1.0
+      },
+      "KXMLSGAME-26SEP05CLBCOL-TIE": {
+        "M0": 28.198362827301025,
+        "M1": 28.173681259155273,
+        "M2": 0.8727507591247559,
+        "M3": 1.0
+      },
+      "KXNFLGAME-26AUG22ATLIND-IND": {
+        "M0": 21.77986240386963,
+        "M1": 19.313700675964355,
+        "M2": 3.747985363006592,
+        "M3": 1.0
+      },
+      "KXNFLGAME-26AUG28MINDEN-DEN": {
+        "M0": 10.23883306980133,
+        "M1": 9.595936357975006,
+        "M2": 1.7786545753479004,
+        "M3": 1.0
+      },
+      "KXNFLGAME-26AUG28NYGNYJ-NYJ": {
+        "M0": 13.7863689661026,
+        "M1": 12.307366967201233,
+        "M2": 2.5148040056228638,
+        "M3": 1.0
+      },
+      "KXUCLGAME-26JUL29ALMOMO-TIE": {
+        "M0": 16.866299629211426,
+        "M1": 16.80849838256836,
+        "M2": 1.6589288711547852,
+        "M3": 1.0
+      },
+      "KXWTA-26TORONT-RYB": {
+        "M0": 8.42168265581131,
+        "M1": 8.405302882194519,
+        "M2": 1.0136826634407043,
+        "M3": 1.0
+      }
+    },
+    "excluded": {
+      "KXAAAGASW-26JUL27-4.080": "M0:unmatched_sigma_c_zero;M1:unmatched_sigma_c_zero;M2:unmatched_sigma_c_zero",
+      "KXFEDDECISION-26JUL-C26": "early_revelation",
+      "KXPCECORE-26JUL-T0.2": "early_revelation"
+    }
+  },
+  "generated_at_utc": "2026-10-31T18:14:12.771807+00:00",
+  "frozen_before_policy_runs": true,
+  "rule": "candidate (train, not early revelation) templates matched (|gap| < 2%, CI covers 0) for M0, M1, M2; M3 is the s = 1 target",
+  "design": {
+    "draws": 200000,
+    "max_doublings": 3,
+    "s_hi_start": 4.0,
+    "s_hi_cap": 1024.0,
+    "gap_tolerance": 0.02,
+    "seed": 20261009,
+    "match_stream_tag": 31008,
+    "quadrature": {
+      "tolerance": 1e-09,
+      "hermite_orders": [
+        64,
+        128
+      ],
+      "legendre_orders": [
+        256,
+        512
+      ],
+      "legendre_half_width": 40.0,
+      "switch": "sqrt(V) <= 1 -> Hermite"
+    },
+    "tickers": [
+      "KXAAAGASM-26AUG31-4.08",
+      "KXAAAGASM-26JUL31-3.90",
+      "KXAAAGASW-26AUG03-4.110",
+      "KXAAAGASW-26AUG10-4.010",
+      "KXAAAGASW-26AUG24-4.080",
+      "KXAAAGASW-26JUL13-3.960",
+      "KXAAAGASW-26JUL20-4.060",
+      "KXAAAGASW-26JUL27-4.080",
+      "KXARMOMINF-26AUG13-T1.8",
+      "KXCBDECISIONBRAZIL-26AUG05-C25",
+      "KXCPI-26AUG-T0.5",
+      "KXCPICORE-26JUN-T0.2",
+      "KXCPIYOY-26JUL-T4.2",
+      "KXFEDDECISION-26JUL-C26",
+      "KXGDP-26JUL30-T1.0",
+      "KXJOBLESSCLAIMS-26JUL23-200000",
+      "KXPAYROLLS-26JUL-T-25000",
+      "KXPCECORE-26JUL-T0.2",
+      "KXPCECORE-26JUN-T0.2",
+      "KXU3-26AUG-T4.1",
+      "KXATP-26CINCIN-NAK",
+      "KXATP-26MONTRE-FON",
+      "KXEPLGAME-26AUG22EVECRY-TIE",
+      "KXEPLGAME-26AUG22NFOLEE-TIE",
+      "KXEPLGAME-26AUG23BRIAVL-TIE",
+      "KXLIGAMX1H-26AUG17PACPUE-PAC",
+      "KXLIGAMX1H-26JUL21CRAPUE-CRA",
+      "KXMLSGAME-26AUG22CLTDCU-TIE",
+      "KXMLSGAME-26AUG29NYRBPHI-TIE",
+      "KXMLSGAME-26SEP05CLBCOL-TIE",
+      "KXNFLGAME-26AUG22ATLIND-IND",
+      "KXNFLGAME-26AUG28MINDEN-DEN",
+      "KXNFLGAME-26AUG28NYGNYJ-NYJ",
+      "KXUCLGAME-26JUL29ALMOMO-TIE",
+      "KXWTA-26TORONT-RYB"
+    ],
+    "workers": 10
+  },
+  "p0_emp": {
+    "KXAAAGASM-26AUG31-4.08": 0.2,
+    "KXAAAGASM-26JUL31-3.90": 0.99,
+    "KXAAAGASW-26AUG03-4.110": 0.01,
+    "KXAAAGASW-26AUG10-4.010": 0.26,
+    "KXAAAGASW-26AUG24-4.080": 0.99,
+    "KXAAAGASW-26JUL13-3.960": 0.03,
+    "KXAAAGASW-26JUL20-4.060": 0.01,
+    "KXAAAGASW-26JUL27-4.080": 0.99,
+    "KXARMOMINF-26AUG13-T1.8": 0.78,
+    "KXCBDECISIONBRAZIL-26AUG05-C25": 0.98,
+    "KXCPI-26AUG-T0.5": 0.05,
+    "KXCPICORE-26JUN-T0.2": 0.33,
+    "KXCPIYOY-26JUL-T4.2": 0.01,
+    "KXFEDDECISION-26JUL-C26": 0.01,
+    "KXGDP-26JUL30-T1.0": 0.97,
+    "KXJOBLESSCLAIMS-26JUL23-200000": 0.58,
+    "KXPAYROLLS-26JUL-T-25000": 0.96,
+    "KXPCECORE-26JUL-T0.2": 0.09,
+    "KXPCECORE-26JUN-T0.2": 0.06,
+    "KXU3-26AUG-T4.1": 0.23,
+    "KXATP-26CINCIN-NAK": 0.14,
+    "KXATP-26MONTRE-FON": 0.06,
+    "KXEPLGAME-26AUG22EVECRY-TIE": 0.09,
+    "KXEPLGAME-26AUG22NFOLEE-TIE": 0.63,
+    "KXEPLGAME-26AUG23BRIAVL-TIE": 0.01,
+    "KXLIGAMX1H-26AUG17PACPUE-PAC": 0.47,
+    "KXLIGAMX1H-26JUL21CRAPUE-CRA": 0.54,
+    "KXMLSGAME-26AUG22CLTDCU-TIE": 0.19,
+    "KXMLSGAME-26AUG29NYRBPHI-TIE": 0.01,
+    "KXMLSGAME-26SEP05CLBCOL-TIE": 0.2,
+    "KXNFLGAME-26AUG22ATLIND-IND": 0.01,
+    "KXNFLGAME-26AUG28MINDEN-DEN": 0.93,
+    "KXNFLGAME-26AUG28NYGNYJ-NYJ": 0.23,
+    "KXUCLGAME-26JUL29ALMOMO-TIE": 0.01,
+    "KXWTA-26TORONT-RYB": 0.25
+  },
+  "quadrature_check": {
+    "cases": 1000,
+    "seed": 20261031,
+    "max_abs_error": 8.881784197001252e-16,
+    "mean_abs_error": 9.572474122513681e-17,
+    "tolerance": 1e-09,
+    "passed": true
+  },
+  "max_quadrature_order_difference": 8.770761894538737e-15,
+  "calibration_sha256": {
+    "jump_magnitude_bank.npz": "5d3133c12a5c73f06eccb942cb3280f954731060ea504bb14566f7c332985732",
+    "uninformed_sign_rates.npz": "63772cb79939d87e5c51b0abdab5d96fa63a06c8af08f246f5fffaa3fa01d8d2",
+    "jump_detection.csv": "54e79511dde590bc942b4ca25b0f740b7e34755952122610b7c4ead4aba9f3c9",
+    "decomposition_check.csv": "50aae2d1b17522a665be40ea17bb9a5252e6556c7bb5621d1a63463f6deedfb4",
+    "release_time_verification.csv": "2f89fb8a58918270b61d115394c9b2a3ab595512372e433db0e9aeb893596f2b",
+    "flow_replay_calibration.csv": "cfbfc01289563ee8aa1d8a9088c522784601d27687f0f3f81ef25251e3da9b94"
+  },
+  "calibration_config_sha256": "8b696e84e946eafd24a25a602360e70dec0e424f5034ea618a1ba45efe04d493",
+  "code_sha256": {
+    "simulator/information/matching.py": "e8de5d2932944d18b26544b14ab6e1152bad85f0247ae008d67ed631545d9dad"
+  },
+  "runtime_seconds": 1779.5885241669603,
+  "roster_sha256": "6d1c1c4b90b1747684dd444338e9806f270ecb1b11eb08a18004b59376983163"
+}
