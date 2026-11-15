@@ -40,9 +40,13 @@ def parse_ts(iso: str | None) -> float | None:
 
 
 def effective_close(market: dict) -> float:
-    """Sports markets list a late backstop close_time and close early when the
-    game ends; expected_expiration_time is the better clock when present."""
-    return parse_ts(market.get("expected_expiration_time")) or parse_ts(market["close_time"])
+    """Best estimate of when trading stops: the earlier of close_time and
+    expected_expiration_time. Sports list a late backstop close_time (days
+    away) and expect to finish at expected_expiration_time; hourly crypto stops
+    trading at close_time and only expires 5 minutes later."""
+    times = [t for t in (parse_ts(market.get("close_time")), parse_ts(market.get("expected_expiration_time")))
+             if t is not None]
+    return min(times)
 
 
 def market_tick(market: dict) -> str:

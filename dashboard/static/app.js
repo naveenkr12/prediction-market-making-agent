@@ -19,6 +19,12 @@ function dur(s) {
   const h = Math.floor(s / 3600), m = Math.floor((s % 3600) / 60), sec = s % 60;
   return h ? `${h}h ${m}m` : m ? `${m}m ${sec}s` : `${sec}s`;
 }
+function closeText(m, st) {
+  if (m.status !== "open") return m.status + (m.result ? " " + m.result.toUpperCase() : "");
+  const left = m.close_ts - st.now;
+  // Expected close is an estimate; games often run past it. Strategies then sit at the episode end (t = 1).
+  return left > 0 ? `closes in ${dur(left)}` : `past expected close by ${dur(-left)}, still trading`;
+}
 const esc = s => String(s ?? "").replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
 
 async function getJSON(url) {
@@ -52,7 +58,7 @@ function renderMarkets(st) {
       <div class="t">${esc(m.title)}</div>
       <div class="s">${esc(m.subtitle)} · ${esc(m.ticker)}</div>
       <div class="q">${m.healthy ? `${fmt(m.bid)} / ${fmt(m.ask)}` : '<span class="muted">book unavailable</span>'}
-        <span class="muted"> · ${m.status === "open" ? "closes in " + dur(m.close_ts - st.now) : m.status + (m.result ? " " + m.result.toUpperCase() : "")}</span></div>
+        <span class="muted"> · ${closeText(m, st)}</span></div>
     </div>`).join("");
   document.querySelectorAll(".market").forEach(el => el.onclick = () => {
     selected = el.dataset.ticker;
@@ -65,8 +71,8 @@ function renderHead(m, st) {
   document.getElementById("market-head").innerHTML = `
     <div><div class="title">${esc(m.title)}</div>
       <div class="meta">${esc(m.subtitle)} · ${esc(m.ticker)} · ${esc(m.series)}</div></div>
-    <div class="meta">best ${fmt(m.bid)} / ${fmt(m.ask)} · ${m.status === "open" ? "closes in " + dur(m.close_ts - st.now) : m.status}
-      · next decision in ${dur(m.next_decision_s)} · ${m.trades_seen} trades seen</div>`;
+    <div class="meta">best ${fmt(m.bid)} / ${fmt(m.ask)} · ${closeText(m, st)}
+      ${m.status === "open" ? `· next decision in ${dur(m.next_decision_s)}` : ""} · ${m.trades_seen} trades seen</div>`;
 }
 
 function renderStrategyTable(m) {

@@ -64,6 +64,7 @@ class MarketState:
     book: BookSnapshot | None = None
     book_ts: float = 0.0
     healthy: bool = False
+    last_mark: float | None = None       # last two-sided mid, used while the book is unusable
     history: deque = field(default_factory=lambda: deque(maxlen=config.HISTORY_POINTS))
     trades: deque = field(default_factory=lambda: deque(maxlen=600))
     seen_ids: deque = field(default_factory=lambda: deque(maxlen=5000))
@@ -147,7 +148,8 @@ class Engine:
             ms.book_ts = now
             if ms.healthy:
                 b = ms.book
-                ms.history.append((now, b.bid, b.ask, (b.bid + b.ask) / 2))
+                ms.last_mark = (b.bid + b.ask) / 2
+                ms.history.append((now, b.bid, b.ask, ms.last_mark))
 
     def _poll_trades(self, now):
         for t, ms in list(self.markets.items()):
@@ -206,11 +208,13 @@ class Engine:
     # ----------------------------------------------------------- decisions
     def decide(self, ms: MarketState, now: float):
         with self.lock:
-            ms.last_decision = now
             if not ms.healthy or ms.book is None or now - ms.book_ts > 60:
+                # Pull quotes, but do not use up the decision slot: quote again
+                # as soon as a usable book arrives instead of a full interval later.
                 for name in ms.strategies:
                     self._cancel_all(ms, name, now, "book unavailable or stale")
                 return
+            ms.last_decision = now
             for s in self.strategies:
                 ss = ms.strategies[s.name]
                 if not s.available:
@@ -269,8 +273,10 @@ class Engine:
 
     # ----------------------------------------------------------- settlement
     def _poll_status(self, now):
+        # Every unsettled market, not only those near their expected close:
+        # games and other early-close markets can stop trading sooner.
         for t, ms in list(self.markets.items()):
-            if ms.status == "settled" or now < ms.close_ts - 120:
+            if ms.status == "settled":
                 continue
             try:
                 m = self.feed.market(t)
@@ -299,7 +305,9 @@ class Engine:
 
     # ----------------------------------------------------------- views
     def _mark(self, ms):
-        return (ms.book.bid + ms.book.ask) / 2 if ms.book is not None and ms.healthy else None
+        # Keep marking at the last known mid when the book is briefly one-sided
+        # or empty (e.g. between close and settlement), so PnL never vanishes.
+        return ms.last_mark
 
     def _strategy_view(self, s, ms, ss):
         mark = self._mark(ms)

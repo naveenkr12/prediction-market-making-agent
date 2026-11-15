@@ -128,3 +128,63 @@ def test_strategies_return_post_only_quotes(cls):
         assert action.bid is None or action.bid < 0.44
         assert action.ask is None or action.ask > 0.40
         assert action.bid_size <= 10 and action.ask_size <= 10
+
+
+# ------------------------------------------------------------- regression tests
+def test_effective_close_is_the_earlier_time():
+    from dashboard.kalshi_feed import effective_close, parse_ts
+    crypto = {"close_time": "2026-11-15T08:00:00Z", "expected_expiration_time": "2026-11-15T08:05:00Z"}
+    game = {"close_time": "2026-11-26T01:15:00Z", "expected_expiration_time": "2026-11-24T04:15:00Z"}
+    assert effective_close(crypto) == parse_ts("2026-11-15T08:00:00Z")   # trading stops at close_time
+    assert effective_close(game) == parse_ts("2026-11-24T04:15:00Z")     # backstop close_time is days later
+    assert effective_close({"close_time": "2026-11-15T08:00:00Z"}) == parse_ts("2026-11-15T08:00:00Z")
+
+
+def test_pnl_keeps_last_mark_when_book_becomes_one_sided():
+    e, ss = make_engine(Fixed(0.41, 0.43))
+    e.process_trades("TEST", [trade(1, T0 + 5, "no", 0.41, 100)])        # long 10
+    before = e.snapshot()["markets"][0]["strategies"][0]["pnl"]
+    e.update_book("TEST", {"orderbook_fp": {"yes_dollars": [], "no_dollars": []}}, T0 + 10)
+    snap = e.snapshot()
+    after = snap["markets"][0]["strategies"][0]["pnl"]
+    assert before is not None and after == pytest.approx(before)
+    assert snap["totals"]["fixed"]["pnl"] == pytest.approx(before)
+
+
+def test_unusable_book_does_not_use_up_the_decision_slot():
+    class RecoveringFeed(FakeFeed):
+        def books(self, tickers):
+            return {"TEST": book([(0.40, 50)], [(0.44, 30)])}
+        def trades(self, ticker, min_ts):
+            return []
+        def market(self, ticker):
+            return {"status": "active"}
+    e = Engine(RecoveringFeed(), [Fixed(0.40, 0.44)], decision_s=300)
+    e.add_market({"ticker": "TEST", "title": "t", "open_time": "2027-01-15T00:00:00Z",
+                  "close_time": "2027-01-15T12:00:00Z"}, now=T0)
+    ms = e.markets["TEST"]
+    e.update_book("TEST", {"orderbook_fp": {"yes_dollars": [["0.4000", "5.00"]], "no_dollars": []}}, T0)
+    e.decide(ms, T0)                                                     # one-sided: no quotes
+    assert ms.strategies["fixed"].orders == {}
+    e.tick(T0 + 5)                                                       # book recovers: quotes now, not 300 s later
+    assert set(ms.strategies["fixed"].orders) == {"bid", "ask"}
+
+
+def test_status_is_checked_long_before_expected_close():
+    class StatusFeed(FakeFeed):
+        calls = 0
+        def market(self, ticker):
+            StatusFeed.calls += 1
+            return {"status": "closed"}
+        def books(self, tickers):
+            return {}
+        def trades(self, ticker, min_ts):
+            return []
+    e = Engine(StatusFeed(), [Fixed(0.40, 0.44)], decision_s=300)
+    e.add_market({"ticker": "TEST", "title": "t", "open_time": "2027-01-15T00:00:00Z",
+                  "close_time": "2027-01-15T12:00:00Z"}, now=T0)
+    e.update_book("TEST", book([(0.40, 50)], [(0.44, 30)]), T0)
+    e.decide(e.markets["TEST"], T0)
+    e._poll_status(T0)                                                   # hours before expected close
+    assert StatusFeed.calls == 1 and e.markets["TEST"].status == "closed"
+    assert e.markets["TEST"].strategies["fixed"].orders == {}
