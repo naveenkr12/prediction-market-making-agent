@@ -12,6 +12,7 @@ appended to dashboard/runs/<start time>/ledger.jsonl.
 from __future__ import annotations
 
 import argparse
+import errno
 import json
 import logging
 import mimetypes
@@ -90,6 +91,16 @@ def main():
     a = ap.parse_args()
     logging.basicConfig(level="INFO", format="%(asctime)s %(levelname)s %(name)s: %(message)s")
 
+    # Claim the port before any API calls, model loading or run folder creation,
+    # so a second copy fails at once with a clear message.
+    try:
+        server = ThreadingHTTPServer(("127.0.0.1", a.port), BaseHTTPRequestHandler)
+    except OSError as exc:
+        if exc.errno == errno.EADDRINUSE:
+            raise SystemExit(f"Port {a.port} is already in use. Is the dashboard already running? "
+                             f"Stop it with Ctrl+C in its terminal, or start this one with --port {a.port + 1}.")
+        raise
+
     feed = KalshiFeed()
     strats = strategies.build(include_ppo=not a.no_ppo)
     for s in strats:
@@ -108,6 +119,7 @@ def main():
         log.info("discovering liquid markets closing within %.0f h ...", a.close_within_hours)
         markets = feed.discover(config.SERIES, a.close_within_hours, config.MIN_VOLUME_24H, a.max_markets)
     if not markets:
+        server.server_close()
         raise SystemExit("No markets found. Try --close-within-hours 48 or pass --tickers.")
     for m in markets:
         engine.add_market(m)
@@ -115,7 +127,7 @@ def main():
 
     stop = threading.Event()
     threading.Thread(target=run_engine, args=(engine, stop), daemon=True).start()
-    server = ThreadingHTTPServer(("127.0.0.1", a.port), make_handler(engine))
+    server.RequestHandlerClass = make_handler(engine)   # no requests are served before this point
     log.info("dashboard at http://127.0.0.1:%d  (paper only, no orders sent)", a.port)
     try:
         server.serve_forever()
