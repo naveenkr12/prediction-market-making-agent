@@ -18,7 +18,7 @@ From the repository root:
 
 ```bash
 pip install -r data_pipeline/requirements.txt -r calibration/requirements.txt
-pip install -r rl_agent/requirements-rl.txt      # optional: enables the PPO agent
+pip install -r rl_agent/requirements-rl.txt      # optional: enables the PPO and v3 agents (needs numpy>=2)
 python -m dashboard.server
 ```
 

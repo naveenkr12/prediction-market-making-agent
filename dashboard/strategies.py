@@ -91,12 +91,14 @@ class PPOAgent:
         self.model, self.available, self.reason = None, False, ""
         try:
             from stable_baselines3 import PPO
+        except ImportError as exc:
+            self.reason = f"stable-baselines3 not importable: {exc} (pip install -r rl_agent/requirements-rl.txt)"
+            return
+        try:
             self.model = PPO.load(str(model_path), device="cpu")
             self.available = True
-        except ImportError:
-            self.reason = "stable-baselines3 not installed (pip install -r rl_agent/requirements-rl.txt)"
-        except Exception as exc:   # missing or unreadable model file
-            self.reason = f"model not loaded: {exc}"
+        except Exception as exc:   # missing/unreadable model, or numpy/torch version mismatch
+            self.reason = f"model not loaded: {exc!r} (models need numpy>=2; see rl_agent/requirements-rl.txt)"
 
     def quote(self, ctx: Context):
         p = ctx.probability
@@ -131,13 +133,15 @@ class V3Agent:
         try:
             from stable_baselines3 import PPO
             from rl_agent.v3.features import FeatureTracker, decode_action
-            self._tracker_cls, self._decode = FeatureTracker, decode_action
+        except ImportError as exc:
+            self.reason = f"import failed: {exc} (pip install -r rl_agent/requirements-rl.txt)"
+            return
+        self._tracker_cls, self._decode = FeatureTracker, decode_action
+        try:
             self.model = PPO.load(str(model_path), device="cpu")
             self.available = True
-        except ImportError:
-            self.reason = "stable-baselines3 not installed (pip install -r rl_agent/requirements-rl.txt)"
-        except Exception as exc:
-            self.reason = f"model not loaded: {exc}"
+        except Exception as exc:   # missing/unreadable model, or numpy/torch version mismatch
+            self.reason = f"model not loaded: {exc!r} (models need numpy>=2; see rl_agent/requirements-rl.txt)"
 
     def quote(self, ctx: Context):
         tr = self.trackers.setdefault(ctx.ticker, self._tracker_cls())
