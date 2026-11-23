@@ -35,7 +35,14 @@ doesn't capture)?
 │   └── README.md                                — implementation notes, fixes,
 │                                                    and fidelity vs. the published
 │                                                    Table 2 / Figures 1-5
-└── rl_agent/                                     — RL quoting agent (in progress)
+├── rl_agent/                                     — RL quoting agents
+│   ├── README.md                                — v2: first PPO agent in the
+│   │                                                calibrated simulator
+│   └── v3/                                      — v3: flow-aware, live-compatible
+│       └── README.md                              agent (300 s and 60 s versions),
+│                                                    results and limitations
+└── dashboard/                                    — live paper-quoting dashboard on
+                                                     Kalshi data (no orders sent)
 ```
 
 ## Status
@@ -49,8 +56,10 @@ doesn't capture)?
 | Simulator market activity, sizes and background noise | Done — training event/phase counts, paired empirical marks and quote-based flow-adjusted noise; trailing quote coverage documented |
 | Full quoting/fill/cash/inventory environment | Done — post-only quotes, queue/participation fill scenarios, collateral, fractional fees, binary settlement and ledger validation; historical L2 fill calibration pending |
 | HJB reference in calibrated environment | Done — frozen policy adapter, explicit normalized time/partial-inventory handling; 25,200 paired synthetic episodes with PnL, VaR/ES, inventory and drawdown checks |
-| RL quoting agent | Not started |
-| RL vs. HJB benchmark comparison | Not started |
+| RL quoting agent v2 (`rl_agent/`) | Done — first PPO agent; it learned to quote almost never (about 0.1 fills per episode), so its result is close to "no quote". Kept for the record |
+| RL quoting agent v3 (`rl_agent/v3/`) | Done — control-variate reward, live-computable features, per-side sizing, domain randomization; 300 s and 60 s decision versions (`decision_seconds` in the simulator) |
+| RL vs. HJB benchmark comparison | Done in the simulator, on held-out seeds with paired evaluation. With 60 s decisions, v3 is the best or tied in every cell and the only policy with positive expected PnL under randomized conditions (+0.031 [+0.006, +0.053] per episode; +0.150 vs HJB). The edge is small: realized-PnL intervals still include zero at 3,000 episodes. Details and limitations in `rl_agent/v3/README.md` |
+| Live paper-quoting dashboard (`dashboard/`) | Done — runs HJB, fixed, skew, v2 PPO and v3 on live Kalshi data with simulated fills; paper only. v3 has been run live only briefly, so it is not live-validated |
 
 Paper 2's data-readiness sample is stored separately in
 `data_pipeline/output/paper2/`: 30 economics and 30 sports contracts, all with
@@ -73,8 +82,15 @@ trading environment now connects these drivers to quotes, fills, cash,
 collateral, fees and settlement; see `simulator/TRADING_ENVIRONMENT.md`.
 Execution assumptions need richer orderbook data before empirical policy
 claims. The frozen HJB policy now runs in that environment with paired
-profit/risk comparisons; see `simulator/HJB_BENCHMARK.md`. Risk calibration and
-RL training/evaluation remain.
+profit/risk comparisons; see `simulator/HJB_BENCHMARK.md`. The v3 RL agent is
+trained and evaluated in that environment (`rl_agent/v3/README.md`); its gains
+are simulated, not live results.
+
+Remaining work: calibrate fills on historical order-book data (the simulator's
+queue and participation settings are assumptions), recalibrate volume templates
+on current-season markets (live NFL/NBA volumes are far above the summer
+templates), use per-series maker fees, try event-driven re-quoting, train on
+recorded live books, and validate v3 on longer live paper runs.
 
 ## Reference papers
 
@@ -103,6 +119,13 @@ see `docs/Prediction_Market_Making_Proposal.pdf` for full citations:
   train-only spreads, fees, settlement, assumptions and reproducible episodes.
 - `simulator/HJB_BENCHMARK.md` — frozen HJB strategy in the calibrated
   environment, paired PnL/VaR/ES comparisons and uncertainty limits.
+- `rl_agent/README.md` — v2 PPO agent in the calibrated simulator, including a
+  documented reward-shaping bug and its fix.
+- `rl_agent/v3/README.md` — v3 agent: what changed and why, held-out results at
+  300 s and 60 s, what the policy learned, limitations, and how to reproduce.
+- `dashboard/README.md` — run the live paper-quoting dashboard
+  (`python -m dashboard.server --decision-seconds 60 --close-within-hours 1`,
+  then open http://127.0.0.1:8050).
 - `hjb_baseline/README.md` — how the HJB benchmark was implemented, how to
   reproduce it, and an honest fidelity assessment against the published
   results (what matches closely, what doesn't, and why).
