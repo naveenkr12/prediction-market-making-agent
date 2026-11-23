@@ -1,5 +1,5 @@
 // Live quoting dashboard: polls the local engine API and draws real vs simulated quotes.
-const COLORS = { hjb: "#2563eb", fixed: "#9333ea", skew: "#d97706", ppo: "#059669" };
+const COLORS = { hjb: "#2563eb", fixed: "#9333ea", skew: "#d97706", ppo: "#059669", v3: "#dc2626" };
 const REFRESH_MS = 3000;
 let selected = null;
 try { selected = localStorage.getItem("dash.market"); } catch (e) {}
@@ -77,7 +77,7 @@ function renderHead(m, st) {
 
 function renderStrategyTable(m) {
   const rows = m.strategies.map(s => {
-    if (!s.available) return `<tr><td><span class="swatch" style="background:${COLORS[s.name]}"></span> ${esc(s.label)}</td>
+    if (!s.available) return `<tr><td><span class="swatch" style="background:${(COLORS[s.name] || "#888")}"></span> ${esc(s.label)}</td>
       <td colspan="7" class="muted" style="text-align:left">${esc(s.note)}</td></tr>`;
     const b = s.orders.bid, a = s.orders.ask;
     const side = o => o ? `${fmt(o.price)} <span class="muted">×${fmt(o.remaining, 0)}</span>` : '<span class="muted">–</span>';

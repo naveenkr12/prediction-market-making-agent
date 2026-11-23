@@ -35,6 +35,8 @@ SERIES = ["KXNFLGAME", "KXNCAAFGAME", "KXNBAGAME", "KXNHLGAME", "KXMLBGAME", "KX
           "KXNASDAQ100", "KXWTI", "KXFEDDECISION", "KXCPI", "KXAAAGASW"]
 
 PPO_MODEL = ROOT / "rl_agent" / "models" / "ppo_capstone_broad_v2.zip"
+V3_MODEL = ROOT / "rl_agent" / "v3" / "models" / "ppo_v3.zip"            # trained on 300 s decisions
+V3_60_MODEL = ROOT / "rl_agent" / "v3" / "models" / "ppo_v3_60s.zip"   # trained on 60 s decisions
 
 HISTORY_POINTS = 4000           # per market chart history (about 5.5 h at 5 s)
 RUNS_DIR = Path(__file__).resolve().parent / "runs"

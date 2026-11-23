@@ -1,0 +1,11 @@
+3,203,072 steps     290s  ep_reward(train, raw) +0.056
+3,403,776 steps     580s  ep_reward(train, raw) +0.035
+3,604,480 steps     871s  ep_reward(train, raw) -0.703
+3,805,184 steps    1159s  ep_reward(train, raw) -0.044
+4,005,888 steps    1454s  ep_reward(train, raw) -0.106
+4,206,592 steps    1745s  ep_reward(train, raw) -0.147
+4,407,296 steps    2044s  ep_reward(train, raw) +0.008
+4,608,000 steps    2349s  ep_reward(train, raw) +0.056
+4,808,704 steps    2644s  ep_reward(train, raw) -0.334
+5,005,312 steps    2935s  ep_reward(train, raw) -0.047
+saved rl_agent/v3/models/ppo_v3_l002_s1_ft.zip after 48.9 min

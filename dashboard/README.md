@@ -7,7 +7,10 @@ No orders are ever sent. Fills are simulated from real trades.
 Strategies: HJB (Paper 1, `simulator/hjb_policy.py`), fixed spread and
 inventory skew (`simulator/policies.py`), and the PPO agent from
 `rl_agent/models/ppo_capstone_broad_v2.zip` (Naveen's calibrated-simulator
-agent).
+agent), and the v3 RL market maker from
+`rl_agent/v3/models/ppo_v3.zip` (flow-aware, sized, one-sided quoting; see
+`rl_agent/v3/README.md`). v3 was trained on the final hour before close and
+mostly waits until then.
 
 ## Run
 

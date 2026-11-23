@@ -1,0 +1,10 @@
+2026-11-23 19:20:22,150 INFO dashboard.server: strategy hjb    ready 
+2026-11-23 19:20:22,151 INFO dashboard.server: strategy fixed  ready 
+2026-11-23 19:20:22,151 INFO dashboard.server: strategy skew   ready 
+2026-11-23 19:20:22,151 INFO dashboard.server: strategy ppo    ready 
+2026-11-23 19:20:22,151 INFO dashboard.server: strategy v3     ready 
+2026-11-23 19:20:22,151 INFO dashboard.server: discovering liquid markets closing within 1 h ...
+2026-11-23 19:21:03,376 INFO dashboard.server: tracking KXBTCD-26NOV2315-T61599.99  Bitcoin price on Nov 23, 2026?
+2026-11-23 19:21:03,376 INFO dashboard.server: tracking KXWTI-26NOV2314-T80.49  Will the WTI crude oil settlement price be above 80.49 USD/Bbl on Nov 
+2026-11-23 19:21:03,376 INFO dashboard.server: tracking KXINXU-26NOV23H1500-T7269.9999  Will the S&P 500 be above 7269.9999 on Nov 23, 2026 at 3pm EST?
+2026-11-23 19:21:03,377 INFO dashboard.server: dashboard at http://127.0.0.1:8051  (paper only, no orders sent)

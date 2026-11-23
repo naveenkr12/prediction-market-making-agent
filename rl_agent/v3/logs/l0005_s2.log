@@ -1,0 +1,16 @@
+  200,704 steps     309s  ep_reward(train, raw) -0.021
+  401,408 steps     617s  ep_reward(train, raw) -0.223
+  602,112 steps     939s  ep_reward(train, raw) -0.131
+  802,816 steps    1264s  ep_reward(train, raw) -0.260
+1,003,520 steps    1563s  ep_reward(train, raw) -0.071
+1,204,224 steps    1890s  ep_reward(train, raw) -0.121
+1,404,928 steps    2339s  ep_reward(train, raw) -0.015
+1,605,632 steps    2649s  ep_reward(train, raw) -0.222
+1,806,336 steps    2951s  ep_reward(train, raw) -0.505
+2,007,040 steps    3243s  ep_reward(train, raw) +0.082
+2,207,744 steps    3537s  ep_reward(train, raw) +0.095
+2,408,448 steps    3838s  ep_reward(train, raw) +0.066
+2,609,152 steps    4134s  ep_reward(train, raw) +0.024
+2,809,856 steps    4433s  ep_reward(train, raw) +0.103
+3,002,368 steps    4717s  ep_reward(train, raw) +0.034
+saved rl_agent/v3/models/ppo_v3_l0005_s2.zip after 78.6 min

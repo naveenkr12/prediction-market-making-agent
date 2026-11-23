@@ -90,12 +90,17 @@ class MarketDynamics:
         if not np.isfinite(self.quantities).all() or not (self.quantities>0).all() or not np.isin(self.signs, [-1, 1]).all():
             raise ValueError("Invalid empirical trade marks")
 
-    def sample_window(self, life_fraction: float, rng) -> dict:
+    def sample_window(self, life_fraction: float, rng, max_duration_seconds: float = 300.0) -> dict:
+        """One decision window. ``max_duration_seconds`` < 300 gives finer decisions;
+        counts keep the calibrated per-second rate (Gamma-Poisson scaled to the
+        window), so shorter windows lose some within-5-minute clustering."""
         if not np.isfinite(life_fraction) or not 0 <= life_fraction < 1:
             raise ValueError("Life fraction must be in [0,1)")
+        if not np.isfinite(max_duration_seconds) or not 0 < max_duration_seconds <= 300:
+            raise ValueError("Window length must be in (0, 300] seconds")
         phase = min(int(life_fraction*self.n_phases), self.n_phases-1)
         record = self.template["phases"][phase]
-        duration = min(300.0, (1-life_fraction)*self.template["lifetime_seconds"])
+        duration = min(float(max_duration_seconds), (1-life_fraction)*self.template["lifetime_seconds"])
         n = int(sample_counts(float(record["arrival_rate_per_second"])*self.rate_scale,
                               float(record["gamma_poisson_alpha"]), rng, duration_seconds=duration)[0])
         if n > 2_000_000:
