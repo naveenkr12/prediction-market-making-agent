@@ -1,0 +1,197 @@
+\documentclass[11pt,letterpaper]{article}
+\usepackage[margin=0.66in,top=0.68in,bottom=0.66in,headheight=14pt,headsep=15pt,footskip=22pt]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern,microtype}
+\usepackage{amsmath,amssymb,booktabs,tabularx,array}
+\usepackage[table]{xcolor}
+\usepackage{enumitem,titlesec,fancyhdr,hyperref}
+\definecolor{navy}{HTML}{17334D}
+\definecolor{teal}{HTML}{177A82}
+\definecolor{muted}{HTML}{536271}
+\definecolor{pale}{HTML}{EDF4F7}
+\hypersetup{colorlinks=true,linkcolor=teal,urlcolor=teal,citecolor=teal,pdftitle={Paper 2: Implementation, Advancement Beyond Paper 1, and Remaining Work},pdfauthor={Naveen Singh}}
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\sffamily\small\color{muted} PREDICTION MARKET MAKING AGENT}
+\fancyhead[R]{\sffamily\small\color{muted} RESEARCH IMPLEMENTATION NOTE}
+\fancyfoot[L]{\sffamily\footnotesize\color{muted} Naveen Singh\enspace$\cdot$\enspace9 October 2026}
+\fancyfoot[R]{\sffamily\footnotesize\color{muted}\thepage\ /\ 3}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0pt}
+\titleformat{\section}{\sffamily\large\bfseries\color{navy}}{}{0pt}{}
+\titleformat{\subsection}{\sffamily\normalsize\bfseries\color{navy}}{}{0pt}{}
+\titlespacing*{\section}{0pt}{9pt}{4pt}
+\titlespacing*{\subsection}{0pt}{6pt}{3pt}
+\setlength{\parindent}{0pt}
+\setlength{\emergencystretch}{1.2em}
+\setlength{\parskip}{3.5pt}
+\setlength{\abovedisplayskip}{5pt}
+\setlength{\belowdisplayskip}{5pt}
+\setlength{\abovedisplayshortskip}{4pt}
+\setlength{\belowdisplayshortskip}{4pt}
+\setlist[itemize]{leftmargin=14pt,itemsep=2pt,topsep=3pt,parsep=0pt}
+\newcolumntype{Y}{>{\raggedright\arraybackslash}X}
+\newcommand{\logit}{\operatorname{logit}}
+\newcommand{\Cov}{\operatorname{Cov}}
+\newcommand{\Var}{\operatorname{Var}}
+\newcommand{\E}{\mathbb{E}}
+\newcommand{\pagebanner}[2]{%
+  {\sffamily\footnotesize\bfseries\color{teal} #1\par}\vspace{3pt}%
+  {\sffamily\fontsize{20}{23}\selectfont\bfseries\color{navy} #2\par}\vspace{5pt}}
+\newcommand{\takeaway}[1]{%
+  \begingroup\setlength{\fboxsep}{8pt}%
+  \colorbox{pale}{\parbox{\dimexpr\linewidth-16pt\relax}{#1}}\par\endgroup}
+
+\begin{document}
+\fontsize{10}{12}\selectfont
+
+\pagebanner{01 / IMPLEMENTED CORE}{Paper 2: From Trade Flow to Price Impact}
+{\sffamily\color{muted} Implementation status, advancement beyond Paper 1, and remaining research}
+
+\takeaway{\textbf{Contribution.} The project now connects Bartlett and O'Hara's empirical Kyle's $\lambda$ framework to a training-calibrated market-making environment and evaluates the existing HJB policy within it. This completes the core impact integration; it does not reproduce every analysis in Paper 2 or establish an improved optimal strategy.}
+
+\section{Empirical foundation and estimator}
+Paper 2 studies adverse selection in binary prediction markets: a maker's counterparties may trade on information that subsequently moves prices against the maker. Its main comparison is \emph{single-name} versus \emph{broad-based} markets \cite{bartlett}. Sports remains a separate class in our implementation.
+
+The verified Kalshi sample contains \textbf{60 settled contracts, 68,866 trades and 14,318 active five-minute intervals}. Taker directions and fractional sizes are retained; block trades and duplicate IDs are excluded. Empty intervals are not interpolated. Every primary market fit has at least 50 usable active intervals. Event-preserving train/validation/test splits contain 36/12/12 contracts; overlapping histories mean this is not a strict chronological walk-forward split \cite{repo}.
+
+For trade $i$, let $s_i=+1$ for a YES taker, $s_i=-1$ for a NO taker, and $c_i>0$ denote contracts. For market $j$ and five-minute bucket $h$:
+\begin{equation}
+ F_{j,h}=\sum_{i\in h}s_i c_i,\qquad
+ \Delta L_{j,h}=\logit(p^{\rm last}_{j,h})-\logit(p^{\rm first}_{j,h}),
+ \quad \logit(p)=\log\frac{p}{1-p}.
+ \label{eq:flow}
+\end{equation}
+Prices $p$ are YES probabilities. First and last prices are transactions \emph{within the same bucket}; endpoints at 0 or 1 are excluded from log-odds estimation. Paper 2's central regression (its Eq.~1) is implemented market by market:
+\begin{equation}
+ \Delta L_{j,h}=a_j+\lambda_j F_{j,h}+\epsilon_{j,h}.
+ \label{eq:kyle}
+\end{equation}
+$\lambda_j$ is measured in \textbf{log odds per net contract}; a companion regression uses cents. HC1 and calendar-aware HAC standard errors, multiple-testing adjustments, endpoint/lifetime sensitivities and influential-bucket diagnostics extend the paper's point estimator. Negative estimates are retained. In this sample, 40/60 primary HAC intervals include zero, and 35/60 slopes change by more than 50\% when the highest-leverage bucket is removed.
+
+\section{Translating measured lambda into the simulator}
+Our project extension applies a signed-flow jump to latent log odds:
+\begin{equation}
+ L_{k+1}=L_k+\beta_g s_kc_k+\varepsilon_k,
+ \qquad p_{k+1}=\frac{1}{1+e^{-L_{k+1}}},
+ \label{eq:impact}
+\end{equation}
+where $g$ denotes market class and $\varepsilon_k$ is background movement. Flow is applied once, including the volume underlying any own fill. Since a post-trade opening reference already contains the first jump, $E_{j,h}=F_{j,h}-s_{\rm first}c_{\rm first}$. For zero-innovation reference replay, calibration uses
+\begin{equation}
+ r_j=\frac{\Cov(F_{j,h},E_{j,h})}{\Var(F_{j,h})},\qquad
+ \lambda_j^{\rm replay}=\beta_g r_j,\qquad
+ \beta_g=\frac{\max\{0,\operatorname{median}_{j\in g,\,\mathrm{train}}\widehat\lambda_j\}}
+ {\operatorname{median}_{j\in g,\,\mathrm{train}}r_j}.
+ \label{eq:mapping}
+\end{equation}
+Only \textbf{36 training contracts, 44,506 trades and 9,424 buckets} determine calibration. Base $\beta_g$ is $5.47379\times10^{-5}$ for broad-based and $1.26983\times10^{-5}$ for sports. Zero/low/base/high scenarios include estimation and sensitivity uncertainty; they are stress settings, not causal confidence bounds. Reference replay is verified; full execution-price lambda validation remains pending.
+
+\newpage
+\pagebanner{02 / ADVANCEMENT BEYOND PAPER 1}{A Calibrated Environment for the HJB Benchmark}
+
+\section{What Paper 1 established}
+Feil and Nendel model price as a conditional settlement probability and optimize bid/ask quotes using HJB control \cite{feil}. With cash $X$, inventory $q$, outcome $Y\in\{0,1\}$ and admissible quotes $\pi$, the original foundation is
+\begin{align}
+ dp_t&=\varsigma(t,p_t)dW_t,
+ \qquad \varsigma(t,p)=p(1-p)\bar\sigma(t,p),
+ \qquad Y\mid\mathcal F_T\sim\operatorname{Bernoulli}(p_T), \label{eq:paper1price}\\
+ \sup_{\pi}\E\!\Bigl[X_T+q_TY
+ &-\gamma\int_0^T q_t^2\varsigma(t,p_t)^2\,dt
+ -\gamma_Tq_T^2p_T(1-p_T)\Bigr]. \label{eq:paper1objective}
+\end{align}
+The baseline solver, parameters and saved value function are preserved. Paper 1 includes price-, time- and quote-dependent execution intensities, inventory limits and settlement risk; it does not directly couple signed executions to reference-price jumps. Its theoretical optimum applies to its stated model.
+
+\section{What the project now adds}
+\textbf{Activity, sizes and noise.} Training templates retain ten lifetime phases, quiet periods and paired fractional size/side marks. A gamma--Poisson count model captures overdispersion. Background log-odds volatility is fitted from observed five-minute midpoint changes after removing their fitted linear flow association. Innovations resample standardized empirical residuals and scale as $\sigma_g\sqrt{\Delta t}$, with time in seconds. This residual component is not a causally identified fundamental-price process.
+
+\textbf{Execution and accounting.} Post-only quotes connect to queue/participation scenarios, partial fills, cash reserves, collateral, fees and binary settlement. If $m_i$ is the signed maker quantity (buy positive), $P_i$ its actual execution price, and $f_i$ its fee:
+\begin{equation}
+ q_{i+1}=q_i+m_i,\quad C_{i+1}=C_i-P_im_i-f_i,\quad
+ W_t=C_t+q_tp_t,\quad W_T=C_{T^-}+q_{T^-}Y.
+ \label{eq:accounts}
+\end{equation}
+Fills are booked at standing quotes \emph{before} the aggregate-flow jump. Maker quantity is opposite to taker direction; own fills are not added to flow twice. Exact-money ledgers audit the complete accounting.
+
+\begin{center}
+\small
+\begin{tabularx}{\linewidth}{@{}p{0.20\linewidth}YY@{}}
+\toprule
+\textbf{Dimension} & \textbf{Paper 1 reproduction} & \textbf{Current extension}\\
+\midrule
+Price response & Diffusion without direct signed-flow jumps & Empirical class-specific flow impact plus residual movement\\
+Market inputs & Published illustrative parameters & Training-calibrated activity, marks, noise and spreads\\
+Execution & Fixed-size intensity-driven fills & Partial fills, proxy queues, collateral and explicit fee scenarios\\
+Strategy assessment & HJB optimum in the original model & Frozen HJB tested against fixed-spread, skew and no-quote policies\\
+\bottomrule
+\end{tabularx}
+\end{center}
+
+\section{Verified findings and their interpretation}
+Across 35 training templates, \textbf{25,200 paired synthetic episodes} were audited; \textbf{83 tests} pass. One-hour runs start at $p_0=0.5$, $q_0=0$. Base fills assume 50 contracts ahead, 10\% participation and maker-fee multiplier 1. The table reports HJB net PnL and ES95, the average loss in the worst 5\% of episodes:
+\begin{center}
+\small
+\begin{tabular}{@{}lrrrr@{}}
+\toprule
+ & \multicolumn{3}{c}{\textbf{Mean PnL by impact scenario (USD)}} & \textbf{Base ES95 loss}\\
+\cmidrule(lr){2-4}
+\textbf{Class} & \textbf{Zero} & \textbf{Base} & \textbf{High} & \textbf{(USD)}\\
+\midrule
+Broad-based & 0.17 & 0.08 & 0.05 & 11.36\\
+Sports      & 0.51 & 0.20 & $-2.37$ & 18.08\\
+\bottomrule
+\end{tabular}
+\end{center}
+\textbf{The step up is empirical risk assessment, not proven higher profits.} Base mean-PnL bootstrap ranges include zero. Sports skew quoting has lower base tail loss than HJB. Fills remain assumed, all benchmark episodes extrapolate noise support, and settlement is synthetic. The new log-odds driver need not be a probability martingale: the preserved HJB is a reference policy, not a newly proven optimum or a historical profitability backtest.
+
+\newpage
+\pagebanner{03 / REMAINING WORK}{Complete the Paper 2 Research Programme}
+\takeaway{\textbf{Scope remaining.} Complete the paper's permanent-impact, spread, behavioral-profit, market-type and real-time toxicity analyses; then validate the integrated environment on held-out events.}
+
+\subsection{1. Separate permanent and transitory impact}
+Implement Glosten--Harris (Paper 2, Eq.~2) with the same response and market-level sample rules:
+\begin{equation}
+ \Delta L_{j,h}=b_{0,j}+b_{1,j}F_{j,h}
+ +b_{2,j}(F_{j,h}-F_{j,h-1})+u_{j,h}.
+ \label{eq:gh}
+\end{equation}
+$b_1$ and $b_2$ represent permanent and transitory impact. Define lags across quiet periods and compare nested fits with uncertainty. Kyle's slope alone does not establish permanent private-information impact.
+
+\subsection{2. Measure effective spreads and settlement-based profitability}
+Using observed as-of midpoint $M_i$ and actual outcome $Y_j$, reproduce effective half-spreads, passive-side profit and its decomposition (Paper 2, Eqs.~3, 6--7):
+\begin{align}
+ \mathrm{EHS}_i&=s_i(P_i-M_i),\qquad
+ \Pi_i^{\rm maker}=(Y_j-P_i)m_i,\quad m_i=-s_ic_i, \label{eq:spreadprofit}\\
+ \E[\pi^{\rm maker}]&=(w-\tfrac12)(A+B)+\tfrac12(A-B). \label{eq:decomposition}
+\end{align}
+Prices/payoffs are dollars; $w$ is the contract-weighted win rate and $A,B>0$ the mean win/loss per contract. Test YES-price miscalibration and frequency/magnitude edges. Audit quote staleness and distinguish the paper's before-fee aggregate profits from our net strategy PnL.
+
+\subsection{3. Implement a trailing flow-toxicity signal}
+Reproduce trailing VPIN (Paper 2, Eqs.~8--9) using complete \$500 dollar-volume buckets; split boundary-crossing trades proportionally. For YES/NO taker dollar volumes $V^B_\tau,V^S_\tau$:
+\begin{equation}
+ \mathrm{TVPIN}_t=\frac1{20}\sum_{\tau=t-20}^{t-1}
+ \frac{|V^B_\tau-V^S_\tau|}{V_\tau},\qquad
+ V_\tau=V^B_\tau+V^S_\tau.
+ \label{eq:vpin}
+\end{equation}
+Predict next-bucket losses from prior buckets only. Apply the paper's 30--70 cent volume-weighted YES-price restriction and test alternative bucket sizes. VPIN is not an estimated fraction of informed traders.
+
+\subsection{4. Reproduce the central market-type comparison}
+Collect more \textbf{single-name} markets: the current sample has only one, versus 29 broad-based and 30 sports. Estimate the paper's cross-sectional model (its Eq.~4):
+\begin{equation}
+ \mathrm{AS}_j=d_0+d_1\mathbb{I}_{\mathrm{SN},j}+d_2^{\top}X_j+v_j.
+ \label{eq:crosssection}
+\end{equation}
+$\mathbb{I}_{\mathrm{SN},j}$ indicates single-name, $\mathrm{AS}_j$ is an impact/spread measure, and $X_j$ contains controls. Keep sports distinct and test settlement-conditioned evidence; report selection bias.
+
+\subsection{5. Validate the integrated environment before policy claims}
+Check full-simulator \emph{transaction-price} lambda; reference replay is already verified. Validate fills with ordered trades/book updates and queue/latency checks. Fit risk settings on train data, freeze them, and test held-out events with calendar cutoffs, dependence/coverage checks and dated fees. RL training/comparison remains subsequent capstone work.
+
+{\fontsize{8.5}{10.2}\selectfont
+\renewcommand{\refname}{Sources and reproducibility}
+\begin{thebibliography}{3}
+\setlength{\itemsep}{1pt}\setlength{\parskip}{0pt}
+\bibitem{feil} D. Feil and M. Nendel (2026), \emph{Optimal Market Making in Prediction Markets}, arXiv:2607.17991; Sections 2--4.
+\bibitem{bartlett} R. Bartlett and M. O'Hara (2026), \emph{Adverse Selection in Prediction Markets: Evidence from Kalshi}, author manuscript, 10 August; Sections 4--6.
+\bibitem{repo} N. Singh, \href{https://github.com/naveenkr12/prediction-market-making-agent/tree/5a76b35de7af8e56553d30ccee0a559641390ee5}{\emph{prediction-market-making-agent}}, commit \texttt{5a76b35}. Calibration definitions, environment methods and HJB benchmark results are archived with this implementation.
+\end{thebibliography}}
+\end{document}
