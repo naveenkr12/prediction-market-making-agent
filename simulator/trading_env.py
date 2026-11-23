@@ -37,6 +37,7 @@ class EnvironmentConfig:
     balance_precision: str = "0.0001"
     start_life_fraction: float = .9
     max_steps: int = 10000
+    decision_seconds: float = 300
     inventory_penalty_per_contract2_second: float = 0
     terminal_penalty_per_contract2: float = 0
 
@@ -46,7 +47,8 @@ class EnvironmentConfig:
         tick = decimal(self.price_tick)
         if (not np.isfinite(numbers).all() or not 0<self.participation<=1 or self.queue_ahead_contracts<0 or
                 not 0<=self.start_life_fraction<1 or self.max_steps<1 or int(self.max_steps)!=self.max_steps or
-                min(numbers[-2:])<0 or not 0<tick<.5 or decimal(1)%tick!=0):
+                min(numbers[-2:])<0 or not 0<tick<.5 or decimal(1)%tick!=0 or
+                not np.isfinite(self.decision_seconds) or not 0<self.decision_seconds<=300):
             raise ValueError("Invalid environment scenario or price tick")
 
 
@@ -201,7 +203,9 @@ class TradingEnvironment:
         diagnostics = self._replace(action) if action is not None else {}
         self.step_number += 1
         start = self.elapsed
-        window = self.dynamics.sample_window(start/self.lifetime, self.market_rng)
+        window = (self.dynamics.sample_window(start/self.lifetime, self.market_rng)
+                  if self.config.decision_seconds == 300 else
+                  self.dynamics.sample_window(start/self.lifetime, self.market_rng, self.config.decision_seconds))
         duration = float(window["duration_seconds"])
         if not 0<duration<=300 or duration>self.lifetime-start+1e-7:
             raise ValueError("Market driver returned invalid window duration")

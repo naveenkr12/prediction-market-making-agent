@@ -120,6 +120,11 @@ class V3Agent:
     """
     name, label = "v3", "RL v3 agent"
 
+    @staticmethod
+    def model_for(decision_s: float):
+        """Flow features depend on the window length, so match the model to the cadence."""
+        return config.V3_60_MODEL if decision_s <= 120 else config.V3_MODEL
+
     def __init__(self, model_path=config.V3_MODEL):
         self.model, self.available, self.reason = None, False, ""
         self.trackers = {}
@@ -149,11 +154,14 @@ class V3Agent:
                         "flow_last": round(tr.last_flow, 1), "sizes": [bs, as_]}
 
 
-def build(include_ppo: bool = True) -> list:
+def build(include_ppo: bool = True, decision_s: float = config.DECISION_S) -> list:
     out = [HJB(), FixedSpread(), InventorySkew()]
     if include_ppo:
         out.append(PPOAgent())
-        out.append(V3Agent())
+        v3 = V3Agent(V3Agent.model_for(decision_s))
+        if decision_s <= 120:
+            v3.label = "RL v3 agent (60 s)"
+        out.append(v3)
     return out
 
 

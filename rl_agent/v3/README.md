@@ -89,6 +89,54 @@ contracts of net flow arrived in 60 s, which pushes the volume features outside
 their training range. Before the final hour the dashboard pins the episode
 clock at its start, where v3 mostly waits.
 
+## 60-second decisions (`ppo_v3_60s.zip`)
+
+The simulator now accepts `EnvironmentConfig(decision_seconds=...)`, which can
+be anything up to 300. The default stays 300, so existing results are
+unchanged; inside the simulator only `sample_window` gained an optional
+argument. Trade counts keep the calibrated per-second rate. A 60 s window
+draws its own Gamma-Poisson count, so some of the within-5-minute clustering
+is lost.
+
+**What re-quoting every 60 s does to simple rules** (`frontier.py`, 400 seeds
+per rule): the best rule improves from -0.020 to -0.011 per episode, and
+tight quotes become viable. Across all 32 rules the median change is -0.02.
+Most adverse selection comes from the impact of the trade that fills you,
+which faster re-quoting cannot avoid.
+
+**Agent.** Same design as v3, trained at 60 s (60 decisions per hour, 5M
+steps, lambda = 0.002). Two seeds were trained and selected on validation
+seeds. The run's 2.4M-step checkpoint was also checked and was worse.
+
+**Held-out test (seeds 500000-502999, every baseline also re-quotes every 60 s)**
+
+| Cell | v3 @300s | **v3 @60s** | tuned @60s | HJB @60s | v3@60s - tuned |
+|---|---|---|---|---|---|
+| Randomized | +0.027 [+0.010, +0.043] | **+0.031 [+0.006, +0.053]** | -0.062 | -0.120 | **+0.093 [+0.055, +0.130]** |
+| Sports | +0.056 | **+0.183 [+0.165, +0.202]** | +0.150 | +0.127 | **+0.033 [+0.017, +0.049]** |
+| Broad-based | +0.088 | **+0.147 [+0.129, +0.165]** | +0.154 | +0.149 | -0.007 [-0.018, +0.005] |
+
+Values are expected PnL per episode (variance-reduced estimator, 95% CI).
+Realized-PnL means at 60 s are +0.086 (randomized), +0.125 (sports) and +0.124
+(broad); all of their CIs still include 0.
+
+What this shows:
+- **60 s mostly helps through the cadence itself.** Sports edge roughly
+  triples for v3, and HJB and the tuned rule improve too.
+- **v3 @60s is the best or tied in every cell.** Under randomized conditions
+  it is still the only positive policy, beating HJB by +0.150 [+0.093, +0.205].
+- **Its randomized edge did not improve over the 300 s agent on test**
+  (+0.031 vs +0.027). Validation had suggested +0.056; that gap is
+  seed-to-seed noise.
+- **It takes more risk:** PnL std 3.6 (randomized) and 5.8 (sports) vs 2.9 and
+  2.8 at 300 s, and sports ES95 is 15.0 vs 7.5. Per unit of risk it is only
+  modestly better in sports (0.032 vs 0.020 per-episode Sharpe).
+
+**Live use:** `python -m dashboard.server --decision-seconds 60`. The `v3`
+strategy then loads `ppo_v3_60s.zip` automatically. Flow features depend on
+the window length, so each model is used only at its own cadence (60 s for
+intervals of 120 s or less, otherwise 300 s).
+
 ## Limitations
 
 - Simulated edge only. Fills, queues and impact are the calibrated scenarios,
@@ -113,7 +161,9 @@ clock at its start, where v3 mostly waits.
 | `evaluate_v3.py` | Paired evaluation vs all baselines, bootstrap CIs |
 | `tune_heuristic.py` | Grid search for the strongest simple baseline |
 | `diagnose.py` | What the policy does (actions vs flow, time, group) |
-| `models/ppo_v3.zip` | Selected model (3M steps, lambda = 0.002) |
+| `models/ppo_v3.zip` | Selected 300 s model (3M steps, lambda = 0.002) |
+| `models/ppo_v3_60s.zip` | Selected 60 s model (5M steps, lambda = 0.002) |
+| `frontier.py` | Heuristic expected-PnL frontier at 300 s vs 60 s |
 | `results/summary_test.csv` | Table above; `episodes_test.csv` has per-episode rows |
 | `tests/test_v3.py` | PnL-decomposition identity, mirror, spaces, dashboard adapter |
 
@@ -125,12 +175,15 @@ python -m pytest rl_agent/v3/tests -q
 python -m rl_agent.v3.train_v3 --timesteps 3000000 --risk-lambda 0.002 --seed 1 --out rl_agent/v3/models/ppo_v3
 python rl_agent/v3/tune_heuristic.py
 python -m rl_agent.v3.evaluate_v3 --model rl_agent/v3/models/ppo_v3.zip --n 3000
+# 60 s variant
+python -m rl_agent.v3.train_v3 --decision-seconds 60 --timesteps 5000000 --seed 22 --out rl_agent/v3/models/ppo_v3_60s
+python -m rl_agent.v3.evaluate_v3 --model rl_agent/v3/models/ppo_v3_60s.zip --decision-seconds 60 --n 3000 --tag test60
 ```
 
 ## Next steps that would move the edge most
 
-1. Shorter decision windows (60 s) in the simulator, to cut stale-quote losses.
-   The dashboard already supports `--decision-seconds 60`.
+1. Done: 60 s decisions (above). A next step is event-driven re-quoting, for
+   example right after a large print, since the fill's own impact now dominates.
 2. Recalibrate volume templates on current-season NFL/NBA data, to close the
    live feature shift.
 3. Real per-series maker fees. Many Kalshi series list a zero maker multiplier,

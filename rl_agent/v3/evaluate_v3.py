@@ -33,9 +33,11 @@ CELLS = {
 }
 TUNED = {"half": 0.03, "skew": 0.002, "size": 10.0}   # overwritten by tune_heuristic.py output if present
 _G = {}
+DECISION_S = [300.0]
 
 
-def _init(model_path, v2_path):
+def _init(model_path, v2_path, decision_seconds=300.0):
+    DECISION_S[0] = decision_seconds
     import torch
     torch.set_num_threads(1)
     from stable_baselines3 import PPO
@@ -83,7 +85,7 @@ def policy_action(name, d: SimAgentDriver, obs_vec):
 def run(job):
     cell, policy, seed = job
     scn = CELLS[cell] or sample_scenario(np.random.default_rng(seed))
-    d = SimAgentDriver(scn, seed)
+    d = SimAgentDriver(scn, seed, DECISION_S[0])
     done, n_quotes, ctrl = False, 0, 0.0
     obs = d.obs()
     while not done:
@@ -141,9 +143,10 @@ def main():
     ap.add_argument("--cells", nargs="*", default=list(CELLS))
     ap.add_argument("--workers", type=int, default=2)
     ap.add_argument("--tag", default="v3")
+    ap.add_argument("--decision-seconds", type=float, default=300.0)
     a = ap.parse_args()
     jobs = [(c, p, s) for c in a.cells for p in a.policies for s in range(a.seed_start, a.seed_start + a.n)]
-    with Pool(a.workers, initializer=_init, initargs=(a.model, a.v2)) as pool:
+    with Pool(a.workers, initializer=_init, initargs=(a.model, a.v2, a.decision_seconds)) as pool:
         rows = pool.map(run, jobs, chunksize=50)
     df = pd.DataFrame(rows)
     out = ROOT / "rl_agent/v3/results"

@@ -7,10 +7,10 @@ from stable_baselines3 import PPO
 from rl_agent.v3.env_v3 import SimAgentDriver, sample_scenario
 from rl_agent.v3.features import decode_action
 
-def main(path, n=300, lam=0.002, start=700_000):
+def main(path, n=300, lam=0.002, start=700_000, ds=300.0):
     m = PPO.load(path, device="cpu"); rows = []; acts = []
     for seed in range(start, start + n):
-        scn = sample_scenario(np.random.default_rng(seed)); d = SimAgentDriver(scn, seed)
+        scn = sample_scenario(np.random.default_rng(seed)); d = SimAgentDriver(scn, seed, ds)
         obs = d.obs(); done = False; parts = dict(spread=0, fees=0, impact=0, risk=0)
         while not done:
             a, _ = m.predict(obs, deterministic=True)
@@ -26,4 +26,4 @@ def main(path, n=300, lam=0.002, start=700_000):
     print(A.groupby("group")[["shift","half","bs","as_"]].mean().round(4))
     print("corr(shift, cum flow) %.2f  corr(shift, q) %.2f" % (A["shift"].corr(A.cflow), A["shift"].corr(A.q)))
 if __name__ == "__main__":
-    main(sys.argv[1], int(sys.argv[2]) if len(sys.argv) > 2 else 300)
+    main(sys.argv[1], int(sys.argv[2]) if len(sys.argv) > 2 else 300, ds=float(sys.argv[3]) if len(sys.argv) > 3 else 300.0)

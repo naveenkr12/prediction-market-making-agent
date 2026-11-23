@@ -54,10 +54,11 @@ def sample_scenario(rng: np.random.Generator) -> dict:
     }
 
 
-def make_config(scn: dict) -> EnvironmentConfig:
+def make_config(scn: dict, decision_seconds: float = 300.0) -> EnvironmentConfig:
     queue, part = FILL_SCENARIOS[scn["fill"]]
     return EnvironmentConfig(group=scn["group"], impact_scenario=scn["impact"],
-                             queue_ahead_contracts=queue, participation=part)
+                             queue_ahead_contracts=queue, participation=part,
+                             decision_seconds=decision_seconds)
 
 
 def episode_fraction(env: TradingEnvironment) -> float:
@@ -68,9 +69,9 @@ def episode_fraction(env: TradingEnvironment) -> float:
 class SimAgentDriver:
     """Owns one TradingEnvironment episode plus the live-compatible feature state."""
 
-    def __init__(self, scenario: dict, seed: int):
+    def __init__(self, scenario: dict, seed: int, decision_seconds: float = 300.0):
         self.scenario = scenario
-        self.env = TradingEnvironment(make_config(scenario))
+        self.env = TradingEnvironment(make_config(scenario, decision_seconds))
         self.raw, _ = self.env.reset(seed=seed, options={"seconds_to_close": EPISODE_SECONDS,
                                                           "initial_probability": scenario["p0"]})
         if scenario["flip"]:
@@ -127,9 +128,11 @@ class SimAgentDriver:
 class V3QuotingEnv(gym.Env):
     metadata = {"render_modes": []}
 
-    def __init__(self, risk_lambda: float = 0.002, scenario: dict | None = None, seed: int = 0):
+    def __init__(self, risk_lambda: float = 0.002, scenario: dict | None = None, seed: int = 0,
+                 decision_seconds: float = 300.0):
         super().__init__()
         self.risk_lambda = risk_lambda
+        self.decision_seconds = decision_seconds
         self.fixed_scenario = scenario
         self.rng = np.random.default_rng(seed)
         self.observation_space = spaces.Box(-3, 3, shape=(OBS_DIM,), dtype=np.float32)
@@ -140,7 +143,7 @@ class V3QuotingEnv(gym.Env):
         if seed is not None:
             self.rng = np.random.default_rng(seed)
         scn = self.fixed_scenario or sample_scenario(self.rng)
-        self.driver = SimAgentDriver(scn, int(self.rng.integers(2**31)))
+        self.driver = SimAgentDriver(scn, int(self.rng.integers(2**31)), self.decision_seconds)
         return self.driver.obs(), {"scenario": scn}
 
     def step(self, action):

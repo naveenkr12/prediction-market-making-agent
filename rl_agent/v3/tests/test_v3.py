@@ -79,3 +79,21 @@ def test_dashboard_adapter_quotes_post_only(tmp_path):
         action, info = agent.quote(ctx)
         assert action.bid is None or action.bid < ask
         assert action.ask is None or action.ask > bid
+
+
+def test_sixty_second_episodes_cover_the_hour():
+    scn = {"group": "sports", "impact": "base", "fill": "base", "flip": False, "p0": 0.5}
+    d = SimAgentDriver(scn, 5, decision_seconds=60)
+    d.obs()
+    steps, done = 0, False
+    while not done:
+        _, done, _ = d.step(d.quote(np.zeros(4)), 0.0)
+        steps += 1
+    assert steps == 60 and d.env.elapsed - d.env.start_elapsed == pytest.approx(3600)
+
+
+def test_dashboard_picks_model_matching_cadence():
+    from dashboard import config
+    from dashboard.strategies import V3Agent
+    assert V3Agent.model_for(60) == config.V3_60_MODEL
+    assert V3Agent.model_for(300) == config.V3_MODEL

@@ -102,7 +102,7 @@ def main():
         raise
 
     feed = KalshiFeed()
-    strats = strategies.build(include_ppo=not a.no_ppo)
+    strats = strategies.build(include_ppo=not a.no_ppo, decision_s=a.decision_seconds)
     for s in strats:
         log.info("strategy %-6s %s %s", s.name, "ready" if s.available else "UNAVAILABLE", s.reason)
     stamp = datetime.now(timezone.utc).strftime("%Y%m%dT%H%M%SZ")
