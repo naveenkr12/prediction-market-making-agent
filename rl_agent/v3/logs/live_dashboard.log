@@ -1,0 +1,13 @@
+2026-11-23 19:03:37,625 INFO dashboard.server: strategy hjb    ready 
+2026-11-23 19:03:37,625 INFO dashboard.server: strategy fixed  ready 
+2026-11-23 19:03:37,625 INFO dashboard.server: strategy skew   ready 
+2026-11-23 19:03:37,625 INFO dashboard.server: strategy ppo    ready 
+2026-11-23 19:03:37,625 INFO dashboard.server: strategy v3     ready 
+2026-11-23 19:03:37,625 INFO dashboard.server: discovering liquid markets closing within 24 h ...
+2026-11-23 19:04:45,173 INFO dashboard.server: tracking KXNFLGAME-26NOV23CINWAS-CIN  Cincinnati wins
+2026-11-23 19:04:45,178 INFO dashboard.server: tracking KXNBAGAME-26NOV23UTALAL-UTA  Utah wins
+2026-11-23 19:04:45,178 INFO dashboard.server: tracking KXNBAGAME-26NOV23PORPHI-POR  Portland wins
+2026-11-23 19:04:45,178 INFO dashboard.server: tracking KXBTCD-26NOV2317-T62999.99  Bitcoin price on Nov 23, 2026?
+2026-11-23 19:04:45,178 INFO dashboard.server: tracking KXEPLGAME-26NOV23BREEVE-EVE  Everton wins
+2026-11-23 19:04:45,178 INFO dashboard.server: tracking KXNBAGAME-26NOV23OKCIND-OKC  Oklahoma City wins
+2026-11-23 19:04:45,182 INFO dashboard.server: dashboard at http://127.0.0.1:8050  (paper only, no orders sent)

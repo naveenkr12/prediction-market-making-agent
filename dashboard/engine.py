@@ -214,12 +214,16 @@ class Engine:
                 for name in ms.strategies:
                     self._cancel_all(ms, name, now, "book unavailable or stale")
                 return
+            prev_decision = ms.last_decision
             ms.last_decision = now
+            since = max(prev_decision, now - self.decision_s)
+            recent = tuple(t for t in ms.trades if t["ts"] >= since)
             for s in self.strategies:
                 ss = ms.strategies[s.name]
                 if not s.available:
                     continue
-                ctx = Context(ms.book.bid, ms.book.ask, float(ss.account.inventory), now, ms.open_ts, ms.close_ts, ms.tick)
+                ctx = Context(ms.book.bid, ms.book.ask, float(ss.account.inventory), now, ms.open_ts, ms.close_ts, ms.tick,
+                              ticker=ms.ticker, trades=recent)
                 try:
                     action, info = s.quote(ctx)
                 except Exception as exc:   # a strategy failing must not stop the others

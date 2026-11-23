@@ -28,6 +28,8 @@ class Context:
     open_ts: float
     close_ts: float
     tick: str = "0.01"
+    ticker: str = ""
+    trades: tuple = ()      # public trades since the previous decision: {"ts","qty","side"}
 
     @property
     def probability(self) -> float:
@@ -109,10 +111,49 @@ class PPOAgent:
         return action, {"raw_action": [round(float(x), 4) for x in a]}
 
 
+class V3Agent:
+    """v3 RL market maker (rl_agent/v3): flow-aware, sized, one-sided quoting.
+
+    Uses the same live-computable features it was trained on
+    (rl_agent/v3/features.py): book mid/spread, inventory, clock, and the
+    public trade flow printed since the last decision.
+    """
+    name, label = "v3", "RL v3 agent"
+
+    def __init__(self, model_path=config.V3_MODEL):
+        self.model, self.available, self.reason = None, False, ""
+        self.trackers = {}
+        try:
+            from stable_baselines3 import PPO
+            from rl_agent.v3.features import FeatureTracker, decode_action
+            self._tracker_cls, self._decode = FeatureTracker, decode_action
+            self.model = PPO.load(str(model_path), device="cpu")
+            self.available = True
+        except ImportError:
+            self.reason = "stable-baselines3 not installed (pip install -r rl_agent/requirements-rl.txt)"
+        except Exception as exc:
+            self.reason = f"model not loaded: {exc}"
+
+    def quote(self, ctx: Context):
+        tr = self.trackers.setdefault(ctx.ticker, self._tracker_cls())
+        signs = [1 if t.get("side") == "yes" else -1 for t in ctx.trades if t.get("side") in ("yes", "no")]
+        qty = [float(t["qty"]) for t in ctx.trades if t.get("side") in ("yes", "no")]
+        if tr.last_mid is not None:          # first call has no prior window
+            tr.record_window(signs, qty)
+        vec = tr.observe(ctx.bid, ctx.ask, ctx.inventory, ctx.episode_fraction)
+        a, _ = self.model.predict(vec, deterministic=True)
+        mid = 0.5 * (ctx.bid + ctx.ask)
+        bid, ask, bs, as_ = self._decode(a, mid, ctx.inventory, config.INVENTORY_LIMIT)
+        action, _ = executable_action(bid, ask, bs, as_, ctx.observation(), tick=ctx.tick, lot="0.01")
+        return action, {"raw_action": [round(float(x), 3) for x in np.clip(a, -1, 1)],
+                        "flow_last": round(tr.last_flow, 1), "sizes": [bs, as_]}
+
+
 def build(include_ppo: bool = True) -> list:
     out = [HJB(), FixedSpread(), InventorySkew()]
     if include_ppo:
         out.append(PPOAgent())
+        out.append(V3Agent())
     return out
 
 
