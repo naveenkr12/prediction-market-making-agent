@@ -1,7 +1,8 @@
-numpy>=1.26
+numpy>=2          # shipped PPO models were saved with numpy 2.x and cannot be unpickled by 1.x
 scipy>=1.11
 pandas>=2.0
 matplotlib>=3.8
 gymnasium>=1.0
 stable-baselines3>=2.4
 torch>=2.2
+requests>=2.31   # used by the live dashboard (dashboard/kalshi_feed.py)
