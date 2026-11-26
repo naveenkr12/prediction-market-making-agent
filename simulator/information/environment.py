@@ -316,16 +316,25 @@ def _saturated(log_odds: float) -> bool:
 
 
 # ------------------------------------------------------------------ runners
-def run_policy(env, policy: str, hjb=None, *, seed=None, options=None):
-    """Run one episode exactly as `evaluate_hjb.run` calls each policy; returns per-step records."""
-    if policy not in POLICIES:
+def run_policy(env, policy: str, hjb=None, *, seed=None, options=None, agent=None):
+    """Run one episode exactly as `evaluate_hjb.run` calls each policy; returns per-step records.
+
+    `policy="v3"` (stress test, opt-in) plays the RL v3 agent passed as `agent`
+    (rl_agent/stress_test/v3_policy.V3Policy). It is not in POLICIES, so the
+    golden/anchor checks are unchanged.
+    """
+    if policy not in POLICIES + ("v3",):
         raise ValueError("Unknown policy")
     cfg = env.config
     obs, initial_info = env.reset(seed=seed, options=options)
     records = [{"observation": obs, "info": initial_info}]
     actions = []
+    if policy == "v3":
+        agent.reset(env)
     while not env.done:
-        if policy == "hjb":
+        if policy == "v3":
+            action = agent.action(obs, env)
+        elif policy == "hjb":
             action, diagnostics = hjb.action(obs, start_elapsed=env.start_elapsed, lifetime=env.lifetime,
                 inventory_limit=cfg.inventory_limit, tick=cfg.price_tick, lot=cfg.quantity_lot)
             actions.append({"elapsed_seconds": env.elapsed, **diagnostics})
