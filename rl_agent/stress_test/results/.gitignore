@@ -1,0 +1,8 @@
+# Keep only the key outputs in git; everything else (episode_results.csv, checkpoints, ledgers) is regenerable.
+*
+!.gitignore
+!v3_vs_hjb.csv
+!stress_test_pnl.png
+!v3_minus_hjb.png
+!risk_summary.csv
+!manifest.json

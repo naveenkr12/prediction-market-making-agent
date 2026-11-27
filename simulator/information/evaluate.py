@@ -55,6 +55,9 @@ ROOT = Path(__file__).resolve().parents[2]
 DEFAULT_OUTPUT = ROOT/"data_pipeline"/"output"/"paper3"/"experiment"
 SAVED_BENCHMARK = ROOT/"data_pipeline/output/paper2/calibration/simulator/hjb_benchmark/episode_results.csv"
 POLICIES = ("hjb", "fixed", "skew", "none")
+# Stress test (opt-in): STRESS_V3=1 adds the RL v3 agent to the arm runs only (not the L0 anchor).
+EXTRA_POLICIES = ("v3",) if os.environ.get("STRESS_V3") == "1" else ()
+V3_MODEL = ROOT/"rl_agent"/"v3"/"models"/"ppo_v3.zip"
 REPLICATES = 20
 ANCHOR_TOLERANCE = 1e-9
 TIER2_NOT_IMPLEMENTED = {
@@ -143,6 +146,14 @@ def _init_worker(calibration_dir, saved_path):
     saved = pd.read_csv(saved_path)
     saved = saved[saved.impact_scenario.eq("base") & saved.fill_scenario.eq("base")]
     _STATE["saved"] = {(r["ticker"], int(r["replicate"]), r["policy"]): r for r in saved.to_dict("records")}
+
+
+def _v3_agent():
+    """Stress test: load the RL v3 agent once per worker process."""
+    if "v3" not in _STATE:
+        from rl_agent.stress_test.v3_policy import V3Policy
+        _STATE["v3"] = V3Policy(V3_MODEL)
+    return _STATE["v3"]
 
 
 def code_hashes() -> dict:
@@ -289,9 +300,10 @@ def run_arm_replicate(sk, arm, plan: ArmPlan, path=None):
     rows, ledgers = [], {}
     base_hash = sk.base_input_hash()
     for level in plan.levels:
-        for policy in POLICIES:
+        for policy in POLICIES + EXTRA_POLICIES:
             env = InformationTradingEnvironment(path, cfg, snipe_level=level, decision_interval=plan.decision_interval)
-            records, actions = run_policy(env, policy, hjb, seed=sk.path_seed)
+            records, actions = run_policy(env, policy, hjb, seed=sk.path_seed,
+                                          agent=_v3_agent() if policy == "v3" else None)
             audit = Mx.audit_information_ledger(
                 env.ledger, initial_cash=cfg.initial_cash, initial_log_odds=path.initial_log_odds,
                 inventory_limit=cfg.inventory_limit, maker_fee_multiplier=cfg.maker_fee_multiplier,
